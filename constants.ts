@@ -5,10 +5,8 @@
 // License text available at https://opensource.org/licenses/MIT
 
 export const METADATA = {
-  title: "Portfolio | Ayush Singh",
-  description:
-    "I bridge the gap between design and development. I take responsibility to craft an aesthetic user experience using modern frontend architecture.",
-  siteUrl: "https://ayushsingh.net/",
+  title: "Newgen iedc",
+
 };
 
 export const MENULINKS = [
