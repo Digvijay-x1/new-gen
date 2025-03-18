@@ -6,7 +6,9 @@
 
 export const METADATA = {
   title: "Newgen iedc",
-
+  description:
+    ".",
+  siteUrl: "",
 };
 
 export const MENULINKS = [

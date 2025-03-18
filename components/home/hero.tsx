@@ -78,7 +78,8 @@ const HeroSection = React.memo(() => {
   const renderHeroContent = (): React.ReactNode => (
     <div className={HERO_STYLES.CONTENT}>
       <div className="md:mb-4 mb-2">
-      <h2 className="font-montserrat text-6xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent animate-gradient mb-4 hover:scale-105 transition-transform">
+      <h2 className="font-montserrat text-6xl font-bold bg-gradient-to-r from-blue-600 via-teal-500 to-green-400 bg-clip-text text-transparent animate-gradient mb-4 hover:scale-105 transition-transform">
+
   The New Generation<br />
   <span className="inline-block mt-2">E-Cell</span>
 </h2>
