@@ -131,7 +131,7 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
       <p className="section-title-sm seq">ECell funded</p>
       <h1 className="section-heading seq mt-2">Successful startups</h1>
       <h2 className="text-2xl md:max-w-3xl w-full seq max-w-sm mt-2">
-      Lorem ispsmdf jd. vjifnd jdsnvkxv. knvixnv m kcxnv x kxnvkxv mx kxvsdk
+        From Concept to Success: Startups Thriving with E-Cell IIIT Allahabad&apos;s Support.
       </h2>
     </div>
   );

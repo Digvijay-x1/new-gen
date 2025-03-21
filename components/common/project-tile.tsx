@@ -1,9 +1,3 @@
-// Copyright Ayush Singh 2021,2022. All Rights Reserved.
-// Project: folio
-// Author contact: https://www.linkedin.com/in/alphaayush/
-// This file is licensed under the MIT License.
-// License text available at https://opensource.org/licenses/MIT
-
 import styles from "./ProjectTile.module.scss";
 import Image from "next/image";
 import React, { MutableRefObject, useEffect, useRef } from "react";
@@ -20,11 +14,11 @@ const ProjectTile = ({
   const projectCard: MutableRefObject<HTMLDivElement> = useRef(null);
   const {
     name,
-    tech,
     image,
     blurImage,
     description,
     gradient: [stop1, stop2],
+    details,
   } = project;
 
   useEffect(() => {
@@ -37,31 +31,9 @@ const ProjectTile = ({
     });
   }, [projectCard]);
 
-  const renderTechIcons = (techStack: string[]): React.ReactNode => (
-    <div
-      className={`
-      ${styles.techIcons} w-1/2 h-full absolute left-24 top-0 sm:flex items-center hidden
-    `}
-    >
-      <div className="flex flex-col pb-8">
-        {techStack.map((tech, i) => (
-          <div className={`${i % 2 === 0 && "ml-16"} mb-4`} key={tech}>
-            <Image
-              src={`/projects/tech/${tech}.svg`}
-              alt={tech}
-              height={45}
-              objectFit="contain"
-              width={45}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
   const renderDescription = (description: string): React.ReactNode => (
     <h2
-      className="text-lg z-10 tracking-wide font-medium"
+      className="text-lg z-10 tracking-wide font-medium group-hover:opacity-0 transition-opacity duration-300"
       style={{ transform: "translateZ(0.8rem)" }}
     >
       {description}
@@ -106,7 +78,16 @@ const ProjectTile = ({
       alt={name}
       layout="fill"
       className={`${styles.ProjectImg} z-0`}
+      style={{ transform: "rotate(0deg)" }} // Force vertical orientation
     />
+  );
+
+  const renderDetails = (details: string): React.ReactNode => (
+    <div
+      className={`${styles.details} absolute bottom-[-33%] left-0 w-full h-1/3 p-6 bg-black opacity-0`}
+    >
+      <p className="text-sm font-light">{details}</p>
+    </div>
   );
 
   return (
@@ -125,10 +106,7 @@ const ProjectTile = ({
     >
       <div
         ref={projectCard}
-        className={`
-          ${styles.ProjectTile}
-           rounded-3xl relative p-6 flex-col flex justify-between max-w-full
-        `}
+        className={`${styles.ProjectTile} group rounded-3xl relative p-6 flex-col flex justify-between max-w-full`}
         style={{
           background: `linear-gradient(90deg, ${stop1} 0%, ${stop2} 100%)`,
         }}
@@ -142,8 +120,8 @@ const ProjectTile = ({
         {renderProjectImage(image, blurImage, name)}
         {renderTopBottomGradient(stop1)}
         {renderProjectName(name)}
-        {renderTechIcons(tech)}
         {renderDescription(description)}
+        {renderDetails(details)}
       </div>
     </a>
   );
