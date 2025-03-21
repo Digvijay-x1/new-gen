@@ -50,7 +50,7 @@ const QuoteSection = () => {
           willChange ? "will-change-opacity" : ""
         }`}
       >
-        Lorem ipsum <span className="text-strong font-bold">strong</span> Lorem ispsmdf jd. vjifnd jdsnvkxv. knvixnv m kcxnv x kxnvkxv mx kxvsdk
+        Lorem ipsum <span className="text-strong font-bold">strong</span> tum hi ho na
       </h1>
     </div>
   );

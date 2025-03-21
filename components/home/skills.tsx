@@ -47,14 +47,29 @@ const SkillsSection = () => {
   }, [targetSection]);
 
   const renderSectionTitle = (): React.ReactNode => (
-    <div className="flex flex-col">
-      <p className="section-title-sm seq">Lorem ipsim</p>
-      <h1 className="section-heading seq mt-2">MENTORS</h1>
-      <h2 className="text-2xl md:max-w-2xl w-full seq mt-2">
-      Lorem ispsmdf jd. vjifnd jdsnvkxv. knvixnv m kcxnv x kxnvkxv mx kxvsdk{" "}
-      </h2>
+    <div className="flex flex-col items-center justify-center">
+      <p className="section-title-sm seq text-center">Lorem ipsim</p>
+      <h1 className="section-heading seq mt-2 text-center">MENTORS</h1>
+  
+      {/* Mentor Cards Container */}
+      <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
+        {/* Mentor 1 */}
+        <div className="shadow-lg rounded-2xl p-6 flex flex-col items-center w-96">
+          <Image src="/skills/ms.png" alt="MS" width={384} height={384} className="rounded-xl" />
+          <h3 className="mt-4 text-lg font-semibold">Mentor 1</h3>
+          <p className="text-gray-600 text-center mt-2">Some description about this amazing person.</p>
+        </div>
+  
+        {/* Mentor 2 */}
+        <div className="shadow-lg rounded-2xl p-6 flex flex-col items-center w-96">
+          <Image src="/skills/rm.png" alt="RM" width={384} height={384} className="rounded-xl" />
+          <h3 className="mt-4 text-lg font-semibold">Mentor 2</h3>
+          <p className="text-gray-600 text-center mt-2">Some description about this amazing person.</p>
+        </div>
+      </div>
     </div>
   );
+  
 
   const renderBackgroundPattern = (): React.ReactNode => (
     <>
