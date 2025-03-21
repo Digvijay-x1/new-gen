@@ -16,10 +16,10 @@ const Header = () => {
       <div className="flex justify-between section-container">
         <a href="#home" className="link">
           <Image
-            src="/logo.svg"
+            src="/logo_main.png"
             alt="Logo - Ayush Singh"
-            width={22}
-            height={22}
+            width={140}
+            height={45}
           />
         </a>
         <nav className={`outer-menu ${menuVisible ? "menu-visible" : ""}`}>
