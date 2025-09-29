@@ -44,6 +44,7 @@ const Footer = () => {
         <h3 className="text-lg font-semibold text-[22px]">Useful Links</h3>
         <ul className="mt-3 space-y-2 text-gray-400">
           <li><a href="#" className="text-[20px] hover:text-teal-300">Content</a></li>
+          <li><a href="/e-summit" className="text-[20px] hover:text-teal-300">E-Summit</a></li>
           <li><a href="#" className="text-[20px] hover:text-teal-300">How it Works</a></li>
           <li><a href="#" className="text-[20px] hover:text-teal-300">Create</a></li>
           <li><a href="#" className="text-[20px] hover:text-teal-300">Explore</a></li>
