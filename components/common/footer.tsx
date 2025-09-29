@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { EMAIL, MENULINKS } from "../../constants";
+import Image from "next/image";
 
 
 
@@ -16,16 +18,16 @@ const Footer = () => {
       <p className="text-white text-2xl font-semibold mt-12">Connect with us on social media</p>
       <div className="flex space-x-6 mt-2">
         <a href="https://www.facebook.com/p/E-Cell-IIIT-Allahabad-100063982418300/" target="_blank" rel="noreferrer">
-        <img src="/facebook.svg" alt="Facebook" width={40} height={40} className="hover:opacity-75 transition duration-300" />
+        <Image src="/facebook.svg" alt="Facebook" width={40} height={40} className="hover:opacity-75 transition duration-300" />
         </a>
         <a href="https://www.instagram.com/ecell_iiita/" target="_blank" rel="noreferrer">
-          <img src="/instagram.svg" alt="Facebook" width={40} height={40}  className="text-3xl md:text-4xl text-white hover:text-pink-500 transition duration-300" />
+          <Image src="/instagram.svg" alt="Facebook" width={40} height={40}  className="text-3xl md:text-4xl text-white hover:text-pink-500 transition duration-300" />
         </a>
         <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer">
-          <img src="/twitter.svg" alt="Facebook" width={40} height={40}  className="text-3xl md:text-4xl text-white hover:text-blue-400 transition duration-300" />
+          <Image src="/twitter.svg" alt="Facebook" width={40} height={40}  className="text-3xl md:text-4xl text-white hover:text-blue-400 transition duration-300" />
         </a>
         <a href="http://linkedin.com/company/ecell-iiit-allahabad/posts/?feedView=all" target="_blank" rel="noreferrer">
-          <img src="/linkedin.svg" alt="Facebook" width={40} height={40}  className="text-3xl md:text-4xl text-white hover:text-red-500 transition duration-300" />
+          <Image src="/linkedin.svg" alt="Facebook" width={40} height={40}  className="text-3xl md:text-4xl text-white hover:text-red-500 transition duration-300" />
         </a>
       </div>
     </div>
@@ -35,7 +37,7 @@ const Footer = () => {
     <div className="flex flex-wrap justify-between items-start gap-6 w-full px-6">
       {/* Left Section: Logo and Social Media */}
       <div className="max-w-sm flex flex-col items-center text-center py-2">
-        <img src="/logo_main.png" alt="Logo" width={160} height={100} />
+        <Image src="/logo_main.png" alt="Logo" width={160} height={100} />
         {renderSocialIcons()}
       </div>
 
@@ -44,7 +46,12 @@ const Footer = () => {
         <h3 className="text-lg font-semibold text-[22px]">Useful Links</h3>
         <ul className="mt-3 space-y-2 text-gray-400">
           <li><a href="#" className="text-[20px] hover:text-teal-300">Content</a></li>
-          <li><a href="/e-summit" className="text-[20px] hover:text-teal-300">E-Summit</a></li>
+          <li>
+  <Link href="/e-summit">
+    <a className="text-[20px] hover:text-teal-300">E-Summit</a>
+  </Link>
+</li>
+
           <li><a href="#" className="text-[20px] hover:text-teal-300">How it Works</a></li>
           <li><a href="#" className="text-[20px] hover:text-teal-300">Create</a></li>
           <li><a href="#" className="text-[20px] hover:text-teal-300">Explore</a></li>
@@ -77,7 +84,7 @@ const Footer = () => {
 
   return (
     <footer className="w-full relative select-none bg-cover flex flex-col items-stretch">
-      <img
+      <Image
         src="/footer-curve.svg"
         alt="Footer"
         className="w-full"
