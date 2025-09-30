@@ -1,5 +1,13 @@
 import Image from "next/image";
 import { type ReactNode } from "react";
+import {
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+  Youtube,
+  type LucideIcon,
+} from "lucide-react";
 
 const quickLinks = [
   { href: "#", text: "Eureka!" },
@@ -15,31 +23,43 @@ const quickLinks = [
   { href: "#", text: "Campus Ambassador" },
 ];
 
-const socialIcons = [
+type SocialIcon = {
+  href: string;
+  label: string;
+  Icon: LucideIcon;
+  color: string;
+};
+
+const socialIcons: SocialIcon[] = [
   {
-    href: "https://www.linkedin.com/company/ecell-iitb/",
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/svgs/linkedin-1-2.svg?",
-    alt: "LinkedIn",
+    href: "https://www.linkedin.com/company/ecell-iiit-allahabad/",
+    label: "LinkedIn",
+    Icon: Linkedin,
+    color: "#0A66C2",
   },
   {
-    href: "https://www.instagram.com/ecell_iitb/",
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/svgs/instagram-3.svg?",
-    alt: "Instagram",
+    href: "https://www.instagram.com/ecell_iiita/",
+    label: "Instagram",
+    Icon: Instagram,
+    color: "#E4405F",
   },
   {
     href: "https://twitter.com/ecell_iitb",
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/svgs/twitter-x-4.svg?",
-    alt: "Twitter/X",
+    label: "Twitter",
+    Icon: Twitter,
+    color: "#1DA1F2",
   },
   {
-    href: "https://www.youtube.com/c/ECellIITBombay",
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/svgs/youtube-5.svg?",
-    alt: "YouTube",
+    href: "https://www.youtube.com/channel/UCYOhhILSgHt03bjj7n4g9DA",
+    label: "YouTube",
+    Icon: Youtube,
+    color: "#FF0000",
   },
   {
-    href: "https://www.facebook.com/ecell.iitb/",
-    src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/svgs/facebook-1-6.svg?",
-    alt: "Facebook",
+    href: "https://www.facebook.com/p/E-Cell-IIIT-Allahabad-100063982418300/",
+    label: "Facebook",
+    Icon: Facebook,
+    color: "#1877F2",
   },
 ];
 
@@ -115,23 +135,24 @@ export default function FooterSection() {
               <p className="text-sm leading-relaxed text-white/80">
                 E-Cell Office,
                 <br /> Student Activity Centre (SAC),
-                <br /> IIIT Allahabad, Powai,
-                <br /> Mumbai, India
+                <br /> IIIT Allahabad, prayagraj
+                <br /> Uttar pradesh, India
               </p>
             </div>
             <div className="space-y-4">
               <SectionHeading>Follow Us</SectionHeading>
               <div className="flex gap-4">
-                {socialIcons.map((icon) => (
+                {socialIcons.map(({ href, label, Icon, color }) => (
                   <a
-                    key={icon.alt}
-                    href={icon.href}
+                    key={label}
+                    href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 transition hover:border-[#B1F5FF] hover:bg-white/20"
+                    aria-label={`Follow us on ${label}`}
                   >
                     <span className="absolute inset-0 rounded-full border border-white/10" />
-                    <Image src={icon.src} alt={icon.alt} width={18} height={18} />
+                    <Icon className="h-5 w-5" style={{ color }} />
                   </a>
                 ))}
               </div>
