@@ -27,6 +27,8 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.gray,
+      primary: "#00E5FF",
+      "primary-foreground": "#00121A",
       red: colors.red,
       yellow: colors.amber,
       green: colors.emerald,

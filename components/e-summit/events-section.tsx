@@ -57,7 +57,7 @@ const eventsData: EventDataType[] = [
     title: 'Networking Arena',
     icon: <Network className="w-28 h-28 text-primary" />,
     isImageAsset: false,
-    description: "It's a 2-day event for all startups to network with the best mentors, investors and incubators in the ecosystem.",
+  description: "It’s a 2-day event for all startups to network with the best mentors, investors and incubators in the ecosystem.",
     buttons: [
       { text: 'Register', href: '#' },
       { text: 'Website', href: '#' },
@@ -102,7 +102,7 @@ const eventsData: EventDataType[] = [
     title: 'Incubator Summit',
     icon: <Lightbulb className="w-28 h-28 text-primary" />,
     isImageAsset: false,
-    description: "Don't wait for incubation, make it happen only at Incubator Summit with top VCs and accelerator firms.",
+  description: "Don’t wait for incubation, make it happen only at Incubator Summit with top VCs and accelerator firms.",
     buttons: [
       { text: 'Register', href: '#' },
       { text: 'Website', href: '#' },
