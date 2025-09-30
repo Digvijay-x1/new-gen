@@ -5,13 +5,16 @@ const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: [
-      "slelguoygbfzlpylpxfs.supabase.co",
-      "2k21.s3.amazonaws.com",
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'slelguoygbfzlpylpxfs.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: '2k21.s3.amazonaws.com',
+      },
     ],
-  },
-  experimental: {
-    esmExternals: false,
   },
 };
 

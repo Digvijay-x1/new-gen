@@ -76,7 +76,7 @@ const ProjectTile = ({
       blurDataURL={blurImage}
       src={image}
       alt={name}
-      layout="fill"
+      fill
       className={`${styles.ProjectImg} z-0`}
       style={{ transform: "rotate(0deg)" }} // Force vertical orientation
     />
@@ -114,7 +114,7 @@ const ProjectTile = ({
         <Image
           src="/project-bg.svg"
           alt="Project"
-          layout="fill"
+          fill
           className="absolute w-full h-full top-0 left-0 opacity-20"
         />
         {renderProjectImage(image, blurImage, name)}

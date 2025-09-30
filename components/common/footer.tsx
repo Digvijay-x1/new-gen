@@ -47,8 +47,8 @@ const Footer = () => {
         <ul className="mt-3 space-y-2 text-gray-400">
           <li><a href="#" className="text-[20px] hover:text-teal-300">Content</a></li>
           <li>
-  <Link href="/e-summit">
-    <a className="text-[20px] hover:text-teal-300">E-Summit</a>
+  <Link href="/e-summit" className="text-[20px] hover:text-teal-300">
+    E-Summit
   </Link>
 </li>
 
