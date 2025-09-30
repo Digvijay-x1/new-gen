@@ -16,8 +16,8 @@
   --color-popover: #000000;
   --color-popover-foreground: #ffffff;
 
-  --color-primary: #ffd700;
-  --color-primary-foreground: #000000;
+  --color-primary: #33f6ff;
+  --color-primary-foreground: #02121b;
 
   --color-secondary: #333333;
   --color-secondary-foreground: #ffffff;
@@ -33,7 +33,7 @@
 
   --color-border: #333333;
   --color-input: #333333;
-  --color-ring: #ffd700;
+  --color-ring: #33f6ff;
 
   /* Chart colors (placeholders, adjust if specific chart colors are needed) */
   --color-chart-1: #e67e22;
@@ -45,12 +45,12 @@
   /* Sidebar colors (if applicable, using general dark theme values) */
   --color-sidebar: #1a1a1a;
   --color-sidebar-foreground: #f0f0f0;
-  --color-sidebar-primary: #ffd700;
-  --color-sidebar-primary-foreground: #000000;
+  --color-sidebar-primary: #33f6ff;
+  --color-sidebar-primary-foreground: #02121b;
   --color-sidebar-accent: #292929;
   --color-sidebar-accent-foreground: #f0f0f0;
   --color-sidebar-border: #292929;
-  --color-sidebar-ring: #ffd700;
+  --color-sidebar-ring: #33f6ff;
 
   /* Custom E-Summit colors */
   --color-pure-white: #ffffff;

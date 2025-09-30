@@ -30,6 +30,9 @@
 
 body {
   @apply bg-gray-900 text-white overflow-x-hidden;
+}
+
+body.is-custom-cursor {
   cursor: none;
 }
 
@@ -74,7 +77,7 @@ html {
   @apply 2xl:container xl:px-20 md:px-12 px-4 mx-auto;
 }
 
-a {
+body.is-custom-cursor a {
   cursor: none !important;
 }
 
@@ -230,7 +233,7 @@ a {
   padding-bottom: 1.25rem !important;
 }
 
-footer {
+.home-footer {
   background: url("/footer-bg.svg"),
     linear-gradient(
       153.86deg,
@@ -252,5 +255,8 @@ footer {
   background: url('/path/to/your/image.jpg') no-repeat center center fixed;
   background-size: cover;
   @apply text-white overflow-x-hidden;
+}
+
+body.is-custom-cursor .bgg {
   cursor: none;
 }

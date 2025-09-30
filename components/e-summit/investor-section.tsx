@@ -75,7 +75,7 @@ const Scroller = ({
                 <Image
                   src={src}
                   alt="Investor"
-                  fill
+                  layout="fill"
                   sizes="(max-width: 768px) 144px, 176px"
                   className="object-cover"
                 />

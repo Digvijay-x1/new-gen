@@ -83,7 +83,7 @@ const Footer = () => {
   );
 
   return (
-    <footer className="w-full relative select-none bg-cover flex flex-col items-stretch">
+    <footer className="home-footer w-full relative select-none bg-cover flex flex-col items-stretch">
       <Image
         src="/footer-curve.svg"
         alt="Footer"

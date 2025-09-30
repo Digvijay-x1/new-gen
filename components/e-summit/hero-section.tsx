@@ -3,6 +3,23 @@
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Ticket } from 'lucide-react';
+import { ComponentPropsWithoutRef } from 'react';
+
+
+
+const XiaomiLogo = (props: ComponentPropsWithoutRef<'svg'>) => (
+  <svg
+    viewBox="0 0 32 32"
+    role="img"
+    aria-label="Xiaomi"
+    {...props}
+  >
+    <path
+      d="M26.615 26.667c-.234 0-.427-.193-.427-.427V5.761c0-.234.193-.427.427-.427h4.948c.24-.005.438.188.438.427V26.24c0 .24-.198.432-.438.427zm-8.297 0s-.396-.12-.396-.427V13.667c.052-1.651-1.281-3.016-2.938-3H6.734c-.536 0-.401.401-.401.401v15.172c0 .359-.401.427-.401.427H1.437C1.197 26.682.999 26.489.999 26.25V5.771c0-.24.198-.432.438-.427h17.151c3.13.021 5.656 2.563 5.667 5.693l.01 15.214c0 .234-.188.427-.427.427zM9.12 26.667c-.219 0-.401-.177-.401-.401v-12c0-.219.182-.401.401-.401h5.026c.219.01.385.188.385.401v12c0 .224-.177.401-.396.401z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 const HeroSection = () => {
   return (
@@ -17,7 +34,7 @@ const HeroSection = () => {
 
       {/* Floating PASSES Button */}
       <a href="#" className="absolute top-8 right-8 z-20 flex flex-col items-center justify-center p-2 w-[70px] h-[70px] bg-primary text-primary-foreground font-bold rounded-lg shadow-lg hover:bg-primary/90 transition-colors">
-        <span className="text-lg leading-none">B</span>
+        <span className="text-lg leading-none">A</span>
         <Ticket className="w-5 h-5 my-0.5" />
         <span className="text-[10px] leading-none tracking-tighter">PASSES</span>
       </a>
@@ -26,20 +43,21 @@ const HeroSection = () => {
       <div className="relative z-10 w-full max-w-6xl mx-auto">
         <div className="relative">
           {/* Sponsors */}
-          <div className="absolute -top-16 left-0 transform -translate-x-1/4 md:-translate-x-1/2 lg:-translate-x-3/4">
+          <div className="absolute -top-16 left-60 transform -translate-x-1/4 md:-translate-x-1/2 lg:-translate-x-3/4">
             <div className="bg-white text-black py-2 px-4 rounded-lg shadow-lg">
-              <p className="text-[10px] tracking-wider text-center text-gray-600 mb-1 font-body">Presents</p>
+              
               <div className="font-bold text-lg font-display" style={{color: '#0033A1' }}>
-                WESTBRIDGE <span className="text-gray-400 font-light">|</span> CAPITAL
+                TATA <span className="text-gray-400 font-light">|</span> GROUP
               </div>
+              <p className="text-[10px] tracking-wider text-center text-gray-600 mb-1 font-body">Presents</p>
             </div>
           </div>
           
-          <div className="absolute top-16 -right-8 md:-right-16 text-center">
+          <div className="absolute top-199 -right-8 md:-right-16 text-center">
             <p className="text-sm text-gray-400 mb-2 font-body">In Association With</p>
             <div className="flex items-center justify-center gap-2">
-              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-7 h-7 fill-current text-white"><title>GitLab</title><path d="M23.955 13.587l-1.34-4.124L18.488.54l-3.342 10.28H8.851L5.51 0 .521 13.587H.025l11.977 7.37L23.975 13.588zM15.849 11.85H8.15l2.206-6.78 1.521 4.675 1.521-4.675z"/></svg>
-              <span className="font-semibold text-2xl font-display">GitLab</span>
+              <XiaomiLogo className="h-10 w-10 text-[#FF6900]" />
+              <span className="font-semibold text-2xl font-display">Xiaomi</span>
             </div>
           </div>
 
@@ -56,9 +74,9 @@ const HeroSection = () => {
               
               <div className="flex items-end gap-x-4 sm:gap-x-6 md:gap-x-8">
                 <div className="text-left shrink">
-                  <p className="text-base md:text-xl font-medium tracking-widest text-gray-300 font-body">IIT BOMBAY'S 21<sup>ST</sup></p>
+                  <p className="text-base md:text-xl font-medium tracking-widest text-gray-300 font-body">IIIT  ALLAHABAD'S 1<sup>ST</sup></p>
                   <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[130px] font-extrabold tracking-[-0.05em] leading-none whitespace-nowrap">
-                    <span className="text-white">E-S</span><span className="text-primary">UMMIT</span>
+                    <span className="text-white">E-</span><span className="text-primary">SUMMIT</span>
                   </h1>
                   <h3 className="text-lg md:text_2xl font-light tracking-[0.2em] md:tracking-[0.3em] text_gray-200 mt-2 whitespace-nowrap">
                     DECIPHERING THE LABYRINTH
@@ -67,7 +85,7 @@ const HeroSection = () => {
                 
                 <div className="pb-3 md:pb-6 lg:pb-8 shrink-0">
                   <p className="text-lg md:text-xl lg:text-2xl font-bold tracking-wider whitespace-nowrap">
-                    11<sup>th</sup> - 12<sup>th</sup> DEC
+                    11<sup>th</sup> - 12<sup>th</sup> OCT
                   </p>
                 </div>
               </div>
