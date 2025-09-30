@@ -53,7 +53,11 @@ const HeroSection = React.memo(() => {
     const typed = initTypeAnimation(typedSpanElement);
     initRevealAnimation(targetSection);
 
-    return typed.destroy;
+    return () => {
+      if (typed && typeof typed.destroy === "function") {
+        typed.destroy();
+      }
+    };
   }, [typedSpanElement, targetSection]);
 
   const renderBackgroundImage = (): React.ReactNode => (
