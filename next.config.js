@@ -14,6 +14,26 @@ const nextConfig = {
         protocol: 'https',
         hostname: '2k21.s3.amazonaws.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.bluebookservices.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'github.githubassets.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'encrypted-tbn0.gstatic.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.townscript.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.freebiesupply.com',
+      },
     ],
   },
 };

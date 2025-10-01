@@ -229,3 +229,19 @@
 nextjs-portal {
   display: none !important;
 }
+
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-100% - 2rem)); }
+}
+.animate-scroll-left {
+  animation: scroll-left 60s linear infinite;
+}
+
+@keyframes scroll-right {
+  from { transform: translateX(calc(-100% - 2rem)); }
+  to { transform: translateX(0); }
+}
+.animate-scroll-right {
+  animation: scroll-right 60s linear infinite;
+}

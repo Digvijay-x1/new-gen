@@ -33,12 +33,10 @@ export default function ESummitPage() {
       <main className="min-h-screen bg-black text-white">
         <HeroSection />
         <AboutSection />
-        <PhotoGridSection />
         <StatisticsSection />
         <EventsSection />
         <PastSpeakersSection />
         <PastSponsorsSection />
-        <InvestorsSection />
         <FooterSection />
       </main>
     </Layout>

@@ -53,13 +53,13 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className="absolute top-199 -right-8 md:-right-16 text-center">
+          {/* <div className="absolute top-199 -right-8 md:-right-16 text-center">
             <p className="text-sm text-gray-400 mb-2 font-body">In Association With</p>
             <div className="flex items-center justify-center gap-2">
               <XiaomiLogo className="h-10 w-10 text-[#FF6900]" />
               <span className="font-semibold text-2xl font-display">Xiaomi</span>
             </div>
-          </div>
+          </div> */}
 
           {/* Central Block: Logo + Title + Dates */}
           <div className="flex flex-col items-center">
@@ -91,15 +91,7 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex justify-center items-center gap-4 md:gap-6 mt-8 md:mt-12">
-              <Button variant="outline" className="bg-black/20 border-white/40 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 text-white font-body tracking-wider uppercase text-sm px-8 py-5 md:px-10 md:py-6 rounded-md">
-                Register
-              </Button>
-              <Button variant="outline" className="bg-black/20 border-white/40 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 text-white font-body tracking-wider uppercase text-sm px-8 py-5 md:px-10 md:py-6 rounded-md">
-                Login
-              </Button>
-            </div>
+
           </div>
         </div>
         {/* Yellow lines */}
