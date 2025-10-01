@@ -5,6 +5,7 @@
 // License text available at https://opensource.org/licenses/MIT
 
 import "../styles/globals.scss";
+import "./e-summit/globals.css";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {

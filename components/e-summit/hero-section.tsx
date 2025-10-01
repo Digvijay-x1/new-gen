@@ -74,7 +74,7 @@ const HeroSection = () => {
               
               <div className="flex items-end gap-x-4 sm:gap-x-6 md:gap-x-8">
                 <div className="text-left shrink">
-                  <p className="text-base md:text-xl font-medium tracking-widest text-gray-300 font-body">IIIT  ALLAHABAD'S 1<sup>ST</sup></p>
+                  <p className="text-base md:text-xl font-medium tracking-widest text-gray-300 font-body">IIIT  ALLAHABAD&apos;S 1<sup>ST</sup></p>
                   <h1 className="text-7xl sm:text-8xl md:text-9xl lg:text-[130px] font-extrabold tracking-[-0.05em] leading-none whitespace-nowrap">
                     <span className="text-white">E-</span><span className="text-primary">SUMMIT</span>
                   </h1>
