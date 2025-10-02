@@ -69,7 +69,7 @@ const AboutSection = () => {
                 <span className="font-bold text-blue-400">November 7-9</span>, a
                 premier entrepreneurial conclave featuring insightful sessions,
                 competitions, and networking. Designed to spark innovation and
-                leadership, it's the perfect platform for entrepreneurs,
+                leadership, it&apos;s the perfect platform for entrepreneurs,
                 investors, and business enthusiasts.
               </p>
             </div>
