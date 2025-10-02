@@ -6,10 +6,11 @@ import AboutSection from "@/components/e-summit/about-section";
 import PhotoGridSection from "@/components/e-summit/photo-grid-section";
 import StatisticsSection from "@/components/e-summit/statistics-section";
 import EventsSection from "@/components/e-summit/events-section";
-import PastSpeakersSection from "@/components/e-summit/past-speakers-section";
+import PastQuestsSection from "@/components/e-summit/past-guests-section";
 import PastSponsorsSection from "@/components/e-summit/past-sponsors-section";
 import FooterSection from "@/components/e-summit/footer-section";
 import Hero from "@/components/e-summit/hero";
+import StickyLogo from "@/components/e-summit/sticky-logo";
 
 const ESUMMIT_META = {
   title: "E-Summit • IIIT Allahabad",
@@ -30,12 +31,14 @@ export default function ESummitPage() {
           content="https://www.ayushsingh.net/preview.jpg"
         />
       </Head>
-      <main className="min-h-screen text-white bg-black">
+      
+      <StickyLogo />
+      <main className="min-h-screen bg-black text-white">
         <Hero />
         <AboutSection />
         <StatisticsSection />
         <EventsSection />
-        <PastSpeakersSection />
+        <PastQuestsSection />
         <PastSponsorsSection />
         <FooterSection />
       </main>

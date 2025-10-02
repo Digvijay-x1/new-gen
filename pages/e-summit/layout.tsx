@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
+import StickyLogo from "@/components/e-summit/sticky-logo";
 
 export default function RootLayout({
   children,
@@ -11,6 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <ErrorReporter />
+        <StickyLogo />
         <Script
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/scripts//route-messenger.js"
           strategy="afterInteractive"
