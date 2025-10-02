@@ -26,7 +26,7 @@ type EventDataType = {
 const eventsData: EventDataType[] = [
   {
     title: 'Founder की बात',
-    icon: <Presentation className="w-28 h-28 text-primary" />,
+    icon: '/events_esummit/Founder.jpg',
     isImageAsset: false,
     description: 'Insights from Visionary Leaders',
     insights: [
@@ -43,7 +43,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Visdom व्यापार',
-    icon: <DollarSign className="w-28 h-28 text-primary" />,
+    icon: '/events_esummit/Visdom.jpg',
     isImageAsset: false,
     description: 'Master the Market',
     insights: [
@@ -59,8 +59,8 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Unfiltered विचार',
-    icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/startup_expo-26.png?',
-    isImageAsset: true,
+    icon: '/events_esummit/Unfiltered.jpg',
+    isImageAsset: false,
     description: 'The Ultimate Debate Showdown',
     insights: [
       'Engaging Debate on famous rivalries.',
@@ -76,8 +76,8 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Startup संगम',
-    icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/mun-27.png?',
-    isImageAsset: true,
+    icon: '/events_esummit/Startup.jpg',
+    isImageAsset: false,
     description: 'Where Ideas Meet Impact',
     insights: [
       'Exclusive Startup Expo featuring IIIT Allahabad alumni & E-Cell startups.',
@@ -93,7 +93,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Pitch मंच',
-    icon: <Network className="w-28 h-28 text-primary" />,
+    icon: '/events_esummit/Pitch.jpg',
     isImageAsset: false,
     description: "Unleash Your Marketing Creating",
     insights: [
@@ -110,8 +110,8 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Xpression जंक्शन',
-    icon: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/Competitions-29.png?',
-    isImageAsset: true,
+    icon: '/events_esummit/Xpression.jpg',
+    isImageAsset: false,
     description: ' Create, Inspire, Elevate',
     insights: [
       'Creative Content Challenge: Design engaging reels, posts, and stories.',
