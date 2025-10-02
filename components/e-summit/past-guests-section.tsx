@@ -41,27 +41,27 @@ const getSpeakerImageUrl = (speaker: Speaker, index: number) => {
 
 const SpeakerCard = ({ speaker, index }: { speaker: Speaker; index: number }) => {
   return (
-    <div className="group rounded-xl overflow-hidden shadow-md ring-1 ring-black/5 bg-card">
+    <div className="group rounded-xl overflow-hidden shadow-md ring-1 ring-black/5 bg-card hover:shadow-lg transition-all duration-300">
       <div className="relative aspect-square w-full overflow-hidden">
         <Image
           src={getSpeakerImageUrl(speaker, index)}
           alt={speaker.name}
           fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+          sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transform transition duration-500 ease-out scale-100 grayscale group-hover:grayscale-0 group-hover:scale-105"
-          priority={index < 4}
+          priority={index < 8}
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90" />
-        <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 text-white">
-          <h3 className="font-display font-semibold text-lg leading-tight text-white drop-shadow-sm">
+        <div className="absolute inset-x-0 bottom-0 p-2 sm:p-3 md:p-4 text-white">
+          <h3 className="font-display font-semibold text-sm sm:text-base md:text-lg leading-tight text-white drop-shadow-sm">
             {speaker.name}
           </h3>
           <div className="mt-0.5 space-y-0.5">
             {speaker.titleLine1 && (
-              <p className="font-body text-sm/5 text-white/90">{speaker.titleLine1}</p>
+              <p className="font-body text-xs sm:text-sm text-white/90 leading-tight">{speaker.titleLine1}</p>
             )}
             {speaker.titleLine2 && (
-              <p className="font-body text-sm/5 text-white/90">{speaker.titleLine2}</p>
+              <p className="font-body text-xs sm:text-sm text-white/90 leading-tight">{speaker.titleLine2}</p>
             )}
           </div>
         </div>
@@ -73,14 +73,14 @@ const SpeakerCard = ({ speaker, index }: { speaker: Speaker; index: number }) =>
 const PastQuestsSection = () => {
   return (
     <div className="bg-background">
-      <section className="container mx-auto px-4 py-16 md:py-24">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24">
         <h2
-          className="text-5xl md:text-8xl font-bold text-primary text-center mb-12 lg:mb-16"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-primary text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
           style={{ textShadow: '0 0 12px var(--color-primary)' }}
         >
           Past Speakers
         </h2>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
           {speakersData.map((speaker, index) => (
             <SpeakerCard key={index} speaker={speaker} index={index} />
           ))}
