@@ -126,24 +126,24 @@ const eventsData: EventDataType[] = [
 
 const EventCard = ({ event }: { event: EventDataType }) => (
   <div className="bg-black border border-secondary rounded-2xl p-4 sm:p-6 flex flex-col min-h-[500px] sm:h-[580px] lg:h-[620px] hover:border-primary transition-colors duration-300">
-    <div className="flex justify-center items-start mb-4 sm:mb-6">
-      <h3 className="text-foreground font-bold text-2xl sm:text-3xl lg:text-4xl tracking-wide leading-tight text-center" 
+    <div className="flex items-start justify-center mb-4 sm:mb-6">
+      <h3 className="text-2xl font-bold leading-tight tracking-wide text-center text-foreground sm:text-3xl lg:text-4xl" 
           style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", "Noto Sans Devanagari", sans-serif' }}>
         {event.title}
       </h3>
       {/* <a href="#" aria-label={`Learn more about ${event.title}`}>
-        <ArrowUpRight className="text-foreground w-6 h-6 hover:text-primary transition-colors shrink-0" />
+        <ArrowUpRight className="w-6 h-6 transition-colors text-foreground hover:text-primary shrink-0" />
       </a> */}
     </div>
 
-    <div className="flex-grow flex items-center justify-center my-4 sm:my-6">
+    <div className="flex items-center justify-center flex-grow my-4 sm:my-6">
       {event.isImageAsset ? (
         <Image 
           src={event.icon as string} 
           alt={`${event.title} icon`} 
           width={128} 
           height={128} 
-          className="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-contain" 
+          className="object-contain w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32" 
         />
       ) : (
         <div className="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 flex items-center justify-center [&>svg]:!w-full [&>svg]:!h-full">
@@ -152,32 +152,32 @@ const EventCard = ({ event }: { event: EventDataType }) => (
       )}
     </div>
 
-    <p className="text-muted-foreground text-lg sm:text-xl lg:text-2xl leading-relaxed mb-4 sm:mb-6 font-medium text-center">
+    <p className="mb-4 text-lg font-medium leading-relaxed text-center text-muted-foreground sm:text-xl lg:text-2xl sm:mb-6">
       {event.description}
     </p>
 
     {event.insights && (
-      <div className="mb-4 sm:mb-6 flex-grow">
-        <ul className="text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed space-y-2 sm:space-y-3">
+      <div className="flex-grow mb-4 sm:mb-6">
+        <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base lg:text-lg sm:space-y-3">
           {event.insights.map((insight, index) => (
             <li key={index} className="flex items-start">
-              <span className="text-primary mr-2 sm:mr-3 text-lg sm:text-xl lg:text-2xl font-bold flex-shrink-0 leading-none" 
+              <span className="flex-shrink-0 mr-2 text-lg font-bold leading-none text-primary sm:mr-3 sm:text-xl lg:text-2xl" 
                     style={{ marginTop: '2px' }}>
                 •
               </span>
-              <span className="leading-relaxed flex-1">{insight}</span>
+              <span className="flex-1 leading-relaxed">{insight}</span>
             </li>
           ))}
         </ul>
       </div>
     )}
 
-    <div className="flex items-center justify-center gap-3 sm:gap-4 mt-auto">
+    <div className="flex items-center justify-center gap-3 mt-auto sm:gap-4">
       {event.buttons && event.buttons.map((button) => (
         <a
           key={button.text}
           href={button.href}
-          className="flex-1 text-center border border-secondary rounded-lg py-2 sm:py-3 px-3 sm:px-5 text-xs sm:text-sm font-medium text-foreground bg-black hover:bg-secondary hover:border-primary transition-all duration-300"
+          className="flex-1 px-3 py-2 text-xs font-medium text-center transition-all duration-300 bg-black border rounded-lg border-secondary sm:py-3 sm:px-5 sm:text-sm text-foreground hover:bg-secondary hover:border-primary"
         >
           {button.text}
         </a>
@@ -188,12 +188,12 @@ const EventCard = ({ event }: { event: EventDataType }) => (
 
 const EventsSection = () => {
   return (
-    <section className="bg-black py-12 sm:py-16 lg:py-20 xl:py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center font-display font-bold text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+    <section className="py-12 bg-black sm:py-16 lg:py-20 xl:py-24">
+      <div className="container px-4 mx-auto sm:px-6 lg:px-8">
+        <h2 className="mb-8 text-4xl font-bold text-center font-display text-primary sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl sm:mb-10 md:mb-12 lg:mb-16">
           Events
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 gap-6 mx-auto md:grid-cols-2 sm:gap-8 lg:gap-10 max-w-7xl">
           {eventsData.map((event) => (
             <EventCard key={event.title} event={event} />
           ))}
