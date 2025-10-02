@@ -55,7 +55,7 @@ const Hero = () => {
           </p>
 
           <div className="text-lg font-bold delay-200 md:text-2xl text-primary-glow drop-shadow-md animate-fade-in">
-            IIIT Allahabad <span className="mx-2">|</span> November 7–9, 2025
+            IIIT Allahabad <span className="mx-2">|</span> November 7 - 9, 2025
           </div>
 
           <div className="flex flex-col justify-center gap-6 pt-10 sm:flex-row">
