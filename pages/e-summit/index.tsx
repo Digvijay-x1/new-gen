@@ -8,14 +8,14 @@ import StatisticsSection from "@/components/e-summit/statistics-section";
 import EventsSection from "@/components/e-summit/events-section";
 import PastQuestsSection from "@/components/e-summit/past-guests-section";
 import PastSponsorsSection from "@/components/e-summit/past-sponsors-section";
-import InvestorsSection from "@/components/e-summit/investor-section";
 import FooterSection from "@/components/e-summit/footer-section";
+import Hero from "@/components/e-summit/hero";
 import StickyLogo from "@/components/e-summit/sticky-logo";
 
 const ESUMMIT_META = {
   title: "E-Summit • IIIT Allahabad",
   description:
-    "Experience the 21st edition of IIIT Allahabad's E-Summit with events, speakers, sponsors, and more.",
+    "Experience the 5th edition of IIIT Allahabad's E-Summit with events, speakers, sponsors, and more.",
 };
 
 export default function ESummitPage() {
@@ -31,9 +31,10 @@ export default function ESummitPage() {
           content="https://www.ayushsingh.net/preview.jpg"
         />
       </Head>
+      
       <StickyLogo />
       <main className="min-h-screen bg-black text-white">
-        <HeroSection />
+        <Hero />
         <AboutSection />
         <StatisticsSection />
         <EventsSection />
