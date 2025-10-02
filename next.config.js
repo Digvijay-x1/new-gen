@@ -12,6 +12,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
         hostname: '2k21.s3.amazonaws.com',
       },
       {

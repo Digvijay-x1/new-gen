@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface Speaker {
   name: string;
@@ -33,24 +34,37 @@ const speakersData: Speaker[] = [
   { name: "Sadia Kibria", titleLine1: "Co-author of Sociopreneurship", titleLine2: "USA" },
 ];
 
-const SpeakerCard = ({ speaker }: { speaker: Speaker }) => {
+const getSpeakerImageUrl = (speaker: Speaker, index: number) => {
+  const seed = encodeURIComponent(`${speaker.name}-${index}`);
+  return `https://picsum.photos/seed/${seed}/600/600`;
+};
+
+const SpeakerCard = ({ speaker, index }: { speaker: Speaker; index: number }) => {
   return (
-    <div className="bg-primary rounded-lg overflow-hidden flex flex-col text-primary-foreground">
-      <div className="p-4">
-        <h3 className="font-display font-semibold text-xl leading-tight h-12 flex items-center justify-center text-center">
-          {speaker.name}
-        </h3>
-        <div className="mt-1 space-y-0.5">
-          {speaker.titleLine1 && (
-            <p className="font-body text-lg text-black/90 text-center">{speaker.titleLine1}</p>
-          )}
-          {speaker.titleLine2 && (
-            <p className="font-body text-lg text-black/90 text-center">{speaker.titleLine2}</p>
-          )}
+    <div className="group rounded-xl overflow-hidden shadow-md ring-1 ring-black/5 bg-card">
+      <div className="relative aspect-square w-full overflow-hidden">
+        <Image
+          src={getSpeakerImageUrl(speaker, index)}
+          alt={speaker.name}
+          fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
+          className="object-cover transform transition duration-500 ease-out scale-100 grayscale group-hover:grayscale-0 group-hover:scale-105"
+          priority={index < 4}
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90" />
+        <div className="absolute inset-x-0 bottom-0 p-3 md:p-4 text-white">
+          <h3 className="font-display font-semibold text-lg leading-tight text-white drop-shadow-sm">
+            {speaker.name}
+          </h3>
+          <div className="mt-0.5 space-y-0.5">
+            {speaker.titleLine1 && (
+              <p className="font-body text-sm/5 text-white/90">{speaker.titleLine1}</p>
+            )}
+            {speaker.titleLine2 && (
+              <p className="font-body text-sm/5 text-white/90">{speaker.titleLine2}</p>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="flex-1 bg-secondary filter grayscale">
-        {/* Placeholder for speaker image */}
       </div>
     </div>
   );
@@ -61,14 +75,14 @@ const PastQuestsSection = () => {
     <div className="bg-background">
       <section className="container mx-auto px-4 py-16 md:py-24">
         <h2
-          className="text-5xl md:text-6xl font-bold text-primary text-center mb-12 lg:mb-16"
+          className="text-5xl md:text-8xl font-bold text-primary text-center mb-12 lg:mb-16"
           style={{ textShadow: '0 0 12px var(--color-primary)' }}
         >
           Past Speakers
         </h2>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {speakersData.map((speaker, index) => (
-            <SpeakerCard key={index} speaker={speaker} />
+            <SpeakerCard key={index} speaker={speaker} index={index} />
           ))}
         </div>
       </section>
