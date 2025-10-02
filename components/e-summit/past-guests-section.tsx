@@ -5,38 +5,40 @@ interface Speaker {
   name: string;
   titleLine1?: string;
   titleLine2?: string;
+  imageUrl?: string;
 }
 
+
 const speakersData: Speaker[] = [
-  { name: "Sandeep Jain", titleLine1: "Founder,", titleLine2: "Geeks for Geeks" },
-  { name: "Ajit Balakrishnan", titleLine1: "Founder", titleLine2: 'Rediffmail' },
-  { name: "Shagun Sodhani", titleLine1: "Research", titleLine2: "Meta AI" },
-  { name: "Nithyasri Srivathsan", titleLine1: "Founder", titleLine2: "Rediffmail" },
-  { name: "Ram Gopal", titleLine1: "CEO", titleLine2: "Barclays Bank of India" },
-  { name: "Fabio Moioli", titleLine1: "Microsoft AI", titleLine2: "Faculty at Harvard" },
-  { name: "Zamyla Chan", titleLine1: "Associative Director", titleLine2: "University of Toronto" },
-  { name: "Artus\nKrohn-Grimberghe", titleLine1: "CEO, LytiQ GmBH" },
-  { name: "Shiv Aggarwal", titleLine1: "CEO, EarthId" },
-  { name: "Shesha Raghunathan", titleLine1: "Ambassador,IBM Quantum" },
-  { name: "Shayan Garani", titleLine1: "Professor", titleLine2: "Indian Institute of Science" },
-  { name: "Manas Mukharjee", titleLine1: "Quantum Expert", titleLine2: "National University of Singapore" },
-  { name: "Sandeep Kochhar", titleLine1: "Co-Founder", titleLine2: "BlewMinds" },
-  { name: "Kavvya Reddy", titleLine1: "Founder & Ex-Y Combinator", titleLine2: "Akula Design Club" },
-  { name: "Anil Chikara", titleLine1: "Former Chairman", titleLine2: "Startup India" },
-  { name: "Samay Raina", titleLine1: "Stand-up comedian" },
-  { name: "Shivani Maheshwari", titleLine1: "Co-founder", titleLine2: "Clorik & IIIT Allahabad alumna" },
-  { name: "Jaspreet Singh", titleLine1: "Stand-up comedian" },
-  { name: "Prof. David Aaker", titleLine1: "Branding Guru", titleLine2: "USA" },
-  { name: "Prof. Jagdish Sheth", titleLine1: "Customer Behaviour", titleLine2: "Expert, USA" },
-  { name: "Prof. V-Kumar", titleLine1: "Customer Engagement Expert", titleLine2: "USA" },
-  { name: "Russ Klein", titleLine1: "President, American Marketing", titleLine2: "Association, USA" },
-  { name: "Nancy Lee", titleLine1: "Social Marketing & Co-author of Prof.Kotler", titleLine2: "USA" },
-  { name: "Sadia Kibria", titleLine1: "Co-author of Sociopreneurship", titleLine2: "USA" },
+  { name: "Sandeep Jain", titleLine1: "Founder,", titleLine2: "Geeks for Geeks", imageUrl: "/past-guests/sandeep.jpg" },
+  { name: "Ajit Balakrishnan", titleLine1: "Founder", titleLine2: "Rediffmail", imageUrl: "/past-guests/ajit.jpg" },
+  { name: "Shagun Sodhani", titleLine1: "Research", titleLine2: "Meta AI", imageUrl: "/past-guests/shagun.jpg" },
+  { name: "Nithyasri Srivathsan", titleLine1: "Founder", titleLine2: "Rediffmail", imageUrl: "/past-guests/nithyasri.jpg" },
+  { name: "Ram Gopal", titleLine1: "CEO", titleLine2: "Barclays Bank of India", imageUrl: "/past-guests/ram.jpg" },
+  { name: "Fabio Moioli", titleLine1: "Microsoft AI", titleLine2: "Faculty at Harvard", imageUrl: "/past-guests/fabio.jpg" },
+  { name: "Zamyla Chan", titleLine1: "Associative Director", titleLine2: "University of Toronto", imageUrl: "/past-guests/zamyla.jpg" },
+  { name: "Artus Krohn-Grimberghe", titleLine1: "CEO, LytiQ GmBH", imageUrl: "/past-guests/artus.jpg" },
+  { name: "Shiv Aggarwal", titleLine1: "CEO, EarthId", imageUrl: "/past-guests/shiv.jpg" },
+  { name: "Shesha Raghunathan", titleLine1: "Ambassador,IBM Quantum", imageUrl: "/past-guests/shesha.jpg" },
+  { name: "Shayan Garani", titleLine1: "Professor", titleLine2: "Indian Institute of Science", imageUrl: "/past-guests/shayan.jpg" },
+  { name: "Manas Mukharjee", titleLine1: "Quantum Expert", titleLine2: "National University of Singapore", imageUrl: "/past-guests/manas.jpg" },
+  { name: "Sandeep Kochhar", titleLine1: "Co-Founder", titleLine2: "BlewMinds", imageUrl: "/past-guests/kochhar.jpg" },
+  { name: "Kavvya Reddy", titleLine1: "Founder & Ex-Y Combinator", titleLine2: "Akula Design Club", imageUrl: "/past-guests/kavvya.jpg" },
+  { name: "Anil Chikara", titleLine1: "Former Chairman", titleLine2: "Startup India", imageUrl: "/past-guests/anil.jpg" },
+  { name: "Samay Raina", titleLine1: "Stand-up comedian", imageUrl: "/past-guests/samay.jpg" },
+  { name: "Shivani Maheshwari", titleLine1: "Co-founder", titleLine2: "Clorik & IIIT Allahabad alumna", imageUrl: "/past-guests/shivani.jpg" },
+  { name: "Jaspreet Singh", titleLine1: "Stand-up comedian", imageUrl: "/past-guests/jaspreet.jpg" },
+  { name: "Prof. David Aaker", titleLine1: "Branding Guru", titleLine2: "USA", imageUrl: "/past-guests/david.jpg" },
+  { name: "Prof. Jagdish Sheth", titleLine1: "Customer Behaviour", titleLine2: "Expert, USA", imageUrl: "/past-guests/jagdish.jpg" },
+  { name: "Prof. V-Kumar", titleLine1: "Customer Engagement Expert", titleLine2: "USA", imageUrl: "/past-guests/vkumar.jpg" },
+  { name: "Russ Klein", titleLine1: "President, American Marketing", titleLine2: "Association, USA", imageUrl: "/past-guests/russ.jpg" },
+  { name: "Nancy Lee", titleLine1: "Social Marketing & Co-author of Prof.Kotler", titleLine2: "USA", imageUrl: "/past-guests/nancy.jpg" },
+  { name: "Sadia Kibria", titleLine1: "Co-author of Sociopreneurship", titleLine2: "USA", imageUrl: "/past-guests/sadia.jpg" },
 ];
 
+
 const getSpeakerImageUrl = (speaker: Speaker, index: number) => {
-  const seed = encodeURIComponent(`${speaker.name}-${index}`);
-  return `https://picsum.photos/seed/${seed}/600/600`;
+ return speaker.imageUrl || `https://picsum.photos/seed/${encodeURIComponent(`${speaker.name}-${index}`)}/600/600`;
 };
 
 const SpeakerCard = ({ speaker, index }: { speaker: Speaker; index: number }) => {
