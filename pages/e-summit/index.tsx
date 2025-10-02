@@ -6,7 +6,7 @@ import AboutSection from "@/components/e-summit/about-section";
 import PhotoGridSection from "@/components/e-summit/photo-grid-section";
 import StatisticsSection from "@/components/e-summit/statistics-section";
 import EventsSection from "@/components/e-summit/events-section";
-import PastSpeakersSection from "@/components/e-summit/past-speakers-section";
+import PastQuestsSection from "@/components/e-summit/past-guests-section";
 import PastSponsorsSection from "@/components/e-summit/past-sponsors-section";
 import InvestorsSection from "@/components/e-summit/investor-section";
 import FooterSection from "@/components/e-summit/footer-section";
@@ -35,7 +35,7 @@ export default function ESummitPage() {
         <AboutSection />
         <StatisticsSection />
         <EventsSection />
-        <PastSpeakersSection />
+        <PastQuestsSection />
         <PastSponsorsSection />
         <FooterSection />
       </main>
