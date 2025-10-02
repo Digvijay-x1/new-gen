@@ -20,7 +20,7 @@ type EventDataType = {
   isImageAsset: boolean;
   description: string;
   insights?: string[];
-  buttons: { text: string; href: string }[];
+  buttons?: { text: string; href: string }[];
 };
 
 const eventsData: EventDataType[] = [
@@ -34,11 +34,12 @@ const eventsData: EventDataType[] = [
       'Practical wisdom to help you make informed financial decisions.',
       'Engage in a interactive session filled with discussions and Q&A.',
       'Find inspiration for your journey into the world of investing and trading.'
-    ],
-    buttons: [
-      { text: 'Register', href: '#' },
-      { text: 'Learn More', href: '#' },
-    ],
+    ]
+    ,
+    // buttons: [
+    //   { text: 'Register', href: '#' },
+    //   { text: 'Learn More', href: '#' },
+    // ],
   },
   {
     title: 'Visdom व्यापार',
@@ -51,10 +52,10 @@ const eventsData: EventDataType[] = [
       'Hands - on experience with StockGrow.', 'Ideal for to built confidence in trading.',
       'Practical exercises and real- time analysis for effective learning.'
     ],
-    buttons: [
-      { text: 'Register', href: '#' },
-      { text: 'Website', href: '#' },
-    ],
+    // buttons: [
+    //   { text: 'Register', href: '#' },
+    //   { text: 'Website', href: '#' },
+    // ],
   },
   {
     title: 'Unfiltered विचार',
@@ -68,10 +69,10 @@ const eventsData: EventDataType[] = [
       'Social Media Recognition for top moments on Instagram.',
       'Thought-Provoking Insights to spark meaningful conversations.'
     ],
-    buttons: [
-      { text: 'Register', href: '#' },
-      { text: 'Website', href: '#' },
-    ],
+    // buttons: [
+    //   { text: 'Register', href: '#' },
+    //   { text: 'Website', href: '#' },
+    // ],
   },
   {
     title: 'Startup संगम',
@@ -85,10 +86,10 @@ const eventsData: EventDataType[] = [
       'Engaging Conversations with founders & industry experts.',
       'Inspiration & Learning to kickstart your venture.'
     ],
-    buttons: [
-      { text: 'Register', href: '#' },
-      { text: 'Website', href: '#' },
-    ],
+    // buttons: [
+    //   { text: 'Register', href: '#' },
+    //   { text: 'Website', href: '#' },
+    // ],
   },
   {
     title: 'Pitch मंच',
@@ -102,10 +103,10 @@ const eventsData: EventDataType[] = [
       'Blend creativity with smart branding.',
       'Turn concepts into impactful promotions.'
     ],
-    buttons: [
-      { text: 'Register', href: '#' },
-      { text: 'Website', href: '#' },
-    ],
+    // buttons: [
+    //   { text: 'Register', href: '#' },
+    //   { text: 'Website', href: '#' },
+    // ],
   },
   {
     title: 'Xpression जंक्शन',
@@ -119,20 +120,23 @@ const eventsData: EventDataType[] = [
       'Get featured on E-Cell’s official page.',
       'Spark conversations with impactful ideas.'
     ],
-    buttons: [{ text: 'Get Notified', href: '#' }],
+    // buttons: [{ text: 'Get Notified', href: '#' }],
   }
 ];
 
 const EventCard = ({ event }: { event: EventDataType }) => (
-  <div className="bg-black border border-secondary rounded-2xl p-5 flex flex-col h-[450px]">
-    <div className="flex justify-between items-start">
-      <h3 className="text-foreground font-medium uppercase text-sm tracking-widest leading-snug w-4/5">{event.title}</h3>
-      <a href="#" aria-label={`Learn more about ${event.title}`}>
+  <div className="bg-black border border-secondary rounded-2xl p-6 flex flex-col h-[620px] hover:border-primary transition-colors duration-300">
+    <div className="flex justify-center items-start mb-6">
+      <h3 className="text-foreground font-bold text-4xl tracking-wide leading-tight" 
+          style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", "Noto Sans Devanagari", sans-serif' }}>
+        {event.title}
+      </h3>
+      {/* <a href="#" aria-label={`Learn more about ${event.title}`}>
         <ArrowUpRight className="text-foreground w-6 h-6 hover:text-primary transition-colors shrink-0" />
-      </a>
+      </a> */}
     </div>
 
-    <div className="flex-grow flex items-center justify-center my-4">
+    <div className="flex-grow flex items-center justify-center my-6">
       {event.isImageAsset ? (
         <Image src={event.icon as string} alt={`${event.title} icon`} width={128} height={128} className="w-32 h-32 object-contain" />
       ) : (
@@ -140,29 +144,32 @@ const EventCard = ({ event }: { event: EventDataType }) => (
       )}
     </div>
 
-    <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+    <p className="text-muted-foreground text-2xl leading-relaxed mb-6 font-medium">
       {event.description}
     </p>
 
     {event.insights && (
-      <div className="mb-4 flex-grow">
-        <ul className="text-muted-foreground text-xs leading-relaxed space-y-1">
+      <div className="mb-6 flex-grow">
+        <ul className="text-muted-foreground text-lg leading-relaxed space-y-3">
           {event.insights.map((insight, index) => (
             <li key={index} className="flex items-start">
-              <span className="text-primary mr-2 mt-1">•</span>
-              <span>{insight}</span>
+              <span className="text-primary mr-3 text-2xl font-bold flex-shrink-0 leading-none" 
+                    style={{ marginTop: '2px' }}>
+                •
+              </span>
+              <span className="leading-relaxed flex-1">{insight}</span>
             </li>
           ))}
         </ul>
       </div>
     )}
 
-    <div className="flex items-center justify-center gap-3 mt-auto">
-      {event.buttons.map((button) => (
+    <div className="flex items-center justify-center gap-4 mt-auto">
+      {event.buttons && event.buttons.map((button) => (
         <a
           key={button.text}
           href={button.href}
-          className="flex-1 text-center border border-secondary rounded-lg py-2.5 px-4 text-sm font-normal text-foreground bg-black hover:bg-secondary transition-colors"
+          className="flex-1 text-center border border-secondary rounded-lg py-3 px-5 text-sm font-medium text-foreground bg-black hover:bg-secondary hover:border-primary transition-all duration-300"
         >
           {button.text}
         </a>
@@ -175,10 +182,10 @@ const EventsSection = () => {
   return (
     <section className="bg-black py-20 lg:py-24">
       <div className="container">
-        <h2 className="text-center font-display font-bold text-primary text-5xl md:text-6xl mb-12 md:mb-16">
+        <h2 className="text-center font-display font-bold text-primary text-5xl md:text-8xl mb-12 md:mb-16">
           Events
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 max-w-6xl mx-auto">
           {eventsData.map((event) => (
             <EventCard key={event.title} event={event} />
           ))}
