@@ -1,45 +1,109 @@
-import Image from "next/image";
+import { Calendar, Users, TrendingUp } from "lucide-react";
 
 const statsData = [
   {
-    value: "50000+",
-    description: "attendees gathered at E-Summit making it one of the largest student run entrepreneurial congregations in Asia",
+    icon: Calendar,
+    heading: "3 Days Event",
+    description: "November 7 - 9, 2025",
+    color: "from-blue-400 to-cyan-400",
+    bgColor: "bg-blue-500/10",
   },
   {
-    value: "1000+",
-    description: "startups associated with us, driving innovation and shaping the entrepreneurial ecosystem",
+    icon: Users,
+    heading: "Industry Leaders",
+    description: "Connect with visionaries",
+    color: "from-purple-400 to-pink-400",
+    bgColor: "bg-purple-500/10",
   },
   {
-    value: "30+",
-    description: "events of E-Summit, bringing together knowledge, experience, and fresh ideas under one roof",
+    icon: TrendingUp,
+    heading: "Growth Mindset",
+    description: "Network and Learn",
+    color: "from-yellow-400 to-amber-400",
+    bgColor: "bg-yellow-500/10",
   },
 ];
 
 const StatisticsSection = () => {
   return (
-    <section className="bg-black py-20 md:py-28 lg:py-32">
-      <div className="container">
-        <div className="flex flex-col items-center gap-12 md:flex-row md:gap-16 lg:gap-24">
-          <div className="flex w-full justify-center md:w-2/5">
-            <Image
-              src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/svgs/logo-element-1.svg?"
-              alt="E-Summit 3D Logo Element"
-              width={488}
-              height={427}
-              className="h-auto w-full max-w-[280px] md:max-w-none"
-            />
+    <section className="relative py-10 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute w-64 h-64 rounded-full top-1/3 left-1/4 bg-blue-500/5 blur-3xl animate-pulse"></div>
+        <div className="absolute delay-1000 rounded-full bottom-1/4 right-1/3 w-80 h-80 bg-purple-500/5 blur-3xl animate-pulse"></div>
+        <div className="absolute w-56 h-56 delay-500 rounded-full top-1/2 right-1/4 bg-yellow-400/5 blur-3xl animate-pulse"></div>
+      </div>
+
+      <div className="container relative z-10 px-4 mx-auto">
+        {/* Section Title */}
+        <div className="mb-16 text-center">
+          <div className="inline-block px-6 py-2 mb-4 border rounded-full bg-gradient-to-r from-slate-800/60 via-slate-700/60 to-slate-800/60 border-white/10 backdrop-blur-sm">
+            <span className="text-lg font-semibold tracking-wider text-transparent uppercase md:text-2xl bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text">
+              Event Highlights
+            </span>
           </div>
-          <div className="w-full space-y-12 text-center md:w-3/5 md:text-left">
-            {statsData.map((stat, index) => (
-              <div key={index}>
-                <h2 className="text-primary font-bold text-[64px] leading-none tracking-tight">
-                  {stat.value}
-                </h2>
-                <p className="mx-auto mt-4 max-w-md text-sm font-normal uppercase tracking-wider text-white md:mx-0">
-                  {stat.description}
-                </p>
+          <h2 className="mb-4 text-4xl font-black text-transparent md:text-5xl bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text">
+            Why Attend E-Summit?
+          </h2>
+          <div className="h-1 mx-auto rounded-full w-96 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400"></div>
+        </div>
+
+        {/* Statistics Grid */}
+        <div className="grid max-w-5xl grid-cols-1 gap-8 mx-auto md:grid-cols-3">
+          {statsData.map((stat, index) => {
+            const IconComponent = stat.icon;
+            return (
+              <div
+                key={index}
+                className={`group relative p-8 bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-800/40 backdrop-blur-md rounded-2xl border border-white/10 shadow-xl transition-all duration-500 hover:-translate-y-3 ${stat.bgColor} hover:scale-105 hover:border-4`}
+                style={{
+                  animationDelay: `${index * 200}ms`,
+                }}
+              >
+                {/* Icon Container */}
+                <div className="relative mb-6">
+                  <div
+                    className={`w-20 h-20 mx-auto rounded-2xl bg-gradient-to-r ${stat.color} p-0.5 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <div className="flex items-center justify-center w-full h-full bg-slate-900 rounded-2xl">
+                      <IconComponent className="w-10 h-10 text-white" />
+                    </div>
+                  </div>
+
+                  {/* Floating particles around icon */}
+                  <div className="absolute w-2 h-2 rounded-full -top-2 -right-2 bg-gradient-to-r from-blue-400 to-purple-400 animate-ping"></div>
+                  <div className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-gradient-to-r from-yellow-400 to-amber-400 rounded-full animate-pulse delay-300"></div>
+                </div>
+
+                {/* Content */}
+                <div className="text-center">
+                  <h3 className="mb-3 text-xl font-bold text-white transition-all duration-300 md:text-2xl group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text">
+                    {stat.heading}
+                  </h3>
+                  <p className="text-lg leading-relaxed transition-colors duration-300 text-slate-300 group-hover:text-slate-100">
+                    {stat.description}
+                  </p>
+                </div>
+
+                {/* Hover glow effect */}
+                <div
+                  className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-xl`}
+                ></div>
               </div>
-            ))}
+            );
+          })}
+        </div>
+
+        {/* Call to Action */}
+        <div className="mt-16 text-center">
+          <div className="inline-block p-6 border-4 bg-gradient-to-r from-slate-800/30 via-slate-700/30 to-slate-800/30 backdrop-blur-md rounded-2xl border-white/50">
+            <p className="mb-4 text-xl font-bold text-slate-200">
+              Ready to transform your entrepreneurial journey?
+            </p>
+            <div className="flex items-center justify-center gap-2 text-2xl font-bold text-transparent bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 bg-clip-text">
+              <span>Join us at <span className="text-primary">E-Summit 2025</span></span>
+              <div className="w-2 h-2 ml-2 rounded-full bg-gradient-to-r from-yellow-400 to-amber-400 animate-pulse"></div>
+            </div>
           </div>
         </div>
       </div>
