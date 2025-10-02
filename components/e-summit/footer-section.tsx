@@ -79,12 +79,12 @@ const SectionHeading = ({ children }: { children: ReactNode }) => (
 
 export default function FooterSection() {
   return (
-    <footer className="bg-black text-white">
+    <footer id="footer-e-summit" className="text-white bg-black">
       <div className="relative">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-16 md:px-8 lg:px-10">
+      <div className="max-w-6xl px-6 py-16 mx-auto md:px-8 lg:px-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
             <div className="flex items-center gap-4">
@@ -151,8 +151,8 @@ export default function FooterSection() {
                     className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 transition hover:border-[#B1F5FF] hover:bg-white/20"
                     aria-label={`Follow us on ${label}`}
                   >
-                    <span className="absolute inset-0 rounded-full border border-white/10" />
-                    <Icon className="h-5 w-5" style={{ color }} />
+                    <span className="absolute inset-0 border rounded-full border-white/10" />
+                    <Icon className="w-5 h-5" style={{ color }} />
                   </a>
                 ))}
               </div>
@@ -179,7 +179,7 @@ export default function FooterSection() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/20 py-6 text-xs text-white/70 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 py-6 mt-16 text-xs border-t border-white/20 text-white/70 md:flex-row">
           <p>© 2025 E-Cell, IIIT Allahabad. All rights reserved.</p>
           <p className="tracking-[0.45em] uppercase text-white/50">
             Building the future of entrepreneurship

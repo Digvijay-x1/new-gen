@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Hero = () => {
   const scrollToNext = () => {
-    const element = document.querySelector("#prayagraj");
+    const element = document.querySelector("#about-e-summit");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -62,44 +62,29 @@ const Hero = () => {
             <button
               className="relative px-10 py-4 overflow-hidden text-lg font-semibold text-white transition-all duration-300 transform shadow-lg group rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:shadow-2xl hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
               onClick={() => {
-                const element = document.querySelector("#esummit");
+                const element = document.querySelector("#about-e-summit");
                 if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
             >
               <span className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-r from-blue-400 to-blue-600 group-hover:opacity-100"></span>
               <span className="relative flex items-center justify-center gap-2">
-                <span className="text-xl">🚀</span>
                 Learn More
               </span>
             </button>
             <button
               className="px-10 py-4 text-lg font-semibold text-blue-500 transition-all duration-300 transform bg-transparent border-2 border-blue-500 shadow-lg group rounded-xl hover:bg-blue-500 hover:text-white hover:shadow-2xl hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/50 backdrop-blur-sm"
               onClick={() => {
-                const element = document.querySelector("#contact");
+                const element = document.querySelector("#footer-e-summit");
                 if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
             >
               <span className="flex items-center justify-center gap-2">
-                <span className="text-xl transition-transform duration-300 group-hover:scale-110">
-                  ✉️
-                </span>
                 Contact Us
               </span>
             </button>
           </div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <button
-        onClick={scrollToNext}
-        className="absolute flex flex-col items-center -translate-x-1/2 cursor-pointer bottom-8 left-1/2 group"
-        aria-label="Scroll down"
-      >
-        <span className="flex items-center justify-center w-12 h-12 transition-all rounded-full shadow-lg animate-bounce">
-          <ChevronDown className="w-8 h-8 transition-colors text-primary group-hover:text-secondary" />
-        </span>
-      </button>
     </section>
   );
 };
