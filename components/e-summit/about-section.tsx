@@ -50,11 +50,11 @@ const AboutSection = () => {
               <p className="text-lg leading-relaxed transition-colors duration-300 md:text-xl text-slate-200 group-hover:text-white">
                 Experience{" "}
                 <span className="font-bold text-yellow-400">
-                  'Founder ki Baat'
+                  &apos;Founder ki Baat&apos;
                 </span>{" "}
                 and{" "}
                 <span className="font-bold text-yellow-400">
-                  'Xpress Junction'
+                  &apos;Xpress Junction&apos;
                 </span>
                 , where industry leaders share their journeys. With interactive
                 sessions and networking opportunities, E-Summit 2025 is a
