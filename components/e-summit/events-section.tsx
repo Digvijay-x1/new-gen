@@ -155,8 +155,7 @@ const EventCard = ({ event, expanded, onExpand }: { event: EventDataType; expand
           <button type="button" onClick={onExpand} className={`absolute top-2 right-2 z-10 px-3 py-1 text-[11px] rounded-md border border-black/50 backdrop-blur-sm transition-colors duration-300 ${expanded ? 'bg-black text-white' : 'bg-black/60 text-white/80 hover:bg-black/50 hover:text-white'}`}>{expanded ? 'Close' : 'More'}</button>
         </div>
         <div ref={contentRef} className="overflow-hidden transition-[max-height,opacity,transform] duration-500 ease-in-out" style={{ maxHeight: expanded ? contentHeight : 0, opacity: expanded ? 1 : 0, transform: expanded ? 'translateY(0)' : 'translateY(-6px)' }}>
-          <div className="p-4 bg-black/85 backdrop-blur-sm border-t border-primary/40">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Insights</p>
+          <div className="p-4 bg-black/85 backdrop-blur-sm border-t border-white/40">
             <Details />
           </div>
         </div>
