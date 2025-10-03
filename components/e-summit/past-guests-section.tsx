@@ -8,7 +8,6 @@ interface Speaker {
   imageUrl?: string;
 }
 
-
 const speakersData: Speaker[] = [
   { name: "Sandeep Jain", titleLine1: "Founder,", titleLine2: "Geeks for Geeks", imageUrl: "/past-guests/sandeep.jpg" },
   { name: "Ajit Balakrishnan", titleLine1: "Founder", titleLine2: "Rediffmail", imageUrl: "/past-guests/ajit.jpg" },
@@ -36,29 +35,28 @@ const speakersData: Speaker[] = [
   { name: "Sadia Kibria", titleLine1: "Co-author of Sociopreneurship", titleLine2: "USA", imageUrl: "/past-guests/sadia.jpg" },
 ];
 
-
 const getSpeakerImageUrl = (speaker: Speaker, index: number) => {
- return speaker.imageUrl || `https://picsum.photos/seed/${encodeURIComponent(`${speaker.name}-${index}`)}/600/600`;
+  return speaker.imageUrl || `https://picsum.photos/seed/${encodeURIComponent(`${speaker.name}-${index}`)}/600/600`;
 };
 
 const SpeakerCard = ({ speaker, index }: { speaker: Speaker; index: number }) => {
   return (
-    <div className="overflow-hidden transition-all duration-300 shadow-md group rounded-xl ring-1 ring-black/5 bg-card hover:shadow-lg">
+    <div className="overflow-hidden transition-all duration-300 shadow-xl group rounded-3xl ring-1 ring-black/5 bg-card hover:shadow-2xl">
       <div className="relative w-full overflow-hidden aspect-square">
         <Image
           src={getSpeakerImageUrl(speaker, index)}
           alt={speaker.name}
           fill
-          sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+          sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 24vw, (min-width: 768px) 45vw, (min-width: 640px) 60vw, 100vw"
           className="object-cover transition duration-500 ease-out transform scale-100 grayscale group-hover:grayscale-0 group-hover:scale-105"
           priority={index < 8}
         />
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90" />
-        <div className="absolute inset-x-0 bottom-0 p-2 text-white sm:p-3 md:p-4">
-          <h3 className="text-sm font-semibold leading-tight text-white font-display sm:text-base md:text-lg drop-shadow-sm">
+        <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-4 md:p-5">
+          <h3 className="text-sm font-semibold leading-tight text-white font-display sm:text-base md:text-base drop-shadow-sm">
             {speaker.name}
           </h3>
-          <div className="mt-0.5 space-y-0.5">
+          <div className="mt-1 space-y-0.5">
             {speaker.titleLine1 && (
               <p className="text-xs leading-tight font-body sm:text-sm text-white/90">{speaker.titleLine1}</p>
             )}
@@ -83,7 +81,7 @@ const PastQuestsSection = () => {
           Past Guests
         </h2>
         <div className="h-2 mx-auto mb-8 rounded-full w-72 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 sm:mb-10 md:mb-12 lg:mb-24"></div>
-        <div className="grid grid-cols-1 gap-4 mx-auto xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-6 md:gap-8 max-w-7xl">
+        <div className="grid grid-cols-1 gap-8 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl">
           {speakersData.map((speaker, index) => (
             <SpeakerCard key={index} speaker={speaker} index={index} />
           ))}
