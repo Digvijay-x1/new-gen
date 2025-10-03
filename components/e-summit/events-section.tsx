@@ -14,7 +14,7 @@ type EventDataType = {
 const eventsData: EventDataType[] = [
   {
     title: 'Founder की बात',
-    icon: '/events_esummit/Founder.jpeg',
+    icon: '/events_esummit/Founder.jpg',
     isImageAsset: true,
     description: 'Insights from Visionary Leaders',
     insights: [
