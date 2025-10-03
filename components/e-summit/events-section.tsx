@@ -26,8 +26,8 @@ type EventDataType = {
 const eventsData: EventDataType[] = [
   {
     title: 'Founder की बात',
-    icon: '/events_esummit/Founder.jpg',
-    isImageAsset: false,
+    icon: '/events_esummit/Founder.jpeg',
+    isImageAsset: true,
     description: 'Insights from Visionary Leaders',
     insights: [
       'Exclusive insights into the real challenges and successes of trading.',
@@ -43,8 +43,8 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Visdom व्यापार',
-    icon: '/events_esummit/Visdom.jpg',
-    isImageAsset: false,
+    icon: '/events_esummit/Visdom.jpeg',
+    isImageAsset: true,
     description: 'Master the Market',
     insights: [
       'Interactive session with a seasoned stock analyst on trading strategies.',
@@ -59,8 +59,8 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Unfiltered विचार',
-    icon: '/events_esummit/Unfiltered.jpg',
-    isImageAsset: false,
+    icon: '/events_esummit/Unfiltered.jpeg',
+    isImageAsset: true,
     description: 'The Ultimate Debate Showdown',
     insights: [
       'Engaging Debate on famous rivalries.',
@@ -76,8 +76,8 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Startup संगम',
-    icon: '/events_esummit/Startup.jpg',
-    isImageAsset: false,
+    icon: '/events_esummit/Startup.jpeg',
+    isImageAsset: true,
     description: 'Where Ideas Meet Impact',
     insights: [
       'Exclusive Startup Expo featuring IIIT Allahabad alumni & E-Cell startups.',
@@ -93,8 +93,8 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Pitch मंच',
-    icon: '/events_esummit/Pitch.jpg',
-    isImageAsset: false,
+    icon: '/events_esummit/Pitch.jpeg',
+    isImageAsset: true,
     description: "Unleash Your Marketing Creating",
     insights: [
       'Marketing Showdown: Improvise and reinvent product ads.',
@@ -110,8 +110,8 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Xpression जंक्शन',
-    icon: '/events_esummit/Xpression.jpg',
-    isImageAsset: false,
+    icon: '/events_esummit/Xpression.jpeg',
+    isImageAsset: true,
     description: ' Create, Inspire, Elevate',
     insights: [
       'Creative Content Challenge: Design engaging reels, posts, and stories.',
@@ -125,7 +125,7 @@ const eventsData: EventDataType[] = [
 ];
 
 const EventCard = ({ event }: { event: EventDataType }) => (
-  <div className="bg-black border border-secondary rounded-2xl p-4 sm:p-6 flex flex-col min-h-[500px] sm:h-[580px] lg:h-[620px] hover:border-primary transition-colors duration-300">
+  <div className="bg-black border border-secondary rounded-2xl p-4 sm:p-6 flex flex-col min-h-[500px] hover:border-primary transition-colors duration-300">
     <div className="flex items-start justify-center mb-4 sm:mb-6">
       <h3 className="text-2xl font-bold leading-tight tracking-wide text-center text-white underline decoration-4 decoration-purple-400 underline-offset-8 text-foreground sm:text-3xl lg:text-4xl" 
           style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", "Noto Sans Devanagari", sans-serif' }}>
@@ -141,9 +141,9 @@ const EventCard = ({ event }: { event: EventDataType }) => (
         <Image 
           src={event.icon as string} 
           alt={`${event.title} icon`} 
-          width={128} 
+          width={350} 
           height={128} 
-          className="object-contain w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32" 
+          className="object-cover rounded-xl" 
         />
       ) : (
         <div className="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 flex items-center justify-center [&>svg]:!w-full [&>svg]:!h-full">
