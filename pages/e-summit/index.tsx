@@ -30,6 +30,12 @@ export default function ESummitPage() {
           property="og:image"
           content="https://www.ayushsingh.net/preview.jpg"
         />
+  {/* E-Summit specific favicon overrides (cache-busted) */}
+  <link rel="icon" type="image/png" sizes="32x32" href="/events_esummit/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/events_esummit/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/events_esummit/favicon.png" />
+  <link rel="shortcut icon" href="events_esummit/favicon.png" />
+  <meta name="theme-color" content="#000000" />
       </Head>
       
       <StickyLogo />

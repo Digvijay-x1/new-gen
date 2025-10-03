@@ -37,7 +37,7 @@ const Footer = () => {
     <div className="flex flex-wrap justify-between items-start gap-6 w-full px-6">
       {/* Left Section: Logo and Social Media */}
       <div className="max-w-sm flex flex-col items-center text-center py-2">
-        <Image src="/logo_main.png" alt="Logo" width={160} height={100} />
+  <Image src="/logo_main.png" alt="Logo" width={160} height={100} className="h-auto w-auto max-w-[160px]" />
         {renderSocialIcons()}
       </div>
 

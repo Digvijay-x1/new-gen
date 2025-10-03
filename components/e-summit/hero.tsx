@@ -30,7 +30,8 @@ const Hero = () => {
               alt="Aagaz image"
               width={400}
               height={200}
-              className="animate-img-float"
+              className="animate-img-float h-auto w-auto max-w-[400px]"
+              style={{ height: 'auto', width: 'auto', maxWidth: 400 }}
               priority
             />
           </div>

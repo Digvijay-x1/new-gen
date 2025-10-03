@@ -70,6 +70,8 @@ export default function FooterSection() {
               alt="E-Cell IIIT Allahabad Logo"
               width={150}
               height={64}
+              className="h-auto w-auto max-w-[150px]"
+              style={{ height: 'auto', width: 'auto', maxWidth: 150 }}
             />
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
               CREATING JOB CREATORS

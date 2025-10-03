@@ -20,6 +20,9 @@ const Header = () => {
             alt="Logo - Ayush Singh"
             width={140}
             height={45}
+            className="h-auto w-auto max-h-[45px]"
+            style={{ height: 'auto', width: 'auto', maxHeight: 45 }}
+            priority
           />
         </a>
         <nav className={`outer-menu ${menuVisible ? "menu-visible" : ""}`}>
