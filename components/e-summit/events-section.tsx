@@ -131,9 +131,6 @@ const EventCard = ({ event }: { event: EventDataType }) => (
           style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", "Noto Sans Devanagari", sans-serif' }}>
         {event.title}
       </h3>
-      {/* <a href="#" aria-label={`Learn more about ${event.title}`}>
-        <ArrowUpRight className="w-6 h-6 transition-colors text-foreground hover:text-primary shrink-0" />
-      </a> */}
     </div>
 
     <div className="flex items-center justify-center flex-grow my-4 sm:my-6">
