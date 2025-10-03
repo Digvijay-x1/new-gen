@@ -13,7 +13,7 @@ type EventDataType = {
 const eventsData: EventDataType[] = [
   {
     title: 'Founder की बात',
-    icon: '/events/Founder.jpg',
+    icon: '/events/founder.jpg',
     isImageAsset: true,
     description: 'Insights from Visionary Leaders',
     insights: [
@@ -25,7 +25,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Visdom व्यापार',
-    icon: '/events/Visdom.jpg',
+    icon: '/events/visdom.jpg',
     isImageAsset: true,
     description: 'Master the Market',
     insights: [
@@ -38,7 +38,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Unfiltered विचार',
-    icon: '/events/Unfiltered.jpg',
+    icon: '/events/unfiltered.jpg',
     isImageAsset: true,
     description: 'The Ultimate Debate Showdown',
     insights: [
@@ -51,7 +51,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Startup संगम',
-    icon: '/events/Startup.jpg',
+    icon: '/events/startup.jpg',
     isImageAsset: true,
     description: 'Where Ideas Meet Impact',
     insights: [
@@ -64,7 +64,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Pitch मंच',
-    icon: '/events/Pitch.jpg',
+    icon: '/events/pitch.jpg',
     isImageAsset: true,
     description: 'Unleash Your Marketing Creating',
     insights: [
