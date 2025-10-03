@@ -22,7 +22,19 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container relative z-10 px-4 mx-auto text-center">
-        <div className="space-y-8 animate-fade-in">
+        <div className="space-y-6 animate-fade-in">
+
+          <div className="flex items-center justify-center flex-grow w-full">
+            <Image
+              src={"/Aagaz.png"}
+              alt="Aagaz image"
+              width={400}
+              height={200}
+              className="animate-img-float"
+              priority
+            />
+          </div>
+          
           <div className="inline-block">
             <div className="mb-2 text-xs font-bold tracking-widest uppercase md:text-base text-primary animate-glow-pulse drop-shadow-lg">
               Annual Flagship Entrepreneurship Festival

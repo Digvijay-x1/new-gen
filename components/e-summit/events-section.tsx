@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 
-// Types
 type EventDataType = {
   title: string;
   icon: string | React.ReactNode;
@@ -15,7 +14,7 @@ type EventDataType = {
 const eventsData: EventDataType[] = [
   {
     title: 'Founder की बात',
-    icon: '/events_esummit/Founder.jpg',
+    icon: '/events_esummit/Founder.jpeg',
     isImageAsset: true,
     description: 'Insights from Visionary Leaders',
     insights: [
