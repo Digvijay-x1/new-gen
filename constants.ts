@@ -8,7 +8,7 @@ export const METADATA = {
   title: "Newgen iedc",
   description:
     ".",
-  siteUrl: "",
+  siteUrl: "https://newgen-iedc.example.com", // TODO: replace with real production domain
 };
 
 export const MENULINKS = [

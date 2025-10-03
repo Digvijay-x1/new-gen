@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { METADATA } from "../../constants";
 
 import Layout from "@/components/common/layout";
 import HeroSection from "@/components/e-summit/hero-section";
@@ -20,24 +21,28 @@ const ESUMMIT_META = {
 
 export default function ESummitPage() {
   return (
-    <Layout>
+    <Layout faviconHref="/events_esummit/favicon.ico?v=1">
       <Head>
         <title>{ESUMMIT_META.title}</title>
         <meta name="description" content={ESUMMIT_META.description} />
         <meta property="og:title" content={ESUMMIT_META.title} />
         <meta property="og:description" content={ESUMMIT_META.description} />
-        <meta
-          property="og:image"
-          content="https://www.ayushsingh.net/preview.jpg"
-        />
-  {/* E-Summit specific favicon overrides (cache-busted) */}
-  <link rel="icon" type="image/png" sizes="32x32" href="/events_esummit/favicon.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/events_esummit/favicon.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/events_esummit/favicon.png" />
-  <link rel="shortcut icon" href="events_esummit/favicon.png" />
-  <meta name="theme-color" content="#000000" />
+        <link rel="canonical" href={`${METADATA.siteUrl}/e-summit`} />
+        <meta property="og:site_name" content={METADATA.title} />
+        <meta property="og:url" content={`${METADATA.siteUrl}/e-summit`} />
+        <meta property="og:image" content={`${METADATA.siteUrl}/social/esummit-banner.png`} />
+        <meta property="og:image:alt" content="E-Summit IIIT Allahabad Banner" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={ESUMMIT_META.title} />
+        <meta name="twitter:description" content={ESUMMIT_META.description} />
+        <meta name="twitter:image" content={`${METADATA.siteUrl}/social/esummit-banner.png`} />
+        <meta name="twitter:image:alt" content="E-Summit IIIT Allahabad Banner" />
+        <meta name="theme-color" content="#000000" />
       </Head>
-      
+
       <StickyLogo />
       <main className="min-h-screen text-white bg-black">
         <Hero />

@@ -7,7 +7,12 @@
 import Head from "next/head";
 import { METADATA } from "../../constants";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+  faviconHref?: string;
+}
+
+const Layout = ({ children, faviconHref }: LayoutProps) => {
   return (
     <>
       <Head>
@@ -32,7 +37,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <meta property="og:image:secure_url" content={METADATA.siteUrl} />
         <meta property="og:image:width" content="1440" />
         <meta property="og:image:height" content="800" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        {faviconHref ? (
+          <>
+            <link key="page-favicon" rel="icon" href={faviconHref} />
+            <link key="page-favicon-32" rel="icon" type="image/png" sizes="32x32" href={faviconHref} />
+            <link key="page-favicon-16" rel="icon" type="image/png" sizes="16x16" href={faviconHref} />
+            <link key="page-favicon-apple" rel="apple-touch-icon" href={faviconHref} />
+          </>
+        ) : (
+          <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        )}
       </Head>
       {children}
     </>
