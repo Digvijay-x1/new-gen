@@ -80,7 +80,7 @@ const PastQuestsSection = () => {
         >
           Past Guests
         </h2>
-        <div className="h-2 mx-auto mb-8 rounded-full w-72 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 sm:mb-10 md:mb-12 lg:mb-24"></div>
+        <div className="h-2 mx-auto mb-8 rounded-full w-72 bg-gradient-to-r from-primary via-gray-100 to-primary sm:mb-10 md:mb-12 lg:mb-24"></div>
         <div className="grid grid-cols-1 gap-8 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-7xl">
           {speakersData.map((speaker, index) => (
             <SpeakerCard key={index} speaker={speaker} index={index} />

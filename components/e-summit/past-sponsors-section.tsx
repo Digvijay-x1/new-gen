@@ -60,7 +60,7 @@ const PastSponsorsSection = () => {
           <h2 className="mb-4 text-center font-display text-4xl font-bold text-white drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] md:text-6xl md:leading-[1.2]">
             Past Sponsors
           </h2>
-          <div className="h-2 mx-auto mb-8 rounded-full w-72 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 sm:mb-10 md:mb-12 lg:mb-16"></div>
+          <div className="h-2 mx-auto mb-8 rounded-full w-72 bg-gradient-to-r from-primary via-gray-100 to-primary sm:mb-10 md:mb-12 lg:mb-16"></div>
           <div className="mt-16 md:mt-24">
             <Scroller images={sponsors} direction="left" keyPrefix="sponsors" />
           </div>

@@ -215,9 +215,13 @@ const EventsSection = () => {
     <section id="events" className="relative py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
-          <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl drop-shadow-lg" style={{ fontFamily: 'system-ui, -apple-system, \"Segoe UI\", \"Noto Sans Devanagari\", sans-serif' }}>
+          <h2
+          className="mb-4 text-3xl font-bold text-center text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
+          style={{ textShadow: '0 0 12px var(--color-primary)' }}
+        >
             E-Summit Events
           </h2>
+          <div className="h-2 mx-auto mb-8 rounded-full w-72 bg-gradient-to-r from-primary via-gray-100 to-primary sm:mb-10 md:mb-12 lg:mb-24"></div>
           <p className="mt-4 text-sm text-muted-foreground sm:text-base lg:text-lg max-w-2xl mx-auto">
             Explore the dynamic lineup of sessions and interactive experiences.
           </p>

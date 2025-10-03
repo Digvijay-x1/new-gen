@@ -43,10 +43,10 @@ const socialIcons: SocialIcon[] = [
   },
 ];
 
-const contactItems = [{ title: "FOR QUERIES", email: "ecell@iiita.ac.in" }];
+const contactItems = [{ email: "ecell@iiita.ac.in" }];
 
 const SectionHeading = ({ children }: { children: ReactNode }) => (
-  <h4 className="text-sm font-semibold uppercase tracking-[0.32em] text-primary">
+  <h4 className="text-base font-semibold uppercase tracking-[0.2em] text-primary">
     {children}
   </h4>
 );
@@ -55,7 +55,7 @@ export default function FooterSection() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
   return (
     <footer id="footer-e-summit" className="text-white bg-black">
       <div className="relative">
@@ -64,46 +64,34 @@ export default function FooterSection() {
 
       <div className="px-6 py-20 mx-auto max-w-7xl md:px-12 lg:px-16">
         <div className="grid gap-16 md:grid-cols-3 lg:grid-cols-3">
-          <div className="pr-4 space-y-8">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/logo_main.png"
-                alt="E-Cell IIIT Allahabad Logo"
-                width={150}
-                height={64}
-              />
-              {/* <div className="space-y-1">
-                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
-                  THE ENTREPRENEURSHIP CELL
-                </p>
-                <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/70">
-                  IIIT Allahabad
-                </p>
-              </div> */}
-            </div>
-            <p className="text-sm font-semibold uppercase tracking-[0.55em] text-primary">
+          <div className="pr-4 space-y-6">
+            <Image
+              src="/logo_main.png"
+              alt="E-Cell IIIT Allahabad Logo"
+              width={150}
+              height={64}
+            />
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
               CREATING JOB CREATORS
             </p>
             <p className="max-w-xs text-sm leading-relaxed text-white/75">
-              E-Cell IIIT Allahabad is Asia’s largest entrepreneurship promoting
-              student body. We build the startup ecosystem on both sides of the
-              wall.
+              The Entrepreneurship Cell (E-Cell) at IIIT Allahabad is a student-led initiative dedicated to nurturing entrepreneurial spirit on campus.
             </p>
           </div>
 
           <div className="space-y-12 md:px-4">
-            <div className="space-y-6">
+            <div className="space-y-4">
               <SectionHeading>Reach Us</SectionHeading>
               <div>
-                <p className="text-base font-light leading-relaxed text-white/70">
-                  E-Cell Office,
-                  <br /> Student Activity Centre (SAC),
-                  <br /> IIIT Allahabad, Prayagraj
+                <p className="text-base font-light leading-relaxed text-white">
+                  New Gen Lab,
+                  <br /> 2nd Floor, Computer Centre-2 (CC-2),
+                  <br /> IIIT Allahabad, Prayagraj-211015,
                   <br /> Uttar Pradesh, India
                 </p>
               </div>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-4">
               <SectionHeading>Follow Us</SectionHeading>
               <div className="flex gap-3">
                 {socialIcons.map(({ href, label, Icon, color }) => (
@@ -127,16 +115,13 @@ export default function FooterSection() {
           </div>
 
           <div className="md:pl-4">
-            <div className="space-y-6">
+            <div className="space-y-4">
               <SectionHeading>Contact Us</SectionHeading>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {contactItems.map((item) => (
                   <div
                     key={item.email}
                   >
-                    <p className="text-xs uppercase tracking-[0.38em] text-white/70 mb-3 font-medium">
-                      {item.title}
-                    </p>
                     <a
                       href={`mailto:${item.email}`}
                       className="text-lg font-medium text-white transition-colors duration-300 hover:text-[#B1F5FF] block"
@@ -155,13 +140,13 @@ export default function FooterSection() {
             © 2025 E-Cell, IIIT Allahabad. All rights reserved.
           </p>
           <p className="tracking-[0.25em] uppercase text-white/70 text-sm font-medium">
-            Building the future of entrepreneurship
+            Dream | Dare | Disrupt
           </p>
         </div>
       </div>
       <button
         onClick={scrollToTop}
-        className="fixed z-20 p-3 transition-all duration-300 bg-blue-500 border-2 border-white/50 bottom-8 right-12 group rounded-xl hover:scale-110"
+        className="fixed z-20 p-3 transition-all duration-300 bg-primary/90 border-2 border-white/50 bottom-8 right-12 group rounded-xl hover:scale-110 hover:bg-primary"
         aria-label="Scroll to top"
       >
         <ArrowUp className="w-5 h-5 text-black duration-300" />
