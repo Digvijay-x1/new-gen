@@ -26,7 +26,7 @@ const statsData = [
 
 const StatisticsSection = () => {
   return (
-    <section className="relative py-10 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <section className="relative py-10 mb-12 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute w-64 h-64 rounded-full top-1/3 left-1/4 bg-blue-500/5 blur-3xl animate-pulse"></div>
@@ -45,7 +45,7 @@ const StatisticsSection = () => {
           <h2 className="mb-4 text-4xl font-black text-transparent md:text-5xl bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text">
             Why Attend E-Summit?
           </h2>
-          <div className="h-1 mx-auto rounded-full w-96 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400"></div>
+          <div className="h-2 mx-auto rounded-full w-72 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400"></div>
         </div>
 
         {/* Statistics Grid */}
@@ -69,10 +69,6 @@ const StatisticsSection = () => {
                       <IconComponent className="w-10 h-10 text-white" />
                     </div>
                   </div>
-
-                  {/* Floating particles around icon */}
-                  <div className="absolute w-2 h-2 rounded-full -top-2 -right-2 bg-gradient-to-r from-blue-400 to-purple-400 animate-ping"></div>
-                  <div className="absolute -bottom-1 -left-1 w-1.5 h-1.5 bg-gradient-to-r from-yellow-400 to-amber-400 rounded-full animate-pulse delay-300"></div>
                 </div>
 
                 {/* Content */}

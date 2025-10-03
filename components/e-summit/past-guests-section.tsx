@@ -77,11 +77,12 @@ const PastQuestsSection = () => {
     <div className="bg-background">
       <section className="container px-4 py-12 mx-auto sm:px-6 lg:px-8 sm:py-16 md:py-20 lg:py-24">
         <h2
-          className="mb-8 text-3xl font-bold text-center sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl text-primary sm:mb-10 md:mb-12 lg:mb-16"
+          className="mb-4 text-3xl font-bold text-center text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
           style={{ textShadow: '0 0 12px var(--color-primary)' }}
         >
           Past Guests
         </h2>
+        <div className="h-2 mx-auto mb-8 rounded-full w-72 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 sm:mb-10 md:mb-12 lg:mb-24"></div>
         <div className="grid grid-cols-1 gap-4 mx-auto xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-6 md:gap-8 max-w-7xl">
           {speakersData.map((speaker, index) => (
             <SpeakerCard key={index} speaker={speaker} index={index} />

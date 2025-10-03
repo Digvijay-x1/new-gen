@@ -15,33 +15,23 @@ const AboutSection = () => {
       <div className="container relative z-10">
         <div className="flex flex-col items-center text-center">
           <div className="relative max-w-6xl">
-            {/* Floating particles */}
-            <div className="absolute inset-0 overflow-hidden -z-5">
-              <div className="absolute w-3 h-3 rounded-full opacity-60 top-10 left-1/4 bg-gradient-to-r from-blue-400 to-purple-500 animate-ping"></div>
-              <div className="absolute w-2 h-2 delay-300 rounded-full top-1/3 right-1/4 bg-gradient-to-r from-yellow-400 to-amber-500 animate-pulse"></div>
-              <div className="absolute w-2 h-2 delay-700 rounded-full top-1/2 right-1/3 bg-gradient-to-r from-blue-400 to-cyan-400 animate-ping"></div>
-              <div className="absolute w-3 h-3 delay-1000 rounded-full bottom-1/4 right-1/5 bg-gradient-to-r from-amber-400 to-yellow-500 animate-pulse"></div>
-            </div>
-
             {/* Enhanced Edition Badge */}
-            <div className="inline-block px-8 py-3 mb-6 border rounded-full bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-600/20 border-blue-500/30 backdrop-blur-sm">
-              <span className="text-xl font-bold text-transparent md:text-3xl bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text">
+            <div className="inline-block px-8 py-3 mb-6 border border-white rounded-full">
+              <span className="text-xl font-bold text-purple-400 md:text-3xl bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text">
                 4th Edition of
               </span>
             </div>
 
             {/* Main Title with Enhanced Effects */}
             <div className="relative mb-8">
-              <h1 className="font-black text-6xl md:text-8xl lg:text-9xl leading-[0.9] text-transparent bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text mb-6 transform hover:scale-105 transition-all duration-500 relative group">
+              <h1 className="font-black text-6xl md:text-8xl lg:text-9xl leading-[0.9] text-transparent bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text mb-4 transform hover:scale-105 transition-all duration-500 relative group">
                 E-SUMMIT
                 <div className="absolute inset-0 transition-all duration-500 -skew-x-12 opacity-0 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent group-hover:opacity-100 blur-xl"></div>
                 <div className="absolute inset-0 transition-all duration-700 delay-200 skew-x-12 opacity-0 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent group-hover:opacity-100 blur-xl"></div>
               </h1>
 
               {/* Animated Underline */}
-              <div className="relative w-48 h-2 mx-auto rounded-full bg-gradient-to-r from-transparent via-yellow-400 to-transparent">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 animate-pulse"></div>
-              </div>
+              <div className="h-2 mx-auto mb-8 rounded-full w-72 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 sm:mb-10 md:mb-12 lg:mb-16"></div>
             </div>
           </div>
           {/* Enhanced Content Cards */}

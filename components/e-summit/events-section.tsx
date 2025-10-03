@@ -127,7 +127,7 @@ const eventsData: EventDataType[] = [
 const EventCard = ({ event }: { event: EventDataType }) => (
   <div className="bg-black border border-secondary rounded-2xl p-4 sm:p-6 flex flex-col min-h-[500px] sm:h-[580px] lg:h-[620px] hover:border-primary transition-colors duration-300">
     <div className="flex items-start justify-center mb-4 sm:mb-6">
-      <h3 className="text-2xl font-bold leading-tight tracking-wide text-center text-foreground sm:text-3xl lg:text-4xl" 
+      <h3 className="text-2xl font-bold leading-tight tracking-wide text-center text-white underline decoration-4 decoration-purple-400 underline-offset-8 text-foreground sm:text-3xl lg:text-4xl" 
           style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", "Noto Sans Devanagari", sans-serif' }}>
         {event.title}
       </h3>
@@ -190,9 +190,10 @@ const EventsSection = () => {
   return (
     <section className="py-12 bg-black sm:py-16 lg:py-20 xl:py-24">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
-        <h2 className="mb-8 text-4xl font-bold text-center font-display text-primary sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl sm:mb-10 md:mb-12 lg:mb-16">
+        <h2 className="mb-4 text-4xl font-bold text-center text-white font-display md:text-6xl">
           Events
         </h2>
+        <div className="h-2 mx-auto mb-8 rounded-full w-52 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 sm:mb-10 md:mb-12 lg:mb-20"></div>
         <div className="grid grid-cols-1 gap-6 mx-auto md:grid-cols-2 sm:gap-8 lg:gap-10 max-w-7xl">
           {eventsData.map((event) => (
             <EventCard key={event.title} event={event} />

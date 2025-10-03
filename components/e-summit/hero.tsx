@@ -16,7 +16,7 @@ const Hero = () => {
     >
       {/* Animated Gradient Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="w-full h-full bg-gradient-to-br from-[#1a1a2e]/80 via-[#16213e]/60 to-[#0f3460]/80 animate-bg-move" />
+        <div className="w-full h-full bg-black animate-bg-move" />
         <div className="absolute inset-0 bg-gradient-accent opacity-20 polygon-accent" />
       </div>
 
