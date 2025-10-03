@@ -8,7 +8,7 @@ export const METADATA = {
   title: "Newgen iedc",
   description:
     ".",
-  siteUrl: "https://newgen-iedc.example.com", // TODO: replace with real production domain
+  siteUrl: "https://new-gen-h4vo.vercel.app/", // TODO: replace with real production domain
 };
 
 export const MENULINKS = [
