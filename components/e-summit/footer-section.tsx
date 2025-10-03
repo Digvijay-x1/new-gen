@@ -91,7 +91,7 @@ export default function FooterSection() {
             </p>
           </div>
 
-          <div className="px-4 space-y-12">
+          <div className="space-y-12 md:px-4">
             <div className="space-y-6">
               <SectionHeading>Reach Us</SectionHeading>
               <div>
@@ -126,7 +126,7 @@ export default function FooterSection() {
             </div>
           </div>
 
-          <div className="pl-4">
+          <div className="md:pl-4">
             <div className="space-y-6">
               <SectionHeading>Contact Us</SectionHeading>
               <div className="space-y-6">
@@ -161,7 +161,7 @@ export default function FooterSection() {
       </div>
       <button
         onClick={scrollToTop}
-        className="fixed p-3 transition-all duration-300 border-2 border-white/50 bottom-8 right-12 group rounded-xl bg-primary/80 hover:scale-110"
+        className="fixed z-20 p-3 transition-all duration-300 bg-blue-500 border-2 border-white/50 bottom-8 right-12 group rounded-xl hover:scale-110"
         aria-label="Scroll to top"
       >
         <ArrowUp className="w-5 h-5 text-black duration-300" />
