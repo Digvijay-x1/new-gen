@@ -43,7 +43,7 @@ const socialIcons: SocialIcon[] = [
   },
 ];
 
-const contactItems = [{ title: "FOR QUERIES", email: "esummit@ecell.in" }];
+const contactItems = [{ title: "FOR QUERIES", email: "ecell@iiita.ac.in" }];
 
 const SectionHeading = ({ children }: { children: ReactNode }) => (
   <h4 className="text-sm font-semibold uppercase tracking-[0.32em] text-primary">
