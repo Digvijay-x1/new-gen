@@ -13,7 +13,7 @@ type EventDataType = {
 const eventsData: EventDataType[] = [
   {
     title: 'Founder की बात',
-    icon: '/events/founder.jpg',
+    icon: '/events_esummit/Founder.jpeg',
     isImageAsset: true,
     description: 'Insights from Visionary Leaders',
     insights: [
@@ -25,7 +25,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Visdom व्यापार',
-    icon: '/events/visdom.jpg',
+    icon: '/events_esummit/Visdom.jpeg',
     isImageAsset: true,
     description: 'Master the Market',
     insights: [
@@ -38,7 +38,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Unfiltered विचार',
-    icon: '/events/unfiltered.jpg',
+    icon: '/events_esummit/Unfiltered.jpeg',
     isImageAsset: true,
     description: 'The Ultimate Debate Showdown',
     insights: [
@@ -51,7 +51,7 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Startup संगम',
-    icon: '/events/startup.jpg',
+    icon: '/events_esummit/Startup.jpeg',
     isImageAsset: true,
     description: 'Where Ideas Meet Impact',
     insights: [
@@ -64,9 +64,9 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Pitch मंच',
-    icon: '/events/pitch.jpg',
+    icon: '/events_esummit/Pitch.jpeg',
     isImageAsset: true,
-    description: 'Unleash Your Marketing Creating',
+    description: "Unleash Your Marketing Creating",
     insights: [
       'Marketing Showdown: Improvise and reinvent product ads.',
       'Think Creativity: Add a quirky twist to make brands stand out.',
@@ -77,9 +77,9 @@ const eventsData: EventDataType[] = [
   },
   {
     title: 'Xpression जंक्शन',
-    icon: '/events/Xpression.jpg',
+    icon: '/events_esummit/Xpression.jpeg',
     isImageAsset: true,
-    description: 'Create, Inspire, Elevate',
+    description: ' Create, Inspire, Elevate',
     insights: [
       'Creative Content Challenge: Design engaging reels, posts, and stories.',
       'Showcase Impact: Highlight business legends and tech pioneers.',
@@ -91,7 +91,7 @@ const eventsData: EventDataType[] = [
 ];
 
 const EventCard = ({ event }: { event: EventDataType }) => (
-  <div className="bg-black border border-secondary rounded-2xl p-4 sm:p-6 flex flex-col overflow-hidden min-h-[540px] sm:min-h-[620px] lg:min-h-[660px] h-auto hover:border-primary transition-colors duration-300">
+  <div className="bg-black border border-secondary rounded-2xl p-4 sm:p-6 flex flex-col min-h-[500px] hover:border-primary transition-colors duration-300">
     <div className="flex items-start justify-center mb-4 sm:mb-6">
       <h3
         className="text-2xl font-bold leading-tight tracking-wide text-center text-white underline decoration-4 decoration-purple-400 underline-offset-8 text-foreground sm:text-3xl lg:text-4xl"
@@ -102,17 +102,14 @@ const EventCard = ({ event }: { event: EventDataType }) => (
     </div>
 
     <div className="flex items-center justify-center flex-grow my-4 sm:my-6">
-      {event.isImageAsset && typeof event.icon === 'string' ? (
-        <div className="flex items-center justify-center w-full h-full overflow-hidden p-2">
-          <Image
-            src={event.icon as string}
-            alt={`${event.title} poster`}
-            width={224}
-            height={224}
-            className="object-contain w-36 h-36 sm:w-44 sm:h-44 lg:w-56 lg:h-56 max-w-full max-h-full"
-            sizes="(min-width: 1280px) 14rem, (min-width: 640px) 11rem, 9rem"
-          />
-        </div>
+      {event.isImageAsset ? (
+        <Image 
+          src={event.icon as string} 
+          alt={`${event.title} icon`} 
+          width={350} 
+          height={128} 
+          className="object-cover rounded-xl" 
+        />
       ) : (
         <div className="w-36 h-36 sm:w-44 sm:h-44 lg:w-56 lg:h-56 flex items-center justify-center [&>svg]:!w-full [&>svg]:!h-full">
           {event.icon}
