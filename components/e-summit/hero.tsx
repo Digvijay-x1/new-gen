@@ -1,4 +1,3 @@
-import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 
 const Hero = () => {
@@ -30,7 +29,7 @@ const Hero = () => {
               alt="Aagaz image"
               width={400}
               height={200}
-              className="animate-img-float h-auto w-auto max-w-[400px]"
+              className="animate-img-float h-auto w-auto max-w-[400px] pl-7"
               style={{ height: 'auto', width: 'auto', maxWidth: 400 }}
               priority
             />
