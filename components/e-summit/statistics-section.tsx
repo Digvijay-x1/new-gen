@@ -38,14 +38,14 @@ const StatisticsSection = () => {
         {/* Section Title */}
         <div className="mb-16 text-center">
           <div className="inline-block px-6 py-2 mb-4 border rounded-full bg-gradient-to-r from-slate-800/60 via-slate-700/60 to-slate-800/60 border-white/10 backdrop-blur-sm">
-            <span className="text-lg font-semibold tracking-wider text-transparent uppercase md:text-2xl bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400 bg-clip-text">
+            <span className="text-lg font-semibold tracking-wider text-transparent uppercase md:text-2xl text-primary bg-clip-text">
               Event Highlights
             </span>
           </div>
           <h2 className="mb-4 text-4xl font-black text-transparent md:text-5xl bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text">
             Why Attend E-Summit?
           </h2>
-          <div className="h-2 mx-auto rounded-full w-72 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-400"></div>
+          <div className="h-2 mx-auto rounded-full w-72 bg-gradient-to-r from-primary via-gray-100 to-primary"></div>
         </div>
 
         {/* Statistics Grid */}
@@ -73,7 +73,7 @@ const StatisticsSection = () => {
 
                 {/* Content */}
                 <div className="text-center">
-                  <h3 className="mb-3 text-xl font-bold text-white transition-all duration-300 md:text-2xl group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 group-hover:bg-clip-text">
+                  <h3 className="mb-3 text-xl font-bold text-white transition-all duration-300 md:text-2xl group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-gray-100 group-hover:bg-clip-text">
                     {stat.heading}
                   </h3>
                   <p className="text-lg leading-relaxed transition-colors duration-300 text-slate-300 group-hover:text-slate-100">

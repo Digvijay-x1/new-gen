@@ -148,10 +148,10 @@ export default function FooterSection() {
       </div>
       <button
         onClick={scrollToTop}
-        className="fixed z-20 p-3 transition-all duration-300 bg-primary/90 border-2 border-white/50 bottom-8 right-12 group rounded-xl hover:scale-110 hover:bg-primary"
+        className="fixed z-20 p-3 transition-all duration-200 bg-blue-500/90 bottom-4 right-4 md:bottom-8 md:right-12 group rounded-xl hover:scale-110 hover:bg-blue-500 hover:border-2 hover:border-white"
         aria-label="Scroll to top"
       >
-        <ArrowUp className="w-5 h-5 text-black duration-300" />
+        <ArrowUp className="w-5 h-5 text-white" />
       </button>
     </footer>
   );

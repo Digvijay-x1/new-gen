@@ -55,7 +55,7 @@ const Hero = () => {
                     priority
                   />
                 </div>
-                <div className="relative pr-6 text-4xl font-extrabold text-transparent md:text-8xl bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text drop-shadow-lg top-3">
+                <div className="relative top-0.5 md:top-3 pr-6 text-4xl font-extrabold text-transparent md:text-8xl bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-500 bg-clip-text drop-shadow-lg">
                   2025
                 </div>
               </div>
