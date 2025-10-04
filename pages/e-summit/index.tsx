@@ -47,6 +47,7 @@ export default function ESummitPage() {
       <main className="min-h-screen text-white bg-black">
         <Hero />
         <AboutSection />
+        <PhotoGridSection />
         <StatisticsSection />
         <EventsSection />
         <PastQuestsSection />

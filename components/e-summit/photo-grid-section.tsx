@@ -44,7 +44,7 @@ const PhotoCarousel = ({
               alt={image.alt}
               fill
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-              className="object-cover filter grayscale rounded-md"
+              className="object-cover rounded-md"
             />
           </div>
         ))}
@@ -56,16 +56,26 @@ const PhotoCarousel = ({
 export default function PhotoGridSection() {
   const images: ImageInfo[] = React.useMemo(
     () => [
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/summit19high-4.jpg?", alt: "E-Summit audience", aspect: "aspect-[3/2]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/_dsc8070-8.jpg?", alt: "E-Summit speaker", aspect: "aspect-[3/2]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/DSC04241-22.jpg?", alt: "E-Summit group photo", aspect: "aspect-[2/3]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/_dsc0408_1_bpIAllJ-21.jpg?", alt: "E-Summit competition winner", aspect: "aspect-[3/2]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/LOKI1530_IN9Rctb-16.jpeg?", alt: "E-Summit team", aspect: "aspect-[2/3]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/_dsc7848-9.jpg?", alt: "E-Summit networking", aspect: "aspect-[3/2]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/_dsc0270-6.jpg?", alt: "E-Summit event moment", aspect: "aspect-[3/2]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/DSC05009-Enhanced-NR-23.jpg?", alt: "E-Summit speaker on stage", aspect: "aspect-[3/2]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/team19-13.jpg?", alt: "E-Summit team photo 2019", aspect: "aspect-[3/2]" },
-      { src: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/7ff690fe-48ef-42f3-947f-08e13cecb866-ecell-in/assets/images/team18-14.jpg?", alt: "E-Summit team photo 2018", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/1.jpg", alt: "E-Summit", aspect: "aspect-[2/3]" },
+      { src: "/events_esummit/events/2.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/3.jpg", alt: "E-Summit", aspect: "aspect-[2/3]" },
+      { src: "/events_esummit/events/4.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/5.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/6.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/7.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/8.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/9.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/10.jpg", alt: "E-Summit", aspect: "aspect-[2/3]" },
+      { src: "/events_esummit/events/11.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/12.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/13.jpg", alt: "E-Summit", aspect: "aspect-[2/3]" },
+      { src: "/events_esummit/events/14.jpg", alt: "E-Summit", aspect: "aspect-[2/3]" },
+      { src: "/events_esummit/events/15.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/16.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/17.jpg", alt: "E-Summit", aspect: "aspect-[2/3]" },
+      { src: "/events_esummit/events/18.jpg", alt: "E-Summit", aspect: "aspect-[2/3]" },
+      { src: "/events_esummit/events/19.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
+      { src: "/events_esummit/events/20.jpg", alt: "E-Summit", aspect: "aspect-[3/2]" },
     ],
     []
   );
@@ -99,9 +109,9 @@ export default function PhotoGridSection() {
         `}
       </style>
       <div className="py-24 space-y-4 bg-black">
-        <PhotoCarousel images={imagesRow1} direction="left" heightClass="h-[160px] md:h-[200px]" animationDuration="90s" />
-        <PhotoCarousel images={imagesRow2} direction="right" heightClass="h-[200px] md:h-[280px]" animationDuration="120s" />
-        <PhotoCarousel images={imagesRow3} direction="left" heightClass="h-[160px] md:h-[200px]" animationDuration="100s" />
+        <PhotoCarousel images={imagesRow1} direction="left" heightClass="h-[160px] md:h-[200px]" animationDuration="150s" />
+        <PhotoCarousel images={imagesRow2} direction="right" heightClass="h-[200px] md:h-[280px]" animationDuration="190s" />
+        <PhotoCarousel images={imagesRow3} direction="left" heightClass="h-[160px] md:h-[200px]" animationDuration="170s" />
       </div>
     </>
   );
