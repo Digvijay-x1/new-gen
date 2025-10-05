@@ -73,9 +73,7 @@ const AboutSection = () => {
                   November 7th - 9th, 2025
                 </span>
                 , as we set bold new standards for
-                <span className="font-bold text-black highlight-yellow">
-                      Innovation, leadership, and purposeful change .
-                </span>
+                <span className="font-bold text-black highlight-yellow">Innovation, leadership, and purposeful change .</span>
                 .
               </p>
             </div>
