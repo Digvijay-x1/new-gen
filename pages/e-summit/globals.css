@@ -187,10 +187,14 @@ nextjs-portal {
          background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=ffff43);
          margin: -3px -6px;
          padding:  5px  18px;
+         background-size: 100% 100%;
+         background-repeat: no-repeat;
      }
 
 .highlight-green {
         background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=AFFF33);
         margin: -3px -6px;
         padding:  2px  15px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
     }
