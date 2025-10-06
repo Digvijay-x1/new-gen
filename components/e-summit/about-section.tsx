@@ -58,7 +58,7 @@ const AboutSection = () => {
             <div className="p-8 transition-all duration-300 delay-100 border-4 shadow-xl group bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-800/40 backdrop-blur-md rounded-2xl border-white/50 hover:shadow-2xl hover:-translate-y-2">
               <p className="text-lg leading-relaxed transition-colors duration-300 md:text-xl text-slate-200 group-hover:text-white">
                 IIIT Allahabad will host E-Summit 2025 on{" "}
-                <span className="font-bold text-black highlight-green">November 7-9</span>, a
+                <span className="font-bold text-black highlight-blue">November 7-9</span>, a
                 premier entrepreneurial conclave featuring insightful sessions,
                 competitions, and networking. Designed to spark innovation and
                 leadership, it&apos;s the perfect platform for entrepreneurs,
@@ -69,11 +69,11 @@ const AboutSection = () => {
             <div className="p-8 transition-all duration-300 delay-200 border-4 shadow-xl group bg-gradient-to-br from-slate-800/40 via-slate-700/40 to-slate-800/40 backdrop-blur-md rounded-2xl border-white/50 hover:shadow-2xl hover:-translate-y-2">
               <p className="text-lg leading-relaxed transition-colors duration-300 md:text-xl text-slate-200 group-hover:text-white">
                 Join us on{" "}
-                <span className="font-bold text-black highlight-yellow">
+                <span className="font-bold text-black highlight-blue">
                   November 7th - 9th, 2025
                 </span>
                 , as we set bold new standards for
-                <span className="font-bold text-black highlight-yellow">Innovation, leadership, and purposeful change .</span>
+                <span className="font-bold text-black highlight-blue">Innovation, leadership, and purposeful change .</span>
                 .
               </p>
             </div>

@@ -1,4 +1,47 @@
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
+const TypingEffect = () => {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [text, setText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const words = ["  WORDS WIN ", "  IDEAS DOMINATE "];
+  const typeSpeed = 150;
+  const deleteSpeed = 75;
+  const delay = 2000;
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentWord = words[wordIndex];
+      if (isDeleting) {
+        setText((prev) => prev.substring(0, prev.length - 1));
+      } else {
+        setText((prev) => currentWord.substring(0, prev.length + 1));
+      }
+
+      if (!isDeleting && text === currentWord) {
+        setTimeout(() => setIsDeleting(true), delay);
+      } else if (isDeleting && text === '') {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % words.length);
+      }
+    };
+
+    const speed = isDeleting ? deleteSpeed : typeSpeed;
+    const timer = setTimeout(handleTyping, speed);
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, wordIndex]);
+
+  return (
+    <p className="pt-4 mx-auto text-xl font-semibold tracking-tight max-w-2xl md:text-2xl text-muted-foreground h-8">
+      WHERE {" "}
+      <span className="text-primary">{text}</span>
+      <span className="text-white animate-pulse">|</span>
+    </p>
+  );
+};
+
 
 const Hero = () => {
   const scrollToNext = () => {
@@ -42,7 +85,7 @@ const Hero = () => {
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="relative pb-4 overflow-hidden border-4 shadow-2xl rounded-2xl border-primary/30">
+            <div className="relative pb-4 overflow-hidden border-4 shadow-2xl rounded-2xl border-black">
               <div className="flex items-center">
                 <div className="flex-grow">
                   <Image
@@ -61,13 +104,10 @@ const Hero = () => {
             </div>
           </div>
 
-          <p className="pt-4 mx-auto text-xl font-semibold tracking-tight delay-100 max-2w-2xl md:text-2xl text-muted-foreground animate-fade-in">
-            WHERE <span className="text-yellow-400">WORDS WIN</span> &{" "}
-            <span className="text-yellow-400">IDEAS DOMINATE!</span>
-          </p>
+          <TypingEffect />
 
           <div className="text-lg font-bold delay-200 md:text-2xl text-primary-glow drop-shadow-md animate-fade-in">
-            IIIT Allahabad <span className="mx-2">|</span> November 7 - 9, 2025
+             November 7 - 9, 2025
           </div>
 
           <div className="flex flex-col justify-center gap-6 pt-10 sm:flex-row">

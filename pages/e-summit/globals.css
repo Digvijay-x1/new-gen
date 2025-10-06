@@ -198,3 +198,11 @@ nextjs-portal {
         background-size: 100% 100%;
         background-repeat: no-repeat;
     }
+
+.highlight-blue {
+        background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=33f6ff);
+        margin: -3px -6px;
+        padding:  2px  15px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }

@@ -12,6 +12,9 @@ const sponsors = [
   { name: 'Zebronics', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAKt1iCcjMxdjCfqPlQBeNfppi85-EABQ8pw&s' },
   { name: 'Townscript', logo: 'https://www.townscript.com/organize/assets/images/ts-logoBMS.png' },
   { name: 'Wiley', logo: 'https://cdn.freebiesupply.com/logos/large/2x/wiley-2-logo-png-transparent.png' },
+  { name: 'Walmart', logo: 'https://www.bluebookservices.com/wp-content/uploads/2025/03/walmart-logo-2025-narrow-scaled-1.jpg' },
+  { name: 'github', logo: 'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png'},
+  { name: 'GeeksForGeeks', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA4exfK9w9g_rL_0M-REN0UYKkEhSSDadugw&s' },
 ];
 
 const Scroller = ({ images, direction, keyPrefix }: { images: { name: string, logo: string }[], direction: "left" | "right", keyPrefix: string }) => {
@@ -51,7 +54,7 @@ const PastSponsorsSection = () => {
             to { transform: translateX(-100%); }
           }
           .animate-scroll-left {
-            animation: scroll-left 60s linear infinite;
+            animation: scroll-left 20s linear infinite;
           }
         `}
       </style>
