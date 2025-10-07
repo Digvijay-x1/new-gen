@@ -38,7 +38,7 @@ const StatisticsSection = () => {
         {/* Section Title */}
         <div className="mb-16 text-center">
           <div className="inline-block px-6 py-2 mb-4 border rounded-full bg-gradient-to-r from-slate-800/60 via-slate-700/60 to-slate-800/60 border-white/10 backdrop-blur-sm">
-            <span className="text-lg font-semibold tracking-wider text-transparent uppercase md:text-2xl text-primary bg-clip-text">
+            <span className="text-lg font-semibold tracking-wider uppercase md:text-2xl text-primary bg-clip-text">
               Event Highlights
             </span>
           </div>
