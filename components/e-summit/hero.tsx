@@ -1,18 +1,19 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
+const WORDS = ["  WORDS WIN ", "  IDEAS DOMINATE "];
+const TYPE_SPEED = 150;
+const DELETE_SPEED = 75;
+const DELAY = 2000;
+
 const TypingEffect = () => {
   const [wordIndex, setWordIndex] = useState(0);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  const words = ["  WORDS WIN ", "  IDEAS DOMINATE "];
-  const typeSpeed = 150;
-  const deleteSpeed = 75;
-  const delay = 2000;
 
   useEffect(() => {
     const handleTyping = () => {
-      const currentWord = words[wordIndex];
+      const currentWord = WORDS[wordIndex];
       if (isDeleting) {
         setText((prev) => prev.substring(0, prev.length - 1));
       } else {
@@ -20,14 +21,14 @@ const TypingEffect = () => {
       }
 
       if (!isDeleting && text === currentWord) {
-        setTimeout(() => setIsDeleting(true), delay);
+        setTimeout(() => setIsDeleting(true), DELAY);
       } else if (isDeleting && text === '') {
         setIsDeleting(false);
-        setWordIndex((prev) => (prev + 1) % words.length);
+        setWordIndex((prev) => (prev + 1) % WORDS.length);
       }
     };
 
-    const speed = isDeleting ? deleteSpeed : typeSpeed;
+    const speed = isDeleting ? DELETE_SPEED : TYPE_SPEED;
     const timer = setTimeout(handleTyping, speed);
 
     return () => clearTimeout(timer);

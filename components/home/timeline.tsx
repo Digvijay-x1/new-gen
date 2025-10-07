@@ -4,7 +4,10 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+import { gsap, Linear } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import {
   Branch,
   BranchNode,
@@ -15,9 +18,6 @@ import {
   TIMELINE,
   TimelineNodeV2,
 } from "../../constants";
-import Image from "next/image";
-import { gsap, Linear } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { IDesktop, isSmallScreen } from "pages";
 
 const svgColor = "#9CA3AF";
@@ -32,431 +32,72 @@ const TimelineSection = ({ isDesktop }: IDesktop) => {
   const [svgWidth, setSvgWidth] = useState(400);
   const [rightBranchX, setRightBranchX] = useState(109);
 
-  const svgCheckpointItems = TIMELINE.filter(
-    (item) => item.type === NodeTypes.CHECKPOINT && item.shouldDrawLine
+  const svgCheckpointItems = useMemo(
+    () =>
+      TIMELINE.filter(
+        (item) => item.type === NodeTypes.CHECKPOINT && item.shouldDrawLine
+      ),
+    []
   );
 
-  const svgLength = svgCheckpointItems?.length * separation;
+  const svgLength = useMemo(
+    () => svgCheckpointItems.length * separation,
+    [svgCheckpointItems.length]
+  );
 
-  const timelineSvg: MutableRefObject<SVGSVGElement> = useRef(null);
-  const svgContainer: MutableRefObject<HTMLDivElement> = useRef(null);
-  const screenContainer: MutableRefObject<HTMLDivElement> = useRef(null);
+  const timelineSvg = useRef<SVGSVGElement | null>(null);
+  const svgContainer = useRef<HTMLDivElement | null>(null);
+  const screenContainer = useRef<HTMLDivElement | null>(null);
 
-  const addNodeRefsToItems = (
-    timeline: Array<TimelineNodeV2>
-  ): Array<LinkedTimelineNode> => {
-    return timeline.map((node, idx) => ({
-      ...node,
-      next: timeline[idx + 1],
-      prev: timeline[idx - 1],
-    }));
-  };
+  useEffect(() => {
+    if (!timelineSvg.current || !svgContainer.current) {
+      return;
+    }
 
-  const generateTimelineSvg = (timeline: Array<TimelineNodeV2>): string => {
-    let index = 1;
-    let y = dotSize / 2;
-    const timelineStyle = `<style>.str, .dot{stroke-width: ${strokeWidth}px}.anim-branch{stroke-dasharray: 186}</style>`;
-    let isDiverged = false;
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
 
-    const timelineSvg = addNodeRefsToItems(timeline).reduce(
-      (svg: string, node: LinkedTimelineNode) => {
-        const { type, next } = node;
-        let lineY = y;
-        let dotY = y + separation / 2;
+    const svgContainerEl = svgContainer.current;
+    const timelineSvgEl = timelineSvg.current;
+    const screenContainerEl = screenContainer.current;
 
-        switch (type) {
-          case NodeTypes.CHECKPOINT:
-            {
-              const { shouldDrawLine } = node;
+    const containerWidth = svgContainerEl.clientWidth;
+    setSvgWidth((prev) => (prev === containerWidth ? prev : containerWidth));
 
-              // special handling for last checkpoint
-              if (!next) {
-                lineY = y - separation / 2;
-              }
-
-              // special handling for dot without line
-              if (!shouldDrawLine) {
-                dotY = y;
-              }
-
-              if (shouldDrawLine) {
-                // TO DO fix syntax
-                svg = shouldDrawLine
-                  ? `${drawLine(node, lineY, index, isDiverged)}${svg}`
-                  : svg;
-                y = y + separation;
-                index++;
-              }
-
-              svg = svg.concat(drawDot(node, dotY, isDiverged));
-            }
-            break;
-          case NodeTypes.DIVERGE:
-            {
-              isDiverged = true;
-
-              svg = `${drawBranch(node, y, index)}${svg}`;
-            }
-            break;
-          case NodeTypes.CONVERGE:
-            {
-              isDiverged = false;
-
-              // Drawing CONVERGE branch with previous line and index
-              svg = `${drawBranch(node, y - separation, index - 1)}${svg}`;
-            }
-            break;
-        }
-
-        return svg;
-      },
-      timelineStyle
+    const svgString = generateTimelineSvg(
+      TIMELINE,
+      rightBranchX,
+      containerWidth
     );
-
-    return timelineSvg;
-  };
-
-  const getDotString = (x: number, y: number) => {
-    return `<rect class='dot' width=${dotSize} height=${dotSize} fill='#111827' x=${
-      x - dotSize / 2
-    } y=${
-      y - dotSize / 2
-    } ></rect><circle cx=${x} cy=${y} r='7' stroke=${svgColor} class='dot' ></circle>`;
-  };
-
-  const drawDot = (
-    timelineNode: LinkedCheckpointNode,
-    y: number,
-    isDiverged: boolean
-  ) => {
-    const { next, alignment } = timelineNode as LinkedCheckpointNode;
-
-    // Diverging
-    if (next && next.type === NodeTypes.DIVERGE) {
-      y = y - curveLength + 6 * dotSize;
-    }
-
-    // Converging
-    if (next && next.type === NodeTypes.CONVERGE) {
-      y = y + curveLength - 6 * dotSize;
-    }
-
-    const dotString = getDotString(
-      alignment === Branch.LEFT ? leftBranchX : rightBranchX,
-      y
-    );
-
-    const textString = addText(timelineNode, y, isDiverged);
-
-    return `${textString}${dotString}`;
-  };
-
-  const addText = (
-    timelineNode: LinkedCheckpointNode,
-    y: number,
-    isDiverged: boolean
-  ) => {
-    const { title, subtitle, size, image } = timelineNode;
-
-    const offset = isDiverged ? rightBranchX : 10;
-    const foreignObjectX = dotSize / 2 + 10 + offset;
-    const foreignObjectY = y - dotSize / 2;
-    const foreignObjectWidth = svgWidth - (dotSize / 2 + 10 + offset);
-
-    const titleSizeClass = size === ItemSize.LARGE ? "text-6xl" : "text-2xl";
-    const logoString = image
-      ? `<img src='${image}' class='h-8 mb-2' loading='lazy' width='100' height='32' alt='${image}' />`
-      : "";
-    const subtitleString = subtitle
-      ? `<p class='text-xl mt-2 text-gray-200 font-medium tracking-wide'>${subtitle}</p>`
-      : "";
-
-    return `<foreignObject x=${foreignObjectX} y=${foreignObjectY} width=${foreignObjectWidth} 
-        height=${separation}>${logoString}<p class='${titleSizeClass}'>${title}</p>${subtitleString}</foreignObject>`;
-  };
-
-  const drawLine = (
-    timelineNode: LinkedCheckpointNode,
-    y: number,
-    i: number,
-    isDiverged: boolean
-  ) => {
-    const { alignment, prev, next } = timelineNode as LinkedCheckpointNode;
-
-    const isPrevDiverge = prev && prev.type === NodeTypes.DIVERGE;
-    const isNextConverge = next && next.type === NodeTypes.CONVERGE;
-
-    const lineY = Math.abs(y + separation);
-
-    // Smaller line for Diverging
-    if (isPrevDiverge) {
-      return `<line class='str' x1=${leftBranchX} y1=${y} x2=${leftBranchX} y2=${lineY} stroke=${svgColor} /><line class='str line-${i}' x1=${leftBranchX} y1=${y} x2=${leftBranchX} y2=${lineY} stroke=${animColor} />`;
-    }
-
-    // Smaller line for Converging
-    if (isNextConverge) {
-      return `<line class='str' x1=${leftBranchX} y1=${y} x2=${leftBranchX} y2=${lineY} stroke=${svgColor} /><line class='str line-${i}' x1=${leftBranchX} y1=${y} x2=${leftBranchX} y2=${lineY} stroke=${animColor} />`;
-    }
-
-    const lineX = alignment === Branch.LEFT ? leftBranchX : rightBranchX;
-
-    let str = `<line class='str' x1=${lineX} y1=${y} x2=${lineX} y2=${lineY} stroke=${svgColor} /><line class='str line-${i}' x1=${lineX} y1=${y} x2=${lineX} y2=${lineY} stroke=${animColor} />`;
-
-    // If already diverged, draw parallel line to the existing line
-    if (isDiverged) {
-      const divergedLineX =
-        alignment === Branch.LEFT ? rightBranchX : leftBranchX;
-      str = str.concat(
-        `<line class='str' x1=${divergedLineX} y1=${y} x2=${divergedLineX} y2=${lineY} stroke=${svgColor} /><line class='str line-${i}' x1=${divergedLineX} y1=${y} x2=${divergedLineX} y2=${lineY} stroke=${animColor} />`
-      );
-    }
-    return str;
-  };
-
-  const drawBranch = (timelineNode: LinkedBranchNode, y: number, i: number) => {
-    const { type } = timelineNode;
-
-    switch (type) {
-      case NodeTypes.DIVERGE:
-        return `<path class='str' d='M ${leftBranchX} ${y} C ${leftBranchX} ${
-          y + curveLength / 2
-        } ${rightBranchX} ${y + curveLength / 2} ${rightBranchX} ${
-          y + curveLength
-        }' stroke=${svgColor} /><line class='str' x1=${rightBranchX} y1=${
-          y + curveLength
-        } x2=${rightBranchX} y2=${
-          y + separation
-        } stroke=${svgColor} /><path class='str anim-branch branch-${i}' d='M ${leftBranchX} ${y} C ${leftBranchX} ${
-          y + curveLength / 2
-        } ${rightBranchX} ${y + curveLength / 2} ${rightBranchX} ${
-          y + curveLength
-        }' stroke=${animColor} /><line class='str branch-line-${i}' x1=${rightBranchX} y1=${
-          y + curveLength
-        } x2=${rightBranchX} y2=${y + separation} stroke=${animColor} />`;
-      case NodeTypes.CONVERGE:
-        return `<path class='str' d='M ${rightBranchX} ${
-          y + separation - curveLength
-        } C ${rightBranchX} ${
-          y + separation - curveLength + curveLength / 2
-        } ${leftBranchX} ${
-          y + separation - curveLength + curveLength / 2
-        } ${leftBranchX} ${
-          y + separation
-        }' stroke=${svgColor} /><line class='str' x1=${rightBranchX} y1=${y} x2=${rightBranchX} y2=${Math.abs(
-          y + separation - curveLength
-        )} stroke=${svgColor} /><path class='str anim-branch branch-${i}' d='M ${rightBranchX} ${
-          y + separation - curveLength
-        } C ${rightBranchX} ${
-          y + separation - curveLength + curveLength / 2
-        } ${leftBranchX} ${
-          y + separation - curveLength + curveLength / 2
-        } ${leftBranchX} ${
-          y + separation
-        }' stroke=${animColor} /><line class='str branch-line-${i}' x1=${rightBranchX} y1=${y} x2=${rightBranchX} y2=${Math.abs(
-          y + separation - curveLength
-        )} stroke=${animColor} />`;
-      default:
-        return "";
-    }
-  };
-
-  const addLineSvgAnimation = (
-    timeline: GSAPTimeline,
-    duration: number,
-    index: number
-  ): GSAPTimeline => {
-    const startTime = `start+=${duration * index}`;
-
-    timeline.from(
-      svgContainer.current.querySelectorAll(`.line-${index + 1}`),
-      { scaleY: 0, duration },
-      startTime
-    );
-
-    return timeline;
-  };
-
-  const addDivergingBranchLineAnimation = (
-    timeline: GSAPTimeline,
-    duration: number,
-    index: number
-  ): GSAPTimeline => {
-    timeline
-      .from(
-        svgContainer.current.querySelector(`.line-${index + 1}`),
-        { scaleY: 0, duration },
-        `start+=${duration * index}`
-      )
-      .from(
-        svgContainer.current.querySelector(`.branch-${index + 1}`),
-        { strokeDashoffset: 186, duration: duration - 2 },
-        `start+=${duration * index}`
-      )
-      .from(
-        svgContainer.current.querySelector(`.branch-line-${index + 1}`),
-        { scaleY: 0, duration: duration - 1 },
-        `start+=${duration * (index + 1) - 2}`
-      );
-
-    return timeline;
-  };
-
-  const addConvergingBranchLineAnimation = (
-    timeline: GSAPTimeline,
-    duration: number,
-    index: number
-  ): GSAPTimeline => {
-    timeline
-      .from(
-        svgContainer.current.querySelector(`.line-${index + 1}`),
-        { scaleY: 0, duration },
-        `start+=${duration * index}`
-      )
-      .from(
-        svgContainer.current.querySelector(`.branch-line-${index + 1}`),
-        { scaleY: 0, duration: duration - 1 },
-        `start+=${duration * index}`
-      )
-      .from(
-        svgContainer.current.querySelector(`.branch-${index + 1}`),
-        { strokeDashoffset: 186, duration: duration - 2 },
-        `start+=${duration * (index + 1) - 1}`
-      );
-
-    return timeline;
-  };
-
-  const animateTimeline = (timeline: GSAPTimeline, duration: number): void => {
-    let index = 0;
-
-    addNodeRefsToItems(TIMELINE).forEach((item) => {
-      const { type } = item;
-
-      if (type === NodeTypes.CHECKPOINT && item.shouldDrawLine) {
-        const { next, prev } = item;
-
-        if (prev?.type === NodeTypes.DIVERGE) {
-          addDivergingBranchLineAnimation(timeline, duration, index);
-        } else if (next?.type === NodeTypes.CONVERGE) {
-          addConvergingBranchLineAnimation(timeline, duration, index);
-        } else {
-          addLineSvgAnimation(timeline, duration, index);
-        }
-
-        index++;
-      }
-    });
-  };
-
-  const setTimelineSvg = (
-    svgContainer: MutableRefObject<HTMLDivElement>,
-    timelineSvg: MutableRefObject<SVGSVGElement>
-  ) => {
-    const containerWidth = svgContainer.current.clientWidth;
-    setSvgWidth(containerWidth);
-
-    const resultSvgString = generateTimelineSvg(TIMELINE);
-    timelineSvg.current.innerHTML = resultSvgString;
+    timelineSvgEl.innerHTML = svgString;
 
     if (isSmallScreen()) {
-      setRightBranchX(70);
+      setRightBranchX((prev) => (prev === 70 ? prev : 70));
+    } else {
+      setRightBranchX((prev) => (prev === 109 ? prev : 109));
     }
-  };
 
-  const setSlidesAnimation = (timeline: GSAPTimeline): void => {
-    svgCheckpointItems.forEach((_, index) => {
-      // all except the first slide
-      if (index !== 0) {
-        timeline.fromTo(
-          screenContainer.current.querySelector(`.slide-${index + 1}`),
-          { opacity: 0 },
-          { opacity: 1 }
-        );
-      }
-
-      // all except the last slide
-      if (index !== svgCheckpointItems.length - 1) {
-        timeline.to(
-          screenContainer.current.querySelector(`.slide-${index + 1}`),
-          {
-            opacity: 0,
-            delay: 2.35,
-          }
-        );
-      }
-    });
-  };
-
-  const initScrollTrigger = (): {
-    timeline: GSAPTimeline;
-    duration: number;
-  } => {
-    const timeline = gsap
+    const gsapTimeline = gsap
       .timeline({ defaults: { ease: Linear.easeNone, duration: 0.44 } })
       .addLabel("start");
 
-    let duration: number;
-    let trigger: HTMLDivElement;
-    let start: string;
-    let end: string;
-    let additionalConfig = {};
-
-    // Slide as a trigger for Desktop
-    if (isDesktop && !isSmallScreen()) {
-      // Animation for right side slides
-      setSlidesAnimation(timeline);
-
-      const platformHeight =
-        screenContainer.current.getBoundingClientRect().height;
-
-      trigger = screenContainer.current;
-      start = `top ${(window.innerHeight - platformHeight) / 2}`;
-      end = `+=${svgLength - platformHeight}`;
-      additionalConfig = {
-        pin: true,
-        pinSpacing: true,
-      };
-      duration = timeline.totalDuration() / svgCheckpointItems.length;
-    } else {
-      // Clearing out the right side on mobile devices
-      screenContainer.current.innerHTML = "";
-
-      trigger = svgContainer.current;
-      start = "top center";
-      end = `+=${svgLength}`;
-      duration = 3;
-    }
-
-    ScrollTrigger.create({
-      ...additionalConfig,
-      trigger,
-      start,
-      end,
-      scrub: 0,
-      animation: timeline,
+    const { duration, scrollTrigger } = initScrollTrigger({
+      timeline: gsapTimeline,
+      svgLength,
+      isDesktop,
+      screenContainer: screenContainerEl,
+      svgContainer: svgContainerEl,
+      svgCheckpointItems,
     });
-    return { timeline, duration };
-  };
 
-  useEffect(() => {
-    // Generate and set the timeline svg
-    setTimelineSvg(svgContainer, timelineSvg);
+    animateTimeline(gsapTimeline, duration, svgContainerEl);
 
-    const { timeline, duration }: { timeline: GSAPTimeline; duration: number } =
-      initScrollTrigger();
-
-    // Animation for Timeline SVG
-    animateTimeline(timeline, duration);
-  }, [
-    timelineSvg,
-    svgContainer,
-    svgWidth,
-    rightBranchX,
-    screenContainer,
-    svgCheckpointItems.length,
-    isDesktop,
-    svgLength,
-  ]);
+    return () => {
+      scrollTrigger?.kill();
+      gsapTimeline.kill();
+    };
+  }, [isDesktop, rightBranchX, svgCheckpointItems, svgLength]);
 
   const renderSlides = (): React.ReactNode => (
     <div
@@ -538,3 +179,474 @@ interface LinkNode {
   next?: LinkedTimelineNode;
   prev?: LinkedTimelineNode;
 }
+
+const addNodeRefsToItems = (
+  timeline: Array<TimelineNodeV2>
+): Array<LinkedTimelineNode> => {
+  return timeline.map((node, idx) => ({
+    ...node,
+    next: timeline[idx + 1] as LinkedTimelineNode | undefined,
+    prev: timeline[idx - 1] as LinkedTimelineNode | undefined,
+  })) as Array<LinkedTimelineNode>;
+};
+
+const generateTimelineSvg = (
+  timeline: Array<TimelineNodeV2>,
+  rightBranchX: number,
+  currentSvgWidth: number
+): string => {
+  let index = 1;
+  let y = dotSize / 2;
+  const timelineStyle = `<style>.str, .dot{stroke-width: ${strokeWidth}px}.anim-branch{stroke-dasharray: 186}</style>`;
+  let isDiverged = false;
+
+  return addNodeRefsToItems(timeline).reduce(
+    (svg: string, node: LinkedTimelineNode) => {
+      const { type, next } = node;
+      let lineY = y;
+      let dotY = y + separation / 2;
+
+      switch (type) {
+        case NodeTypes.CHECKPOINT: {
+          const checkpointNode = node as LinkedCheckpointNode;
+          const { shouldDrawLine } = checkpointNode;
+
+          if (!next) {
+            lineY = y - separation / 2;
+          }
+
+          if (!shouldDrawLine) {
+            dotY = y;
+          }
+
+          if (shouldDrawLine) {
+            svg = `${drawLine(
+              checkpointNode,
+              lineY,
+              index,
+              isDiverged,
+              rightBranchX
+            )}${svg}`;
+            y += separation;
+            index++;
+          }
+
+          svg = svg.concat(
+            drawDot(
+              checkpointNode,
+              dotY,
+              isDiverged,
+              rightBranchX,
+              currentSvgWidth
+            )
+          );
+          break;
+        }
+        case NodeTypes.DIVERGE: {
+          isDiverged = true;
+          svg = `${drawBranch(
+            node as LinkedBranchNode,
+            y,
+            index,
+            rightBranchX
+          )}${svg}`;
+          break;
+        }
+        case NodeTypes.CONVERGE: {
+          isDiverged = false;
+          svg = `${drawBranch(
+            node as LinkedBranchNode,
+            y - separation,
+            index - 1,
+            rightBranchX
+          )}${svg}`;
+          break;
+        }
+        default:
+          break;
+      }
+
+      return svg;
+    },
+    timelineStyle
+  );
+};
+
+const getDotString = (x: number, y: number) =>
+  `<rect class='dot' width=${dotSize} height=${dotSize} fill='#111827' x=${
+    x - dotSize / 2
+  } y=${
+    y - dotSize / 2
+  } ></rect><circle cx=${x} cy=${y} r='7' stroke=${svgColor} class='dot' ></circle>`;
+
+const drawDot = (
+  timelineNode: LinkedCheckpointNode,
+  y: number,
+  isDiverged: boolean,
+  rightBranchX: number,
+  currentSvgWidth: number
+) => {
+  const { next, alignment } = timelineNode;
+
+  if (next && next.type === NodeTypes.DIVERGE) {
+    y = y - curveLength + 6 * dotSize;
+  }
+
+  if (next && next.type === NodeTypes.CONVERGE) {
+    y = y + curveLength - 6 * dotSize;
+  }
+
+  const dotString = getDotString(
+    alignment === Branch.LEFT ? leftBranchX : rightBranchX,
+    y
+  );
+
+  const textString = addText(
+    timelineNode,
+    y,
+    isDiverged,
+    currentSvgWidth,
+    rightBranchX
+  );
+
+  return `${textString}${dotString}`;
+};
+
+const addText = (
+  timelineNode: LinkedCheckpointNode,
+  y: number,
+  isDiverged: boolean,
+  currentSvgWidth: number,
+  rightBranchX: number
+) => {
+  const { title, subtitle, size, image } = timelineNode;
+
+  const offset = isDiverged ? rightBranchX : 10;
+  const foreignObjectX = dotSize / 2 + 10 + offset;
+  const foreignObjectY = y - dotSize / 2;
+  const foreignObjectWidth = currentSvgWidth - (dotSize / 2 + 10 + offset);
+
+  const titleSizeClass = size === ItemSize.LARGE ? "text-6xl" : "text-2xl";
+  const logoString = image
+    ? `<img src='${image}' class='h-8 mb-2' loading='lazy' width='100' height='32' alt='${image}' />`
+    : "";
+  const subtitleString = subtitle
+    ? `<p class='text-xl mt-2 text-gray-200 font-medium tracking-wide'>${subtitle}</p>`
+    : "";
+
+  return `<foreignObject x=${foreignObjectX} y=${foreignObjectY} width=${foreignObjectWidth} 
+        height=${separation}>${logoString}<p class='${titleSizeClass}'>${title}</p>${subtitleString}</foreignObject>`;
+};
+
+const drawLine = (
+  timelineNode: LinkedCheckpointNode,
+  y: number,
+  index: number,
+  isDiverged: boolean,
+  rightBranchX: number
+) => {
+  const { alignment, prev, next } = timelineNode;
+
+  const isPrevDiverge = prev && prev.type === NodeTypes.DIVERGE;
+  const isNextConverge = next && next.type === NodeTypes.CONVERGE;
+
+  const lineY = Math.abs(y + separation);
+
+  if (isPrevDiverge) {
+    return `<line class='str' x1=${leftBranchX} y1=${y} x2=${leftBranchX} y2=${lineY} stroke=${svgColor} /><line class='str line-${index}' x1=${leftBranchX} y1=${y} x2=${leftBranchX} y2=${lineY} stroke=${animColor} />`;
+  }
+
+  if (isNextConverge) {
+    return `<line class='str' x1=${leftBranchX} y1=${y} x2=${leftBranchX} y2=${lineY} stroke=${svgColor} /><line class='str line-${index}' x1=${leftBranchX} y1=${y} x2=${leftBranchX} y2=${lineY} stroke=${animColor} />`;
+  }
+
+  const lineX = alignment === Branch.LEFT ? leftBranchX : rightBranchX;
+
+  let str = `<line class='str' x1=${lineX} y1=${y} x2=${lineX} y2=${lineY} stroke=${svgColor} /><line class='str line-${index}' x1=${lineX} y1=${y} x2=${lineX} y2=${lineY} stroke=${animColor} />`;
+
+  if (isDiverged) {
+    const divergedLineX =
+      alignment === Branch.LEFT ? rightBranchX : leftBranchX;
+    str = str.concat(
+      `<line class='str' x1=${divergedLineX} y1=${y} x2=${divergedLineX} y2=${lineY} stroke=${svgColor} /><line class='str line-${index}' x1=${divergedLineX} y1=${y} x2=${divergedLineX} y2=${lineY} stroke=${animColor} />`
+    );
+  }
+
+  return str;
+};
+
+const drawBranch = (
+  timelineNode: LinkedBranchNode,
+  y: number,
+  index: number,
+  rightBranchX: number
+) => {
+  const { type } = timelineNode;
+
+  switch (type) {
+    case NodeTypes.DIVERGE:
+      return `<path class='str' d='M ${leftBranchX} ${y} C ${leftBranchX} ${
+        y + curveLength / 2
+      } ${rightBranchX} ${y + curveLength / 2} ${rightBranchX} ${
+        y + curveLength
+      }' stroke=${svgColor} /><line class='str' x1=${rightBranchX} y1=${
+        y + curveLength
+      } x2=${rightBranchX} y2=${
+        y + separation
+      } stroke=${svgColor} /><path class='str anim-branch branch-${index}' d='M ${leftBranchX} ${y} C ${leftBranchX} ${
+        y + curveLength / 2
+      } ${rightBranchX} ${y + curveLength / 2} ${rightBranchX} ${
+        y + curveLength
+      }' stroke=${animColor} /><line class='str branch-line-${index}' x1=${rightBranchX} y1=${
+        y + curveLength
+      } x2=${rightBranchX} y2=${y + separation} stroke=${animColor} />`;
+    case NodeTypes.CONVERGE:
+      return `<path class='str' d='M ${rightBranchX} ${
+        y + separation - curveLength
+      } C ${rightBranchX} ${
+        y + separation - curveLength + curveLength / 2
+      } ${leftBranchX} ${
+        y + separation - curveLength + curveLength / 2
+      } ${leftBranchX} ${
+        y + separation
+      }' stroke=${svgColor} /><line class='str' x1=${rightBranchX} y1=${y} x2=${rightBranchX} y2=${Math.abs(
+        y + separation - curveLength
+      )} stroke=${svgColor} /><path class='str anim-branch branch-${index}' d='M ${rightBranchX} ${
+        y + separation - curveLength
+      } C ${rightBranchX} ${
+        y + separation - curveLength + curveLength / 2
+      } ${leftBranchX} ${
+        y + separation - curveLength + curveLength / 2
+      } ${leftBranchX} ${
+        y + separation
+      }' stroke=${animColor} /><line class='str branch-line-${index}' x1=${rightBranchX} y1=${y} x2=${rightBranchX} y2=${Math.abs(
+        y + separation - curveLength
+      )} stroke=${animColor} />`;
+    default:
+      return "";
+  }
+};
+
+const addLineSvgAnimation = (
+  timeline: GSAPTimeline,
+  duration: number,
+  index: number,
+  svgContainer: HTMLDivElement | null
+): GSAPTimeline => {
+  if (!svgContainer) {
+    return timeline;
+  }
+
+  const startTime = `start+=${duration * index}`;
+
+  timeline.from(
+    svgContainer.querySelectorAll(`.line-${index + 1}`),
+    { scaleY: 0, duration },
+    startTime
+  );
+
+  return timeline;
+};
+
+const addDivergingBranchLineAnimation = (
+  timeline: GSAPTimeline,
+  duration: number,
+  index: number,
+  svgContainer: HTMLDivElement | null
+): GSAPTimeline => {
+  if (!svgContainer) {
+    return timeline;
+  }
+
+  const lineElement = svgContainer.querySelector(`.line-${index + 1}`);
+  const branchElement = svgContainer.querySelector(`.branch-${index + 1}`);
+  const branchLineElement = svgContainer.querySelector(
+    `.branch-line-${index + 1}`
+  );
+
+  if (lineElement) {
+    timeline.from(
+      lineElement,
+      { scaleY: 0, duration },
+      `start+=${duration * index}`
+    );
+  }
+
+  if (branchElement) {
+    timeline.from(
+      branchElement,
+      { strokeDashoffset: 186, duration: duration - 2 },
+      `start+=${duration * index}`
+    );
+  }
+
+  if (branchLineElement) {
+    timeline.from(
+      branchLineElement,
+      { scaleY: 0, duration: duration - 1 },
+      `start+=${duration * (index + 1) - 2}`
+    );
+  }
+
+  return timeline;
+};
+
+const addConvergingBranchLineAnimation = (
+  timeline: GSAPTimeline,
+  duration: number,
+  index: number,
+  svgContainer: HTMLDivElement | null
+): GSAPTimeline => {
+  if (!svgContainer) {
+    return timeline;
+  }
+
+  const lineElement = svgContainer.querySelector(`.line-${index + 1}`);
+  const branchLineElement = svgContainer.querySelector(
+    `.branch-line-${index + 1}`
+  );
+  const branchElement = svgContainer.querySelector(`.branch-${index + 1}`);
+
+  if (lineElement) {
+    timeline.from(
+      lineElement,
+      { scaleY: 0, duration },
+      `start+=${duration * index}`
+    );
+  }
+
+  if (branchLineElement) {
+    timeline.from(
+      branchLineElement,
+      { scaleY: 0, duration: duration - 1 },
+      `start+=${duration * index}`
+    );
+  }
+
+  if (branchElement) {
+    timeline.from(
+      branchElement,
+      { strokeDashoffset: 186, duration: duration - 2 },
+      `start+=${duration * (index + 1) - 1}`
+    );
+  }
+
+  return timeline;
+};
+
+const animateTimeline = (
+  timeline: GSAPTimeline,
+  duration: number,
+  svgContainer: HTMLDivElement | null
+): void => {
+  if (!svgContainer) {
+    return;
+  }
+
+  let index = 0;
+
+  addNodeRefsToItems(TIMELINE).forEach((item) => {
+    if (item.type === NodeTypes.CHECKPOINT && item.shouldDrawLine) {
+      const checkpointNode = item as LinkedCheckpointNode;
+      const { next, prev } = checkpointNode;
+
+      if (prev?.type === NodeTypes.DIVERGE) {
+        addDivergingBranchLineAnimation(timeline, duration, index, svgContainer);
+      } else if (next?.type === NodeTypes.CONVERGE) {
+        addConvergingBranchLineAnimation(timeline, duration, index, svgContainer);
+      } else {
+        addLineSvgAnimation(timeline, duration, index, svgContainer);
+      }
+
+      index += 1;
+    }
+  });
+};
+
+const setSlidesAnimation = (
+  timeline: GSAPTimeline,
+  screenContainer: HTMLDivElement | null,
+  svgCheckpointItems: Array<TimelineNodeV2>
+): void => {
+  if (!screenContainer) {
+    return;
+  }
+
+  svgCheckpointItems.forEach((_, index) => {
+    const slide = screenContainer.querySelector(`.slide-${index + 1}`);
+
+    if (!slide) {
+      return;
+    }
+
+    if (index !== 0) {
+      timeline.fromTo(slide, { opacity: 0 }, { opacity: 1 });
+    }
+
+    if (index !== svgCheckpointItems.length - 1) {
+      timeline.to(slide, {
+        opacity: 0,
+        delay: 2.35,
+      });
+    }
+  });
+};
+
+interface InitScrollTriggerArgs {
+  timeline: GSAPTimeline;
+  svgLength: number;
+  isDesktop: boolean;
+  screenContainer: HTMLDivElement | null;
+  svgContainer: HTMLDivElement | null;
+  svgCheckpointItems: Array<TimelineNodeV2>;
+}
+
+const initScrollTrigger = ({
+  timeline,
+  svgLength,
+  isDesktop,
+  screenContainer,
+  svgContainer,
+  svgCheckpointItems,
+}: InitScrollTriggerArgs): { duration: number; scrollTrigger: ScrollTrigger | null } => {
+  let duration = 0;
+  let triggerElement: Element | null = null;
+  let start = "top center";
+  let end = `+=${svgLength}`;
+  const additionalConfig: Partial<ScrollTrigger.Vars> = {};
+
+  if (isDesktop && !isSmallScreen() && screenContainer) {
+    setSlidesAnimation(timeline, screenContainer, svgCheckpointItems);
+
+    const platformHeight = screenContainer.getBoundingClientRect().height;
+    triggerElement = screenContainer;
+    start = `top ${(window.innerHeight - platformHeight) / 2}`;
+    end = `+=${svgLength - platformHeight}`;
+    additionalConfig.pin = true;
+    additionalConfig.pinSpacing = true;
+    duration = svgCheckpointItems.length
+      ? timeline.totalDuration() / svgCheckpointItems.length
+      : 0;
+  } else {
+    if (screenContainer) {
+      screenContainer.innerHTML = "";
+    }
+    triggerElement = svgContainer;
+    duration = 3;
+  }
+
+  if (!triggerElement) {
+    return { duration, scrollTrigger: null };
+  }
+
+  const scrollTrigger = ScrollTrigger.create({
+    ...additionalConfig,
+    trigger: triggerElement,
+    start,
+    end,
+    scrub: 0,
+    animation: timeline,
+  });
+
+  return { duration, scrollTrigger };
+};

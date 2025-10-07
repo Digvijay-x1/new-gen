@@ -5,7 +5,7 @@
 // License text available at https://opensource.org/licenses/MIT
 
 import styles from "./Cursor.module.scss";
-import { MutableRefObject, useEffect, useRef } from "react";
+import { MutableRefObject, useCallback, useEffect, useRef } from "react";
 import { gsap, Linear } from "gsap";
 import { IDesktop, isSmallScreen } from "pages";
 
@@ -15,10 +15,13 @@ const CURSOR_STYLES = {
 };
 
 const Cursor = ({ isDesktop }: IDesktop) => {
-  const cursor: MutableRefObject<HTMLDivElement> = useRef(null);
-  const follower: MutableRefObject<HTMLDivElement> = useRef(null);
+  const cursor: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const follower: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
-  const onHover = () => {
+  const onHover = useCallback(() => {
+    if (!cursor.current || !follower.current) {
+      return;
+    }
     gsap.to(cursor.current, {
       scale: 0.5,
       duration: 0.3,
@@ -27,9 +30,12 @@ const Cursor = ({ isDesktop }: IDesktop) => {
       scale: 3,
       duration: 0.3,
     });
-  };
+  }, []);
 
-  const onUnhover = () => {
+  const onUnhover = useCallback(() => {
+    if (!cursor.current || !follower.current) {
+      return;
+    }
     gsap.to(cursor.current, {
       scale: 1,
       duration: 0.3,
@@ -38,9 +44,12 @@ const Cursor = ({ isDesktop }: IDesktop) => {
       scale: 1,
       duration: 0.3,
     });
-  };
+  }, []);
 
-  const moveCircle = (e: MouseEvent) => {
+  const moveCircle = useCallback((e: MouseEvent) => {
+    if (!cursor.current || !follower.current) {
+      return;
+    }
     gsap.to(cursor.current, {
       x: e.clientX,
       y: e.clientY,
@@ -53,25 +62,49 @@ const Cursor = ({ isDesktop }: IDesktop) => {
       duration: 0.3,
       ease: Linear.easeNone,
     });
-  };
+  }, []);
 
-  const initCursorAnimation = () => {
+  const initCursorAnimation = useCallback(() => {
+    if (!cursor.current || !follower.current) {
+      return () => {};
+    }
+
     follower.current.classList.remove("hidden");
     cursor.current.classList.remove("hidden");
 
     document.addEventListener("mousemove", moveCircle);
 
-    document.querySelectorAll(".link").forEach((el) => {
+    const linkElements = Array.from(
+      document.querySelectorAll<HTMLElement>(".link")
+    );
+
+    linkElements.forEach((el) => {
       el.addEventListener("mouseenter", onHover);
       el.addEventListener("mouseleave", onUnhover);
     });
-  };
+
+    return () => {
+      document.removeEventListener("mousemove", moveCircle);
+      linkElements.forEach((el) => {
+        el.removeEventListener("mouseenter", onHover);
+        el.removeEventListener("mouseleave", onUnhover);
+      });
+      cursor.current?.classList.add("hidden");
+      follower.current?.classList.add("hidden");
+    };
+  }, [moveCircle, onHover, onUnhover]);
 
   useEffect(() => {
-    if (isDesktop && !isSmallScreen()) {
-      initCursorAnimation();
+    if (!isDesktop || isSmallScreen()) {
+      return;
     }
-  }, [cursor, follower, isDesktop]);
+
+    const cleanup = initCursorAnimation();
+
+    return () => {
+      cleanup?.();
+    };
+  }, [initCursorAnimation, isDesktop]);
 
   return (
     <>

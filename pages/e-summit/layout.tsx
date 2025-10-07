@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import Head from "next/head";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 import StickyLogo from "@/components/e-summit/sticky-logo";
@@ -10,7 +10,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head></head>
+      <Head>
+        <title>E-Summit | NewGen</title>
+      </Head>
       <body className="antialiased">
         <ErrorReporter />
         <StickyLogo />
