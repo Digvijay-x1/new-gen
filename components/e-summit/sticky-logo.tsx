@@ -11,8 +11,8 @@ export default function StickyLogo() {
                         alt="E‑Cell IIIT Allahabad"
                         width={80}
                         height={80}
-                        className="object-contain select-none h-auto w-auto"
-                        style={{ height: 'auto', width: 'auto', maxHeight: 80, maxWidth: 80 }}
+                        className="object-contain select-none"
+                        style={{ width: "auto", height: "auto", maxWidth: 80, maxHeight: 80 }}
                         priority
                     />
                 </div>

@@ -113,17 +113,24 @@ const TimelineSection = ({ isDesktop }: IDesktop) => {
       />
       <div className="relative h-full w-full -mt-2">
         <div className="absolute top-0 left-0 h-full w-full">
-          {svgCheckpointItems.map((item, index) => (
-            <Image
-              className={`w-full absolute top-0 object-cover slide-${
-                index + 1
-              }`}
-              src={(item as CheckpointNode).slideImage || ""}
-              key={`${(item as CheckpointNode).title}-${index}`}
-              alt="Timeline"
-              fill
-            />
-          ))}
+          {svgCheckpointItems.map((item, index) => {
+            const checkpoint = item as CheckpointNode;
+            const slideImage = checkpoint.slideImage || "";
+            const isGif = slideImage.toLowerCase().endsWith(".gif");
+
+            return (
+              <Image
+                className={`w-full absolute top-0 object-cover slide-${
+                  index + 1
+                }`}
+                src={slideImage}
+                key={`${checkpoint.title}-${index}`}
+                alt="Timeline"
+                fill
+                unoptimized={isGif}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

@@ -44,6 +44,11 @@ const nextConfig = {
 
 module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
+    const { EventEmitter } = require("events");
+    if (EventEmitter?.defaultMaxListeners && EventEmitter.defaultMaxListeners < 30) {
+      EventEmitter.defaultMaxListeners = 30;
+    }
+
     return nextConfig;
   }
 

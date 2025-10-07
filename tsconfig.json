@@ -9,7 +9,7 @@
         "lib/*"
       ]
     },
-    "target": "es5",
+  "target": "ES2022",
     "lib": [
       "dom",
       "dom.iterable",
@@ -22,17 +22,24 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "noImplicitAny": true,
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "**/*.cjs",
+    "**/*.mjs"
   ],
   "exclude": [
     "node_modules"

@@ -252,7 +252,7 @@ body.is-custom-cursor a {
   @apply uppercase tracking-widest text-gray-200 text-sm;
 }
 .bgg{
-  background: url('/path/to/your/image.jpg') no-repeat center center fixed;
+  // background: url('/path/to/your/image.jpg') no-repeat center center fixed;
   background-size: cover;
   @apply text-white overflow-x-hidden;
 }

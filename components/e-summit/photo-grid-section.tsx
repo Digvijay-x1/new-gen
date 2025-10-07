@@ -80,9 +80,15 @@ export default function PhotoGridSection() {
     []
   );
 
+  const rotateImages = React.useCallback(
+    (offset: number) =>
+      images.map((_, index) => images[(index + offset) % images.length]),
+    [images]
+  );
+
   const imagesRow1 = React.useMemo(() => images, [images]);
-  const imagesRow2 = React.useMemo(() => [...images].sort(() => Math.random() - 0.5), [images]);
-  const imagesRow3 = React.useMemo(() => [...images].sort(() => Math.random() - 0.5), [images]);
+  const imagesRow2 = React.useMemo(() => rotateImages(Math.floor(images.length / 3)), [rotateImages, images.length]);
+  const imagesRow3 = React.useMemo(() => rotateImages(Math.floor((images.length * 2) / 3)), [rotateImages, images.length]);
 
   return (
     <>
