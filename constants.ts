@@ -36,9 +36,6 @@ export const TYPED_STRINGS = [
 
 export const EMAIL = "ayush.singh.xda@gmail.com";
 
-export const SOCIAL_LINKS = {
-
-};
 
 export interface IProject {
   name: string;
