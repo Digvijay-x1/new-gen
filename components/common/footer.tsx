@@ -1,15 +1,41 @@
 import Link from "next/link";
 import Image from "next/image";
 
-
-
-
-const SOCIAL_LINKS = {
-  facebook: "https://facebook.com",
-  instagram: "https://instagram.com",
-  twitter: "https://twitter.com",
-  gmail: "mailto:your-email@gmail.com",
+type SocialIcon = {
+  href: string;
+  label: string;
+  Icon: string;
+  color: string;
 };
+
+const socialIcons: SocialIcon[] = [
+  {
+    href: "https://www.facebook.com/p/E-Cell-IIIT-Allahabad-100063982418300/",
+    label: "Facebook",
+    Icon: "/facebook.svg",
+    color: "#1877F2",
+  },
+  {
+    href: "https://www.instagram.com/ecell_iiita/",
+    label: "Instagram",
+    Icon: "/instagram.svg",
+    color: "#E4405F",
+  },
+  {
+    href: "https://www.youtube.com/channel/UCYOhhILSgHt03bjj7n4g9DA",
+    label: "YouTube",
+    Icon: "/yt.svg",
+    color: "#FF0000",
+  },
+  {
+    href: "https://www.linkedin.com/company/ecell-iiit-allahabad/",
+    label: "LinkedIn",
+    Icon: "/linkedin.svg",
+    color: "#0A66C2",
+  },
+];
+
+const contactItems = [{ email: "ecell@iiita.ac.in" }];
 
 const Footer = () => {
   const renderSocialIcons = (): React.ReactNode => (
