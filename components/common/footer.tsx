@@ -39,21 +39,27 @@ const contactItems = [{ email: "ecell@iiita.ac.in" }];
 
 const Footer = () => {
   const renderSocialIcons = (): React.ReactNode => (
-    <div className="flex flex-col items-center mt-4 space-y-2">
-      <p className="mt-12 text-2xl font-semibold text-white">Connect with us on social media</p>
-      <div className="flex mt-2 space-x-6">
-        <a href="https://www.facebook.com/p/E-Cell-IIIT-Allahabad-100063982418300/" target="_blank" rel="noreferrer">
-        <Image src="/facebook.svg" alt="Facebook" width={40} height={40} className="transition duration-300 hover:opacity-75" />
-        </a>
-        <a href="https://www.instagram.com/ecell_iiita/" target="_blank" rel="noreferrer">
-          <Image src="/instagram.svg" alt="Facebook" width={40} height={40}  className="text-3xl text-white transition duration-300 md:text-4xl hover:text-pink-500" />
-        </a>
-        <a href={SOCIAL_LINKS.twitter} target="_blank" rel="noreferrer">
-          <Image src="/twitter.svg" alt="Facebook" width={40} height={40}  className="text-3xl text-white transition duration-300 md:text-4xl hover:text-blue-400" />
-        </a>
-        <a href="http://linkedin.com/company/ecell-iiit-allahabad/posts/?feedView=all" target="_blank" rel="noreferrer">
-          <Image src="/linkedin.svg" alt="Facebook" width={40} height={40}  className="text-3xl text-white transition duration-300 md:text-4xl hover:text-red-500" />
-        </a>
+    <div className="space-y-8">
+      <h4 className="mt-4 text-base font-bold text-gray-300">
+        Connect with us on social Media
+      </h4>
+      <div className="flex justify-center gap-3">
+        {socialIcons.map(({ href, label, Icon, color }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative inline-flex items-center justify-center w-12 h-12 transition-all duration-300 bg-transparent group rounded-xl hover:scale-110"
+            aria-label={`Follow us on ${label}`}
+          >
+            {/* <Icon
+              className="w-10 h-10 transition-all duration-300 group-hover:scale-110"
+              style={{ color: "white" }}
+            /> */}
+            <Image src={Icon} alt="icon" width={40} height={40} />
+          </a>
+        ))}
       </div>
     </div>
   );
@@ -61,48 +67,71 @@ const Footer = () => {
   const renderFooterContent = (): React.ReactNode => (
     <div className="grid w-full grid-cols-1 gap-8 px-6 mx-auto md:grid-cols-2 lg:grid-cols-4 lg:gap-12 max-w-7xl">
       {/* Left Section: Logo and Social Media */}
-      <div className="flex flex-col items-center max-w-sm py-2 text-center">
-  <Image src="/logo_main.png" alt="Logo" width={160} height={100} className="h-auto w-auto max-w-[160px]" />
+      <div className="flex flex-col items-center space-y-6 md:col-span-2 lg:col-span-1">
+        <div className="flex flex-col items-center space-y-4">
+          <Image
+            src="/logo_main.png"
+            alt="Logo"
+            width={160}
+            height={100}
+            className="h-auto w-auto max-w-[160px] filter brightness-110"
+          />
+        </div>
         {renderSocialIcons()}
       </div>
 
-      
-      <div>
-        <h3 className="text-lg font-semibold text-[22px]">Useful Links</h3>
-        <ul className="mt-3 space-y-2 text-gray-400">
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Content</a></li>
-          <li>
-  <Link href="/e-summit" className="text-[20px] hover:text-teal-300">
-    E-Summit
-  </Link>
-</li>
-
-          <li><a href="#" className="text-[20px] hover:text-teal-300">How it Works</a></li>
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Create</a></li>
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Explore</a></li>
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Terms & Services</a></li>
-        </ul>
+      {/* Useful Links */}
+      <div className="text-center md:text-left">
+        <h3 className="pb-2 mb-4 text-xl font-semibold text-white border-b border-gray-600">
+          Useful Links
+        </h3>
+        <div className="p-4 border rounded-lg bg-white/5 border-white/10 hover:cursor-pointer">
+          <p className="text-base font-light leading-relaxed text-gray-300">
+            <Link
+              href="/e-summit"
+              className="text-lg font-bold text-white transition-colors duration-300"
+            >
+              E-Summit
+            </Link>
+          </p>
+        </div>
       </div>
 
-     
-      <div>
-        <h3 className="text-lg font-semibold text-[22px]">Community</h3>
-        <ul className="mt-3 space-y-2 text-gray-400">
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Help Center</a></li>
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Partners</a></li>
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Suggestions</a></li>
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Blog</a></li>
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Newsletters</a></li>
-        </ul>
+      {/* Reach Us */}
+      <div className="text-center md:text-left">
+        <h3 className="pb-2 mb-4 text-xl font-semibold text-white border-b border-gray-600">
+          Reach Us
+        </h3>
+        <div className="ounded-lg ">
+          <p className="text-base font-light leading-relaxed text-white">
+            New Gen Lab,
+            <br /> 2nd Floor, <br /> Computer Centre-2 (CC-2),
+            <br /> IIIT Allahabad, Prayagraj-211015,
+            <br /> Uttar Pradesh, India
+          </p>
+        </div>
       </div>
 
-  
-      <div>
-        <h3 className="text-lg font-semibold text-[22px]">Partner</h3>
-        <ul className="mt-3 space-y-2 text-gray-400">
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Our Partner</a></li>
-          <li><a href="#" className="text-[20px] hover:text-teal-300">Become a Partner</a></li>
-        </ul>
+      {/* Contact Us */}
+      <div className="text-center md:text-left">
+        <h3 className="pb-2 mb-4 text-xl font-semibold text-white border-b border-gray-600">
+          Contact Us
+        </h3>
+        <div className="space-y-4">
+          {contactItems.map((item) => (
+            <div
+              key={item.email}
+              className="transition-colors duration-300 rounded-lg"
+            >
+              <a
+                href={`mailto:${item.email}`}
+                className="text-lg font-medium text-white transition-colors duration-300 hover:text-[#B1F5FF] block"
+              >
+                {item.email}
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -117,16 +146,16 @@ const Footer = () => {
         height={290}
         width={1440}
       />
-      <div className="w-full h-full">
-        <div className="flex flex-col items-center justify-end h-full py-10 section-container">
-      
+      <div className="w-full h-full bg-gradient-to-b from-transparent to-black/20">
+        <div className="flex flex-col items-center justify-end h-full py-16 lg:py-20">
           {renderFooterContent()}
 
-         
-          <div className="mt-8 text-center">
-            <p className="text-gray-400 text-[18px] mt-4">
-              Copyright © 2025 Ecell-IIIT Allahabad. All Rights Reserved.
-            </p>
+          <div className="w-full px-6 pt-8 mx-auto mt-12 border-t border-gray-600 max-w-7xl">
+            <div className="text-center">
+              <p className="text-lg font-light text-gray-300">
+                Copyright © 2025 Ecell-IIIT Allahabad. All Rights Reserved.
+              </p>
+            </div>
           </div>
         </div>
       </div>
