@@ -4,28 +4,53 @@ export const METADATA = {
   siteUrl: "https://new-gen-h4vo.vercel.app/",
 };
 
-export const MENULINKS = [
+export interface MenuLink {
+  name: string;
+  href: string;
+  ref?: string;
+  external?: boolean;
+}
+
+export const MENULINKS: MenuLink[] = [
   {
     name: "Home",
     ref: "home",
+    href: "#home",
   },
   {
     name: "Works",
     ref: "works",
+    href: "#works",
   },
   {
     name: "Skills",
     ref: "skills",
+    href: "#skills",
   },
   {
     name: "Timeline",
     ref: "timeline",
+    href: "#timeline",
   },
   {
     name: "Contact",
     ref: "contact",
+    href: "#contact",
+  },
+  {
+    name: "E-Summit",
+    ref: "e-summit",
+    href: "/e-summit",
   },
 ];
+
+export const SOCIAL_LINKS = {
+  facebook: "https://www.facebook.com/p/E-Cell-IIIT-Allahabad-100063982418300/",
+  instagram: "https://www.instagram.com/ecell_iiita/",
+  youtube: "https://www.youtube.com/channel/UCYOhhILSgHt03bjj7n4g9DA",
+  linkedin: "https://www.linkedin.com/company/ecell-iiit-allahabad/",
+  twitter: "https://twitter.com/ecelliiita",
+};
 
 export const TYPED_STRINGS = [
   "E-Cell promotes Innovation and Entrepreneurship.",

@@ -15,6 +15,38 @@ const HERO_STYLES = {
     "flex-[0_0_30%] flex justify-center items-center",
   TYPED_SPAN: "text-xl sm:text-2xl md:text-4xl seq",
 };
+type SocialIcon = {
+  href: string;
+  label: string;
+  Icon: string;
+  color: string;
+};
+const socialIcons: SocialIcon[] = [
+  {
+    href: "https://www.facebook.com/p/E-Cell-IIIT-Allahabad-100063982418300/",
+    label: "Facebook",
+    Icon: "/facebook.svg",
+    color: "#1877F2",
+  },
+  {
+    href: "https://www.instagram.com/ecell_iiita/",
+    label: "Instagram",
+    Icon: "/instagram.svg",
+    color: "#E4405F",
+  },
+  {
+    href: "https://www.youtube.com/channel/UCYOhhILSgHt03bjj7n4g9DA",
+    label: "YouTube",
+    Icon: "/yt.svg",
+    color: "#FF0000",
+  },
+  {
+    href: "https://www.linkedin.com/company/ecell-iiit-allahabad/",
+    label: "LinkedIn",
+    Icon: "/linkedin.svg",
+    color: "#0A66C2",
+  },
+];
 
 const HeroSection = React.memo(() => {
   const typedSpanElement = useRef<HTMLSpanElement>(null);
@@ -72,18 +104,28 @@ const HeroSection = React.memo(() => {
     </div>
   );
 
-  const renderSocialLinks = (): React.ReactNode =>
-    Object.keys(SOCIAL_LINKS).map((el: keyof typeof SOCIAL_LINKS) => (
-      <a
-        href={SOCIAL_LINKS[el]}
-        key={el}
-        className={HERO_STYLES.SOCIAL_LINK}
-        rel="noreferrer"
-        target="_blank"
-      >
-        <Image src={`/social/${el}.svg`} alt={el} width={40} height={40} />
-      </a>
-    ));
+  const renderSocialIcons = (): React.ReactNode => (
+    <div className="space-y-8">
+      <div className="flex justify-center gap-3">
+        {socialIcons.map(({ href, label, Icon, color }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative inline-flex items-center justify-center w-12 h-12 transition-all duration-300 bg-transparent group rounded-xl hover:scale-110"
+            aria-label={`Follow us on ${label}`}
+          >
+            {/* <Icon
+                className="w-10 h-10 transition-all duration-300 group-hover:scale-110"
+                style={{ color: "white" }}
+              /> */}
+            <Image src={Icon} alt="icon" width={40} height={40} />
+          </a>
+        ))}
+      </div>
+    </div>
+  );
 
   const renderHeroContent = (): React.ReactNode => (
     <div className={HERO_STYLES.CONTENT}>
@@ -100,7 +142,7 @@ const HeroSection = React.memo(() => {
       <p className="mb-4 ">
         <span className={HERO_STYLES.TYPED_SPAN} ref={typedSpanElement}></span>
       </p>
-      <div className="flex seq mb-5">{renderSocialLinks()}</div>
+      <div className="flex seq mb-5">{renderSocialIcons()}</div>
       <div className="flex seq">
 
       </div>

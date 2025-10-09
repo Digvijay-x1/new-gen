@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import { MENULINKS } from "../../constants";
 
@@ -17,21 +18,36 @@ const Menu = ({
             className="list-none py-4 px-0 m-0 block max-h-screen"
             role="menu"
           >
-            {MENULINKS.map((el) => (
+            {MENULINKS.map((el) => {
+              const isHashLink = el.href.startsWith("#");
+              const handleClick = () => setmenuVisible(false);
+              const className =
+                "link relative inline font-bold text-5xl duration-300 hover:no-underline";
+
+              return (
               <li
                 className="p-0 m-6 text-2xl block"
                 key={el.name}
                 role="menuitem"
               >
-                <a
-                  className="link relative inline font-bold text-5xl duration-300 hover:no-underline"
-                  href={`#${el.ref}`}
-                  onClick={setmenuVisible.bind(null, false)}
-                >
-                  {el.name}
-                </a>
+                {isHashLink ? (
+                  <a href={el.href} className={className} onClick={handleClick}>
+                    {el.name}
+                  </a>
+                ) : (
+                  <Link
+                    href={el.href}
+                    className={className}
+                    onClick={handleClick}
+                    rel={el.external ? "noreferrer noopener" : undefined}
+                    target={el.external ? "_blank" : undefined}
+                  >
+                    {el.name}
+                  </Link>
+                )}
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
       </div>
