@@ -74,12 +74,34 @@ export default function Home() {
     <div className="fixed top-0 left-0 h-screen w-screen bg-gray-900 -z-1"></div>
   );
 
+  const ECELL_META = {
+    title: "E-Cell • IIIT Allahabad",
+    description: "The Entrepreneurship Cell (E-Cell) at IIIT Allahabad is a student-led initiative dedicated to nurturing entrepreneurial spirit on campus. Acting as a launchpad for innovators, it equips aspiring entrepreneurs with mentorship, resources, and strategic guidance to transform ideas into impactful ventures. Through engaging workshops, speaker sessions, competitions, and networking platforms, E-Cell empowers students by bridging the gap between creativity and execution.",
+  };
+
   return (
     <>
-      <Head>
-        <title>{METADATA.title}</title>
-      </Head>
-      <Layout>
+      <Layout faviconHref="/favicon.ico">
+        <Head>
+          <title>{ECELL_META.title}</title>
+          <meta name="description" content={ECELL_META.description} />
+          <meta property="og:title" content={ECELL_META.title} />
+          <meta property="og:description" content={ECELL_META.description} />
+          {/* <link rel="canonical" href={`${METADATA.siteUrl}/e-summit`} /> */}
+          <meta property="og:site_name" content={METADATA.title} />
+          {/* <meta property="og:url" content={`${METADATA.siteUrl}/e-summit`} /> */}
+          {/* <meta property="og:image" content={`${METADATA.siteUrl}/social/ECELL-banner.png`} /> */}
+          <meta property="og:image:alt" content="E-Cell IIIT Allahabad Banner" />
+          <meta property="og:image:type" content="image/png" />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={ECELL_META.title} />
+          <meta name="twitter:description" content={ECELL_META.description} />
+          {/* <meta name="twitter:image" content={`${METADATA.siteUrl}/social/ECELL-banner.png`} /> */}
+          <meta name="twitter:image:alt" content="E-Cell IIIT Allahabad Banner" />
+          <meta name="theme-color" content="#000000" />
+        </Head>
         <Header />
         <ProgressIndicator />
         <Cursor isDesktop={isDesktop} />
