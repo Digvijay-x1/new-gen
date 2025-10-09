@@ -5,26 +5,32 @@
 // License text available at https://opensource.org/licenses/MIT
 
 import { gsap, Linear } from "gsap";
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const QuoteSection = () => {
-  const quoteRef: MutableRefObject<HTMLDivElement> = useRef(null);
-  const targetSection: MutableRefObject<HTMLDivElement> = useRef(null);
+  const quoteRef = useRef<HTMLDivElement>(null);
+  const targetSection = useRef<HTMLDivElement>(null);
 
-  const [willChange, setwillChange] = useState(false);
+  const [willChange, setWillChange] = useState(false);
 
   const initQuoteAnimation = (
-    quoteRef: MutableRefObject<HTMLDivElement>,
-    targetSection: MutableRefObject<HTMLDivElement>
-  ): ScrollTrigger => {
+    quoteRef: React.RefObject<HTMLDivElement>,
+    targetSection: React.RefObject<HTMLDivElement>
+  ): ScrollTrigger | null => {
+    if (!quoteRef.current || !targetSection.current) return null;
+
+    const emphasis = quoteRef.current.querySelector<HTMLElement>(".text-strong");
+
     const timeline = gsap.timeline({ defaults: { ease: Linear.easeNone } });
-    timeline
-      .from(quoteRef.current, { opacity: 0, duration: 2 })
-      .to(quoteRef.current.querySelector(".text-strong"), {
+    timeline.from(quoteRef.current, { opacity: 0, duration: 2 });
+
+    if (emphasis) {
+      timeline.to(emphasis, {
         backgroundPositionX: "100%",
         duration: 1,
       });
+    }
 
     return ScrollTrigger.create({
       trigger: targetSection.current,
@@ -32,15 +38,21 @@ const QuoteSection = () => {
       end: "center center",
       scrub: 0,
       animation: timeline,
-      onToggle: (self) => setwillChange(self.isActive),
+      onToggle: (self) => setWillChange(self.isActive),
     });
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
     const quoteAnimationRef = initQuoteAnimation(quoteRef, targetSection);
 
-    return quoteAnimationRef.kill;
-  }, [quoteRef, targetSection]);
+    return () => {
+      quoteAnimationRef?.kill();
+    };
+  }, []);
 
   const renderQuote = (): React.ReactNode => (
     <div className="tall:py-60 py-72 section-container">

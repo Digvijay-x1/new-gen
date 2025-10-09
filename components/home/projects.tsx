@@ -1,10 +1,4 @@
-// Copyright Ayush Singh 2021,2022. All Rights Reserved.
-// Project: folio
-// Author contact: https://www.linkedin.com/in/alphaayush/
-// This file is licensed under the MIT License.
-// License text available at https://opensource.org/licenses/MIT
-
-import React, { MutableRefObject, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MENULINKS, PROJECTS } from "../../constants";
 import ProjectTile from "../common/project-tile";
 import { gsap, Linear } from "gsap";
@@ -19,25 +13,31 @@ const PROJECT_STYLES = {
 };
 
 const ProjectsSection = ({ isDesktop }: IDesktop) => {
-  const targetSectionRef: MutableRefObject<HTMLDivElement> = useRef(null);
-  const sectionTitleElementRef: MutableRefObject<HTMLDivElement> = useRef(null);
+  const targetSectionRef = useRef<HTMLDivElement>(null);
+  const sectionTitleElementRef = useRef<HTMLDivElement>(null);
 
-  const [willChange, setwillChange] = useState(false);
-  const [horizontalAnimationEnabled, sethorizontalAnimationEnabled] =
+  const [willChange, setWillChange] = useState(false);
+  const [horizontalAnimationEnabled, setHorizontalAnimationEnabled] =
     useState(false);
 
   const initRevealAnimation = (
-    targetSectionRef: MutableRefObject<HTMLDivElement>
-  ): [GSAPTimeline, ScrollTrigger] => {
+    targetSectionRef: React.RefObject<HTMLDivElement>
+  ): [GSAPTimeline | null, ScrollTrigger | null] => {
+    const sectionElement = targetSectionRef.current;
+    if (!sectionElement) return [null, null];
+
+    const sequenceElements = sectionElement.querySelectorAll(".seq");
+    if (!sequenceElements.length) return [null, null];
+
     const revealTl = gsap.timeline({ defaults: { ease: Linear.easeNone } });
-    revealTl.from(
-      targetSectionRef.current.querySelectorAll(".seq"),
-      { opacity: 0, duration: 0.5, stagger: 0.5 },
-      "<"
-    );
+    revealTl.from(sequenceElements, {
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.5,
+    });
 
     const scrollTrigger = ScrollTrigger.create({
-      trigger: targetSectionRef.current,
+      trigger: sectionElement,
       start: "top bottom",
       end: "bottom bottom",
       scrub: 0,
@@ -48,78 +48,107 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
   };
 
   const initProjectsAnimation = (
-    targetSectionRef: MutableRefObject<HTMLDivElement>,
-    sectionTitleElementRef: MutableRefObject<HTMLDivElement>
-  ): [GSAPTimeline, ScrollTrigger] => {
-    const timeline = gsap.timeline({ defaults: { ease: Linear.easeNone } });
-    const sidePadding =
-      document.body.clientWidth -
-      targetSectionRef.current.querySelector(".inner-container").clientWidth;
-    const elementWidth =
-      sidePadding +
-      targetSectionRef.current.querySelector(".project-wrapper").clientWidth;
-    targetSectionRef.current.style.width = `${elementWidth}px`;
+    targetSectionRef: React.RefObject<HTMLDivElement>,
+    sectionTitleElementRef: React.RefObject<HTMLDivElement>
+  ): [GSAPTimeline | null, ScrollTrigger | null] => {
+    const sectionElement = targetSectionRef.current;
+    const titleElement = sectionTitleElementRef.current;
+    if (!sectionElement || !titleElement) return [null, null];
+
+    const innerContainer = sectionElement.querySelector(
+      ".inner-container"
+    ) as HTMLElement | null;
+    const projectWrapper = sectionElement.querySelector(
+      ".project-wrapper"
+    ) as HTMLElement | null;
+
+    if (!innerContainer || !projectWrapper) return [null, null];
+
+    const sidePadding = document.body.clientWidth - innerContainer.clientWidth;
+    const elementWidth = sidePadding + projectWrapper.clientWidth;
+    sectionElement.style.width = `${elementWidth}px`;
+
     const width = window.innerWidth - elementWidth;
     const duration = `${(elementWidth / window.innerHeight) * 100}%`;
+
+    const timeline = gsap.timeline({ defaults: { ease: Linear.easeNone } });
     timeline
-      .to(targetSectionRef.current, { x: width })
-      .to(sectionTitleElementRef.current, { x: -width }, "<");
+      .to(sectionElement, { x: width })
+      .to(titleElement, { x: -width }, "<");
 
     const scrollTrigger = ScrollTrigger.create({
-      trigger: targetSectionRef.current,
+      trigger: sectionElement,
       start: "top top",
       end: duration,
       scrub: 0,
       pin: true,
       animation: timeline,
       pinSpacing: "margin",
-      onToggle: (self) => setwillChange(self.isActive),
+      onToggle: (self) => setWillChange(self.isActive),
     });
 
     return [timeline, scrollTrigger];
   };
 
   useEffect(() => {
-    let projectsScrollTrigger: ScrollTrigger | undefined;
-    let projectsTimeline: GSAPTimeline | undefined;
+    if (typeof window === "undefined") {
+      return;
+    }
 
-    const { matches } = window.matchMedia(NO_MOTION_PREFERENCE_QUERY);
+    gsap.registerPlugin(ScrollTrigger);
 
-    sethorizontalAnimationEnabled(isDesktop && matches);
+    let projectsScrollTrigger: ScrollTrigger | null = null;
+    let projectsTimeline: GSAPTimeline | null = null;
+    let revealScrollTrigger: ScrollTrigger | null = null;
+    let revealTimeline: GSAPTimeline | null = null;
 
-    if (isDesktop && matches) {
+    const targetSection = targetSectionRef.current;
+    if (!targetSection) {
+      return;
+    }
+
+    const prefersMotion = window.matchMedia(NO_MOTION_PREFERENCE_QUERY).matches;
+
+    setHorizontalAnimationEnabled(isDesktop && prefersMotion);
+
+    if (isDesktop && prefersMotion) {
       [projectsTimeline, projectsScrollTrigger] = initProjectsAnimation(
         targetSectionRef,
         sectionTitleElementRef
       );
     } else {
-      const projectWrapper = targetSectionRef.current.querySelector(
+      const projectWrapper = targetSection.querySelector(
         ".project-wrapper"
-      ) as HTMLDivElement;
-      const parentPadding = window
-        .getComputedStyle(targetSectionRef.current)
-        .getPropertyValue("padding-left");
+      ) as HTMLDivElement | null;
 
-      targetSectionRef.current.style.setProperty("width", "100%");
-      projectWrapper.classList.add("overflow-x-auto");
-      projectWrapper.style.setProperty("width", `calc(100vw)`);
-      projectWrapper.style.setProperty("padding", `0 ${parentPadding}`);
-      projectWrapper.style.setProperty(
-        "transform",
-        `translateX(-${parentPadding})`
-      );
+      if (projectWrapper) {
+        const parentPadding = window
+          .getComputedStyle(targetSection)
+          .getPropertyValue("padding-left");
+
+        targetSection.style.setProperty("width", "100%");
+        projectWrapper.classList.add("overflow-x-auto");
+        projectWrapper.style.setProperty("width", "calc(100vw)");
+        projectWrapper.style.setProperty("padding", `0 ${parentPadding}`);
+        projectWrapper.style.setProperty(
+          "transform",
+          `translateX(-${parentPadding})`
+        );
+      }
     }
 
-    const [revealTimeline, revealScrollTrigger] =
+    const [revealTimelineTemp, revealScrollTriggerTemp] =
       initRevealAnimation(targetSectionRef);
+    revealTimeline = revealTimelineTemp;
+    revealScrollTrigger = revealScrollTriggerTemp;
 
     return () => {
-      projectsScrollTrigger && projectsScrollTrigger.kill();
-      projectsTimeline && projectsTimeline.kill();
-      revealScrollTrigger && revealScrollTrigger.kill();
-      revealTimeline && revealTimeline.progress(1);
+      projectsScrollTrigger?.kill();
+      projectsTimeline?.kill();
+      revealScrollTrigger?.kill();
+      revealTimeline?.progress(1);
     };
-  }, [targetSectionRef, sectionTitleElementRef, isDesktop]);
+  }, [isDesktop]);
 
   const renderSectionTitle = (): React.ReactNode => (
     <div

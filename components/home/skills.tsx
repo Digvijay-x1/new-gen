@@ -1,12 +1,6 @@
-// Copyright Ayush Singh 2021,2022. All Rights Reserved.
-// Project: folio
-// Author contact: https://www.linkedin.com/in/alphaayush/
-// This file is licensed under the MIT License.
-// License text available at https://opensource.org/licenses/MIT
-
 import { MENULINKS, SKILLS } from "../../constants";
 import Image from "next/image";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap, Linear } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -17,12 +11,17 @@ const SKILL_STYLES = {
 };
 
 const SkillsSection = () => {
-  const targetSection: MutableRefObject<HTMLDivElement> = useRef(null);
-  const [willChange, setwillChange] = useState(false);
+  const targetSection = useRef<HTMLDivElement>(null);
+  const [willChange, setWillChange] = useState(false);
 
   const initRevealAnimation = (
-    targetSection: MutableRefObject<HTMLDivElement>
-  ): ScrollTrigger => {
+    targetSection: React.RefObject<HTMLDivElement>
+  ): ScrollTrigger | null => {
+    if (!targetSection.current) return null;
+
+    const skillsWrapper = targetSection.current.querySelector(".skills-wrapper");
+    if (!skillsWrapper) return null;
+
     const revealTl = gsap.timeline({ defaults: { ease: Linear.easeNone } });
     revealTl.from(
       targetSection.current.querySelectorAll(".seq"),
@@ -31,20 +30,26 @@ const SkillsSection = () => {
     );
 
     return ScrollTrigger.create({
-      trigger: targetSection.current.querySelector(".skills-wrapper"),
+      trigger: skillsWrapper,
       start: "100px bottom",
-      end: `center center`,
+      end: "center center",
       animation: revealTl,
       scrub: 0,
-      onToggle: (self) => setwillChange(self.isActive),
+      onToggle: (self) => setWillChange(self.isActive),
     });
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
     const revealAnimationRef = initRevealAnimation(targetSection);
 
-    return revealAnimationRef.kill;
-  }, [targetSection]);
+    return () => {
+      revealAnimationRef?.kill();
+    };
+  }, []);
 
   const renderSectionTitle = (): React.ReactNode => (
     <div className="flex flex-col items-center justify-center">
