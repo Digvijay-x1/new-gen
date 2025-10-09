@@ -1,14 +1,7 @@
-// Copyright Ayush Singh 2021,2022. All Rights Reserved.
-// Project: folio
-// Author contact: https://www.linkedin.com/in/alphaayush/
-// This file is licensed under the MIT License.
-// License text available at https://opensource.org/licenses/MIT
-
 export const METADATA = {
-  title: "Newgen iedc",
-  description:
-    ".",
-  siteUrl: "https://new-gen-h4vo.vercel.app/", // TODO: replace with real production domain
+  title: "E-Cell",
+  description: "The Entrepreneurship Cell (E-Cell) at IIIT Allahabad is a student-led initiative dedicated to nurturing entrepreneurial spirit on campus. Acting as a launchpad for innovators, it equips aspiring entrepreneurs with mentorship, resources, and strategic guidance to transform ideas into impactful ventures. Through engaging workshops, speaker sessions, competitions, and networking platforms, E-Cell empowers students by bridging the gap between creativity and execution.",
+  siteUrl: "https://new-gen-h4vo.vercel.app/",
 };
 
 export const MENULINKS = [
@@ -35,8 +28,8 @@ export const MENULINKS = [
 ];
 
 export const TYPED_STRINGS = [
-  "NewGen IEDC promotes innovation and entrepreneurship.",
-  "It fosters creativity and idea generation.",
+  "E-Cell promotes Innovation and Entrepreneurship.",
+  "It fosters Creativity and Idea Generation.",
   "It supports start-up creation through guidance.",
   "Mentorship and support are provided for success."
 ];
@@ -44,7 +37,7 @@ export const TYPED_STRINGS = [
 export const EMAIL = "ayush.singh.xda@gmail.com";
 
 export const SOCIAL_LINKS = {
-  
+
 };
 
 export interface IProject {
@@ -54,7 +47,7 @@ export interface IProject {
   description: string;
   gradient: [string, string];
   url: string;
-  details:string;
+  details: string;
 }
 
 export const PROJECTS: IProject[] = [
@@ -65,7 +58,7 @@ export const PROJECTS: IProject[] = [
     description: "Worlds fastest way to speak english better.",
     gradient: ["#1F6582", "#1ABCFE"],
     url: "",
-    details:"Stimuler offers an AI-driven personal tutor for spoken English, featuring interactive lessons, real-time feedback, pronunciation practice, and customized learning paths. It leverages advanced AI to adapt to users' progress, making language learning engaging and effective for every learner.",
+    details: "Stimuler offers an AI-driven personal tutor for spoken English, featuring interactive lessons, real-time feedback, pronunciation practice, and customized learning paths. It leverages advanced AI to adapt to users' progress, making language learning engaging and effective for every learner.",
   },
   {
     name: "Quordnet Academy",
@@ -74,7 +67,7 @@ export const PROJECTS: IProject[] = [
     description: "Personalized learning, and innovative tech-driven education.",
     gradient: ["#153BB9", "#0E2C8B"],
     url: "",
-    details:"Quordnet Academy resolves critical educational challenges by offering personalized guidance, facilitating research publication, providing accessible learning tools like speech-to-text and document converters, and enhancing engagement through AR and VR-based eLabs and gamified learning experiences.",
+    details: "Quordnet Academy resolves critical educational challenges by offering personalized guidance, facilitating research publication, providing accessible learning tools like speech-to-text and document converters, and enhancing engagement through AR and VR-based eLabs and gamified learning experiences.",
   },
   {
     name: "Rakshak",
@@ -83,7 +76,7 @@ export const PROJECTS: IProject[] = [
     description: "The Unmanned Ground Vehicle",
     gradient: ["#245B57", "#004741"],
     url: "",
-    details:"Introducing RAKSHAK, an advanced system for the armed forces that addresses battlefield threats. It features a multi-terrain robot with a single-board control unit, offering both manual and autonomous driving modes. Designed to reduce threats to soldiers, it serves multiple purposes to enhance battlefield safety and efficiency.",
+    details: "Introducing RAKSHAK, an advanced system for the armed forces that addresses battlefield threats. It features a multi-terrain robot with a single-board control unit, offering both manual and autonomous driving modes. Designed to reduce threats to soldiers, it serves multiple purposes to enhance battlefield safety and efficiency.",
   },
   {
     name: "Nirvaan",
@@ -92,7 +85,7 @@ export const PROJECTS: IProject[] = [
     description: "Revolutionizing MentalHealth with Music & Therapy",
     gradient: ["#003052", "#167187"],
     url: "",
-    details:"We impact the world through mental health services - especially tothose with Anxiety/Depression, Our services and tools are a combinationof best practices and concepts from psychotherapy, counselingmindfulness, & Science-based healing frequency music therapy",
+    details: "We impact the world through mental health services - especially tothose with Anxiety/Depression, Our services and tools are a combinationof best practices and concepts from psychotherapy, counselingmindfulness, & Science-based healing frequency music therapy",
   }
 ];
 export const SKILLS = {

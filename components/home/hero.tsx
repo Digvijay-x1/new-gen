@@ -1,11 +1,9 @@
 
-import { EMAIL, MENULINKS, SOCIAL_LINKS, TYPED_STRINGS } from "../../constants";
+import { MENULINKS, SOCIAL_LINKS, TYPED_STRINGS } from "../../constants";
 import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import Image from "next/image";
 import { gsap, Linear } from "gsap";
-import Button, { ButtonTypes } from "../common/button";
-import HeroImage from "./hero-image";
 
 const HERO_STYLES = {
   SECTION:
@@ -14,7 +12,7 @@ const HERO_STYLES = {
   CONTENT: "flex-[0_0_70%] font-medium flex flex-col pt-32 md:pt-0 select-none ",
   SOCIAL_LINK: "link hover:opacity-80 duration-300 md:mr-4 mr-2",
   BG_WRAPPER:
-    "flex-[0_0_30%] flex justify-center ",
+    "flex-[0_0_30%] flex justify-center items-center",
   TYPED_SPAN: "text-xl sm:text-2xl md:text-4xl seq",
 };
 
@@ -62,7 +60,15 @@ const HeroSection = React.memo(() => {
 
   const renderBackgroundImage = (): React.ReactNode => (
     <div className={HERO_STYLES.BG_WRAPPER} style={{ maxHeight: "650px" }}>
-      <h1>Design wing vector batado</h1>
+      <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 seq">
+        <Image
+          src="/rocket.png"
+          alt="Rocket launching illustration"
+          fill
+          priority
+          className="object-contain drop-shadow-[0_15px_35px_rgba(56,189,248,0.45)]"
+        />
+      </div>
     </div>
   );
 

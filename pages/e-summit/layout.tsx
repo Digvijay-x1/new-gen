@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <title>E-Summit | NewGen</title>
+        <title>E-Summit</title>
       </Head>
       <body className="antialiased">
         <ErrorReporter />
