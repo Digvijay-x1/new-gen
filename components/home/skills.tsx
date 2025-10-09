@@ -53,28 +53,26 @@ const SkillsSection = () => {
 
   const renderSectionTitle = (): React.ReactNode => (
     <div className="flex flex-col items-center justify-center">
-      <p className="section-title-sm seq text-center">Lorem ipsim</p>
+      <p className="section-title-sm seq text-center">Our</p>
       <h1 className="section-heading seq mt-2 text-center">MENTORS</h1>
-  
-      {/* Mentor Cards Container */}
+
       <div className="flex flex-col md:flex-row items-center gap-8 mt-8">
-        {/* Mentor 1 */}
         <div className="shadow-lg rounded-2xl p-6 flex flex-col items-center w-96">
           <Image src="/skills/ms.png" alt="MS" width={384} height={384} className="rounded-xl" />
-          <h3 className="mt-4 text-lg font-semibold">Mentor 1</h3>
-          <p className="text-gray-600 text-center mt-2">Some description about this amazing person.</p>
+          <h3 className="mt-4 text-lg font-semibold">Prof. Mukul S. Sutaone</h3>
+          <p className="text-gray-600 text-center mt-2">Director</p>
+          <p className="text-gray-600 text-center mt-2">IIIT Allahabad</p>
         </div>
-  
-        {/* Mentor 2 */}
         <div className="shadow-lg rounded-2xl p-6 flex flex-col items-center w-96">
           <Image src="/skills/rm.png" alt="RM" width={384} height={384} className="rounded-xl" />
-          <h3 className="mt-4 text-lg font-semibold">Mentor 2</h3>
-          <p className="text-gray-600 text-center mt-2">Some description about this amazing person.</p>
+          <h3 className="mt-4 text-lg font-semibold">Dr. Ranjana Vyas</h3>
+          <p className="text-gray-600 text-center mt-2">Coordinator, New Gen IEDC</p>
+          <p className="text-gray-600 text-center mt-2">IIIT Allahabad</p>
         </div>
       </div>
     </div>
   );
-  
+
 
   const renderBackgroundPattern = (): React.ReactNode => (
     <>
@@ -106,9 +104,8 @@ const SkillsSection = () => {
     <>
       <h3 className={SKILL_STYLES.SKILL_TITLE}>{title}</h3>
       <div
-        className={`flex flex-wrap seq ${
-          willChange ? "will-change-opacity" : ""
-        }`}
+        className={`flex flex-wrap seq ${willChange ? "will-change-opacity" : ""
+          }`}
       >
         {skills.map((skill) => (
           <Image
@@ -134,7 +131,7 @@ const SkillsSection = () => {
       >
         <div className="flex flex-col skills-wrapper">
           {renderSectionTitle()}
-          
+
         </div>
       </div>
     </section>

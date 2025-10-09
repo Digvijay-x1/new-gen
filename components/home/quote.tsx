@@ -58,11 +58,10 @@ const QuoteSection = () => {
     <div className="tall:py-60 py-72 section-container">
       <h1
         ref={quoteRef}
-        className={`font-medium text-4xl md:text-5xl text-center ${
-          willChange ? "will-change-opacity" : ""
-        }`}
+        className={`font-medium text-4xl md:text-5xl text-center ${willChange ? "will-change-opacity" : ""
+          }`}
       >
-        Lorem ipsum <span className="text-strong font-bold">strong</span> tum hi ho na
+        Our <span className="text-strong font-bold">strong</span> tum hi ho na
       </h1>
     </div>
   );
