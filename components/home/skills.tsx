@@ -60,14 +60,14 @@ const SkillsSection = () => {
         <div className="shadow-lg rounded-2xl p-6 flex flex-col items-center w-96">
           <Image src="/skills/ms.png" alt="MS" width={384} height={384} className="rounded-xl" />
           <h3 className="mt-4 text-lg font-semibold">Prof. Mukul S. Sutaone</h3>
-          <p className="text-gray-600 text-center mt-2">Director</p>
-          <p className="text-gray-600 text-center mt-2">IIIT Allahabad</p>
+          <p className="text-white text-center mt-2">Director</p>
+          <p className="text-white text-center mt-2">IIIT Allahabad</p>
         </div>
         <div className="shadow-lg rounded-2xl p-6 flex flex-col items-center w-96">
           <Image src="/skills/rm.png" alt="RM" width={384} height={384} className="rounded-xl" />
           <h3 className="mt-4 text-lg font-semibold">Dr. Ranjana Vyas</h3>
-          <p className="text-gray-600 text-center mt-2">Coordinator, New Gen IEDC</p>
-          <p className="text-gray-600 text-center mt-2">IIIT Allahabad</p>
+          <p className="text-white text-center mt-2">Coordinator, New Gen IEDC</p>
+          <p className="text-white text-center mt-2">IIIT Allahabad</p>
         </div>
       </div>
     </div>
