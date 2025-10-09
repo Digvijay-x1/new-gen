@@ -68,7 +68,7 @@ const AboutSection = () => {
   }, []);
 
   const renderQuotes = (): React.ReactNode => (
-    <h1 ref={quoteRef} className="font-medium text-3xl sm:text-4xl md:text-6xl">
+    <h1 ref={quoteRef} className="font-medium text-4xl sm:text-4xl md:text-5xl">
       <span
         className={`about-1 leading-tight ${willChange ? "will-change-opacity" : ""}`}
       >
