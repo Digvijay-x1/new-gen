@@ -23,9 +23,9 @@ export const MENULINKS: MenuLink[] = [
     href: "#works",
   },
   {
-    name: "Skills",
-    ref: "skills",
-    href: "#skills",
+    name: "Our Mentors",
+    ref: "our_mentors",
+    href: "#our_mentors",
   },
   {
     name: "Timeline",
@@ -35,7 +35,7 @@ export const MENULINKS: MenuLink[] = [
   {
     name: "Contact",
     ref: "contact",
-    href: "#contact",
+    href: "#footer",
   },
   {
     name: "E-Summit",
@@ -110,23 +110,6 @@ export const PROJECTS: IProject[] = [
     details: "We impact the world through mental health services - especially tothose with Anxiety/Depression, Our services and tools are a combinationof best practices and concepts from psychotherapy, counselingmindfulness, & Science-based healing frequency music therapy",
   }
 ];
-export const SKILLS = {
-  frontend: [
-    "javascript",
-    "react",
-    "redux",
-    "next",
-    "angular",
-    "gsap",
-    "tailwind",
-    "sass",
-    "svg",
-    "html",
-    "css",
-  ],
-  userInterface: ["figma", "sketch", "illustrator", "photoshop"],
-  other: ["git", "webpack", "gulp", "lightroom", "aftereffects"],
-};
 
 export enum Branch {
   LEFT = "leftSide",

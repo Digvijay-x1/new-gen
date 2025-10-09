@@ -137,7 +137,7 @@ const Footer = () => {
   );
 
   return (
-    <footer className="relative flex flex-col items-stretch w-full bg-cover select-none home-footer">
+    <footer id="footer" className="relative flex flex-col items-stretch w-full bg-cover select-none home-footer">
       <Image
         src="/footer-curve.svg"
         alt="Footer"

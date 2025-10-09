@@ -1,16 +1,16 @@
-import { MENULINKS, SKILLS } from "../../constants";
+import { MENULINKS } from "../../constants";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { gsap, Linear } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-const SKILL_STYLES = {
+const MENTOR_STYLES = {
   SECTION:
     "w-full relative select-none mb-24 section-container py-12 flex flex-col justify-center",
-  SKILL_TITLE: "section-title-sm mb-4 seq",
+  MENTOR_TITLE: "section-title-sm mb-4 seq",
 };
 
-const SkillsSection = () => {
+const MentorSection = () => {
   const targetSection = useRef<HTMLDivElement>(null);
   const [willChange, setWillChange] = useState(false);
 
@@ -19,8 +19,8 @@ const SkillsSection = () => {
   ): ScrollTrigger | null => {
     if (!targetSection.current) return null;
 
-    const skillsWrapper = targetSection.current.querySelector(".skills-wrapper");
-    if (!skillsWrapper) return null;
+    const mentorsWrapper = targetSection.current.querySelector(".mentors-wrapper");
+    if (!mentorsWrapper) return null;
 
     const revealTl = gsap.timeline({ defaults: { ease: Linear.easeNone } });
     revealTl.from(
@@ -30,7 +30,7 @@ const SkillsSection = () => {
     );
 
     return ScrollTrigger.create({
-      trigger: skillsWrapper,
+      trigger: mentorsWrapper,
       start: "100px bottom",
       end: "center center",
       animation: revealTl,
@@ -97,39 +97,18 @@ const SkillsSection = () => {
     </>
   );
 
-  const renderSkillColumn = (
-    title: string,
-    skills: string[]
-  ): React.ReactNode => (
-    <>
-      <h3 className={SKILL_STYLES.SKILL_TITLE}>{title}</h3>
-      <div
-        className={`flex flex-wrap seq ${willChange ? "will-change-opacity" : ""
-          }`}
-      >
-        {skills.map((skill) => (
-          <Image
-            key={skill}
-            src={`/skills/${skill}.svg`}
-            alt={skill}
-            width={76}
-            height={76}
-            className="skill"
-          />
-        ))}
-      </div>
-    </>
-  );
-
   return (
-    <section className="relative">
+    <section id="our_mentors" className="relative">
       {renderBackgroundPattern()}
       <div
-        className={SKILL_STYLES.SECTION}
+        className={MENTOR_STYLES.SECTION}
         id={MENULINKS[2].ref}
         ref={targetSection}
       >
-        <div className="flex flex-col skills-wrapper">
+        <div
+          className="flex flex-col mentors-wrapper"
+          style={willChange ? { willChange: "opacity, transform" } : undefined}
+        >
           {renderSectionTitle()}
 
         </div>
@@ -138,4 +117,4 @@ const SkillsSection = () => {
   );
 };
 
-export default SkillsSection;
+export default MentorSection;
