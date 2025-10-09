@@ -13,14 +13,14 @@ const HeroSection = () => {
           {/* Sponsors */}
           <div className="absolute transform -top-16 left-60 -translate-x-1/4 md:-translate-x-1/2 lg:-translate-x-3/4">
             <div className="px-4 py-2 text-black bg-white rounded-lg shadow-lg">
-              
-              <div className="text-lg font-bold font-display" style={{color: '#0033A1' }}>
+
+              <div className="text-lg font-bold font-display" style={{ color: '#0033A1' }}>
                 TATA <span className="font-light text-gray-400">|</span> GROUP
               </div>
               <p className="text-[10px] tracking-wider text-center text-gray-600 mb-1 font-body">Presents</p>
             </div>
           </div>
-          
+
           {/* <div className="absolute text-center top-199 -right-8 md:-right-16">
             <p className="mb-2 text-sm text-gray-400 font-body">In Association With</p>
             <div className="flex items-center justify-center gap-2">
@@ -39,7 +39,7 @@ const HeroSection = () => {
                 height={160}
                 className="w-28 h-28 md:w-36 md:h-36 lg:w-40 lg:h-40 shrink-0"
               />
-              
+
               <div className="flex items-end gap-x-4 sm:gap-x-6 md:gap-x-8">
                 <div className="text-left shrink">
                   <p className="text-base font-medium tracking-widest text-gray-300 md:text-xl font-body">IIIT  ALLAHABAD&apos;S 1<sup>ST</sup></p>
@@ -50,7 +50,7 @@ const HeroSection = () => {
                     DECIPHERING THE LABYRINTH
                   </h3>
                 </div>
-                
+
                 <div className="pb-3 md:pb-6 lg:pb-8 shrink-0">
                   <p className="text-lg font-bold tracking-wider md:text-xl lg:text-2xl whitespace-nowrap">
                     11<sup>th</sup> - 12<sup>th</sup> OCT
