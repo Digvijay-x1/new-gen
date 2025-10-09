@@ -1,6 +1,6 @@
 
 import { EMAIL, MENULINKS, SOCIAL_LINKS, TYPED_STRINGS } from "../../constants";
-import React, { MutableRefObject, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import Image from "next/image";
 import { gsap, Linear } from "gsap";
@@ -19,11 +19,11 @@ const HERO_STYLES = {
 };
 
 const HeroSection = React.memo(() => {
-  const typedSpanElement: MutableRefObject<HTMLSpanElement> = useRef(null);
-  const targetSection: MutableRefObject<HTMLDivElement> = useRef(null);
+  const typedSpanElement = useRef<HTMLSpanElement>(null);
+  const targetSection = useRef<HTMLDivElement>(null);
 
   const initTypeAnimation = (
-    typedSpanElement: MutableRefObject<HTMLSpanElement>
+    typedSpanElement: React.RefObject<HTMLSpanElement>
   ): Typed => {
     return new Typed(typedSpanElement.current, {
       strings: TYPED_STRINGS,
@@ -35,7 +35,7 @@ const HeroSection = React.memo(() => {
   };
 
   const initRevealAnimation = (
-    targetSection: MutableRefObject<HTMLDivElement>
+    targetSection: React.RefObject<HTMLDivElement>
   ): GSAPTimeline => {
     const revealTl = gsap.timeline({ defaults: { ease: Linear.easeNone } });
     revealTl
@@ -82,21 +82,21 @@ const HeroSection = React.memo(() => {
   const renderHeroContent = (): React.ReactNode => (
     <div className={HERO_STYLES.CONTENT}>
       <div className="md:mb-4 mb-2">
-      <h2 className="font-montserrat text-6xl font-bold bg-gradient-to-r from-blue-600 via-teal-500 to-green-400 bg-clip-text text-transparent animate-gradient mb-4 hover:scale-105 transition-transform">
+        <h2 className="font-montserrat text-6xl font-bold bg-gradient-to-r from-blue-600 via-teal-500 to-green-400 bg-clip-text text-transparent animate-gradient mb-4 hover:scale-105 transition-transform">
 
-  The New Generation<br />
-  <span className="inline-block mt-2">E-Cell</span>
-</h2>
-<h1 className="font-poppins text-2xl text-gray-300/90 tracking-wide seq hover:text-gold-400 transition-colors">
-  IIIT Allahabad
-</h1>
+          The New Generation<br />
+          <span className="inline-block mt-2">E-Cell</span>
+        </h2>
+        <h1 className="font-poppins text-2xl text-gray-300/90 tracking-wide seq hover:text-gold-400 transition-colors">
+          IIIT Allahabad
+        </h1>
       </div>
       <p className="mb-4 ">
         <span className={HERO_STYLES.TYPED_SPAN} ref={typedSpanElement}></span>
       </p>
       <div className="flex seq mb-5">{renderSocialLinks()}</div>
       <div className="flex seq">
-        
+
       </div>
     </div>
   );
