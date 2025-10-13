@@ -2,7 +2,7 @@
 
 # E-Cell Website
 
-Live: https://new-gen-h4vo.vercel.app/
+Live: [ecell.iiita.ac.in](http://ecell.iiita.ac.in)
 
 E-Cell (IIIT Allahabad) is the official platform showcasing our initiatives, events, mentors, and student projects. This site highlights E-Summit, timelines, collaborations, and the entrepreneurial culture at IIITA.
 
